@@ -11,6 +11,7 @@ from sklearn.model_selection import KFold, train_test_split
 
 
 TARGET_COLUMN = "Aggregate rating"
+REPORT_LINES = []
 
 FEATURE_COLUMNS = [
     "Country Code",
@@ -28,6 +29,14 @@ FEATURE_COLUMNS = [
     "Log Average Cost INR",
     "Cost Relative To City",
     "Cuisine Count",
+    "City wise Cost Category",
+    "Restaurant Cost Category",
+    "Popularity Category",
+    "City Restaurant Count",
+    "Is Expensive",
+    "Has Delivery Or Booking",
+    "Location Cluster",
+    "City Location Cluster",
 ]
 
 CAT_FEATURES = [
@@ -37,6 +46,11 @@ CAT_FEATURES = [
     "Has Table booking",
     "Has Online delivery",
     "Is delivering now",
+    "City wise Cost Category",
+    "Restaurant Cost Category",
+    "Popularity Category",
+    "Location Cluster",
+    "City Location Cluster",
 ]
 
 DROP_COLUMNS = [
@@ -49,6 +63,8 @@ DROP_COLUMNS = [
     "Rating color",
     "Rating text",
     "Switch to order menu",
+    "Rating Category",
+    "Restaurant Popularity Score",
 ]
 
 BASE_MODEL_PARAMS = {
@@ -72,6 +88,15 @@ TUNING_GRID = {
     "random_strength": [0.5, 1, 2],
     "bagging_temperature": [0, 1],
 }
+
+
+def report(message: str = "") -> None:
+    print(message)
+    REPORT_LINES.append(str(message))
+
+
+def format_params(params: dict) -> str:
+    return ", ".join(f"{key}={value}" for key, value in params.items())
 
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
@@ -137,17 +162,25 @@ def split_dataset(
 
 def evaluate_model(model: CatBoostRegressor, X: pd.DataFrame, y: pd.Series, label: str) -> dict:
     predictions = model.predict(X)
+    errors = np.abs(y - predictions)
     rmse = np.sqrt(mean_squared_error(y, predictions))
+    mae = mean_absolute_error(y, predictions)
     metrics = {
-        "MAE": mean_absolute_error(y, predictions),
+        "MAE": mae,
         "RMSE": rmse,
         "R2": r2_score(y, predictions),
+        "Within 0.25 Accuracy": np.mean(errors <= 0.25) * 100,
+        "Within 0.50 Accuracy": np.mean(errors <= 0.50) * 100,
+        "Rating Scale Accuracy": max(0, (1 - mae / 5.0) * 100),
     }
 
-    print(f"\n{label} Results")
-    print(f"MAE : {metrics['MAE']:.4f}")
-    print(f"RMSE: {metrics['RMSE']:.4f}")
-    print(f"R2  : {metrics['R2']:.4f}")
+    report(f"\n{label} Results")
+    report(f"MAE : {metrics['MAE']:.4f}")
+    report(f"RMSE: {metrics['RMSE']:.4f}")
+    report(f"R2  : {metrics['R2']:.4f}")
+    report(f"Within 0.25 Accuracy: {metrics['Within 0.25 Accuracy']:.2f}%")
+    report(f"Within 0.50 Accuracy: {metrics['Within 0.50 Accuracy']:.2f}%")
+    report(f"Rating Scale Accuracy: {metrics['Rating Scale Accuracy']:.2f}%")
 
     return metrics
 
@@ -183,12 +216,14 @@ def cross_validate_params(
     X: pd.DataFrame,
     y: pd.Series,
     params: dict,
+    candidate: int,
     cv_folds: int,
     tuning_iterations: int,
     random_state: int,
-) -> dict:
+) -> tuple[dict, list[dict]]:
     kfold = KFold(n_splits=cv_folds, shuffle=True, random_state=random_state)
     fold_metrics = []
+    fold_records = []
 
     for fold, (train_idx, val_idx) in enumerate(kfold.split(X), start=1):
         X_train_fold = X.iloc[train_idx]
@@ -209,20 +244,33 @@ def cross_validate_params(
         rmse = np.sqrt(mean_squared_error(y_val_fold, predictions))
         mae = mean_absolute_error(y_val_fold, predictions)
         r2 = r2_score(y_val_fold, predictions)
+        best_iteration = model.get_best_iteration()
 
         fold_metrics.append({"RMSE": rmse, "MAE": mae, "R2": r2})
-        print(
+        fold_records.append(
+            {
+                "Candidate": candidate,
+                "Fold": fold,
+                "RMSE": rmse,
+                "MAE": mae,
+                "R2": r2,
+                "Best Iteration": best_iteration,
+                **params,
+            }
+        )
+        report(
             f"    Fold {fold}: "
             f"RMSE={rmse:.4f}, MAE={mae:.4f}, R2={r2:.4f}, "
-            f"best_iteration={model.get_best_iteration()}"
+            f"best_iteration={best_iteration}"
         )
 
-    return {
+    metrics = {
         "RMSE": np.mean([metric["RMSE"] for metric in fold_metrics]),
         "RMSE_STD": np.std([metric["RMSE"] for metric in fold_metrics]),
         "MAE": np.mean([metric["MAE"] for metric in fold_metrics]),
         "R2": np.mean([metric["R2"] for metric in fold_metrics]),
     }
+    return metrics, fold_records
 
 
 def tune_hyperparameters(
@@ -232,44 +280,59 @@ def tune_hyperparameters(
     tuning_trials: int,
     tuning_iterations: int,
     random_state: int,
-) -> dict:
+) -> tuple[dict, pd.DataFrame, pd.DataFrame]:
     candidates = get_tuning_candidates(tuning_trials, random_state=random_state)
     tuning_results = []
+    summary_records = []
+    all_fold_records = []
 
-    print("\nHyperparameter tuning with cross-validation")
-    print(f"Candidates: {len(candidates)}")
-    print(f"CV folds  : {cv_folds}")
+    report("\nHyperparameter tuning with cross-validation")
+    report(f"Candidates: {len(candidates)}")
+    report(f"CV folds  : {cv_folds}")
 
     for index, params in enumerate(candidates, start=1):
-        print(f"\nCandidate {index}/{len(candidates)}: {params}")
-        metrics = cross_validate_params(
+        report(f"\nCandidate {index}/{len(candidates)}: {params}")
+        metrics, fold_records = cross_validate_params(
             X_train,
             y_train,
             params,
+            candidate=index,
             cv_folds=cv_folds,
             tuning_iterations=tuning_iterations,
             random_state=random_state,
         )
         tuning_results.append({"params": params, "metrics": metrics})
-        print(
+        all_fold_records.extend(fold_records)
+        summary_records.append(
+            {
+                "Candidate": index,
+                "Parameters": format_params(params),
+                "Mean RMSE": metrics["RMSE"],
+                "RMSE STD": metrics["RMSE_STD"],
+                "Mean MAE": metrics["MAE"],
+                "Mean R2": metrics["R2"],
+                **params,
+            }
+        )
+        report(
             f"  Mean CV: RMSE={metrics['RMSE']:.4f} "
             f"(+/- {metrics['RMSE_STD']:.4f}), "
             f"MAE={metrics['MAE']:.4f}, R2={metrics['R2']:.4f}"
         )
 
     best_result = min(tuning_results, key=lambda result: result["metrics"]["RMSE"])
-    print("\nBest Parameters")
-    print(best_result["params"])
-    print(
+    report("\nBest Parameters")
+    report(str(best_result["params"]))
+    report(
         f"Best CV RMSE={best_result['metrics']['RMSE']:.4f}, "
         f"MAE={best_result['metrics']['MAE']:.4f}, "
         f"R2={best_result['metrics']['R2']:.4f}"
     )
 
-    return best_result["params"]
+    return best_result["params"], pd.DataFrame(summary_records), pd.DataFrame(all_fold_records)
 
 
-def show_feature_importance(model: CatBoostRegressor) -> None:
+def show_feature_importance(model: CatBoostRegressor) -> pd.DataFrame:
     importance = pd.DataFrame(
         {
             "Feature": FEATURE_COLUMNS,
@@ -277,8 +340,310 @@ def show_feature_importance(model: CatBoostRegressor) -> None:
         }
     ).sort_values(by="Importance", ascending=False)
 
-    print("\nFeature Importance")
-    print(importance.to_string(index=False))
+    report("\nFeature Importance")
+    report(importance.to_string(index=False))
+    return importance
+
+
+def save_results(
+    results_dir: Path,
+    final_metrics: list[dict],
+    feature_importance: pd.DataFrame,
+    cv_summary: pd.DataFrame | None = None,
+    cv_folds: pd.DataFrame | None = None,
+) -> None:
+    results_dir.mkdir(parents=True, exist_ok=True)
+    (results_dir / "training_report.txt").write_text("\n".join(REPORT_LINES), encoding="utf-8")
+    pd.DataFrame(final_metrics).to_csv(results_dir / "final_metrics.csv", index=False)
+    feature_importance.to_csv(results_dir / "feature_importance.csv", index=False)
+
+    if cv_summary is not None and not cv_summary.empty:
+        cv_summary.to_csv(results_dir / "cv_hyperparameter_summary.csv", index=False)
+
+    if cv_folds is not None and not cv_folds.empty:
+        cv_folds.to_csv(results_dir / "cv_fold_metrics.csv", index=False)
+
+
+def save_plots(
+    results_dir: Path,
+    final_metrics: list[dict],
+    feature_importance: pd.DataFrame,
+    cv_summary: pd.DataFrame | None = None,
+    cv_folds: pd.DataFrame | None = None,
+) -> None:
+    try:
+        import plotly.graph_objects as go
+    except ImportError:
+        report("\nPlotly is not installed. Skipping interactive graph creation.")
+        return
+
+    results_dir.mkdir(parents=True, exist_ok=True)
+    template = "plotly_dark"
+    metrics_df = pd.DataFrame(final_metrics)
+    metric_names = ["MAE", "RMSE", "R2", "Within 0.25 Accuracy", "Within 0.50 Accuracy", "Rating Scale Accuracy"]
+    colors = {
+        "MAE": "#00cc96",
+        "RMSE": "#ef553b",
+        "R2": "#636efa",
+        "Within 0.25 Accuracy": "#ab63fa",
+        "Within 0.50 Accuracy": "#ffa15a",
+        "Rating Scale Accuracy": "#19d3f3",
+    }
+
+    fig = go.Figure()
+    for index, metric in enumerate(metric_names):
+        fig.add_trace(
+            go.Bar(
+                x=metrics_df["Dataset"],
+                y=metrics_df[metric],
+                name=metric,
+                marker_color=colors[metric],
+                text=metrics_df[metric].round(4),
+                textposition="auto",
+                visible=index == 0,
+            )
+        )
+    fig.update_layout(
+        template=template,
+        title="Final Model Metrics by Dataset Split",
+        xaxis_title="Dataset Split",
+        yaxis_title="Metric Value",
+        updatemenus=[
+            {
+                "buttons": [
+                    {
+                        "label": metric,
+                        "method": "update",
+                        "args": [
+                            {"visible": [name == metric for name in metric_names]},
+                            {"yaxis": {"title": metric}},
+                        ],
+                    }
+                    for metric in metric_names
+                ],
+                "direction": "down",
+                "x": 1.12,
+                "y": 1.15,
+                "showactive": True,
+            }
+        ],
+    )
+    fig.write_html(results_dir / "final_metrics_toggle.html", include_plotlyjs=True)
+
+    if cv_summary is not None and not cv_summary.empty:
+        cv_metric_map = {
+            "Mean R2": "#636efa",
+            "Mean RMSE": "#ef553b",
+            "Mean MAE": "#00cc96",
+        }
+
+        fig = go.Figure()
+        for index, (metric, color) in enumerate(cv_metric_map.items()):
+            fig.add_trace(
+                go.Scatter(
+                    x=cv_summary["Candidate"],
+                    y=cv_summary[metric],
+                    mode="lines+markers",
+                    name=metric,
+                    marker={"size": 10, "color": color},
+                    line={"color": color},
+                    text=cv_summary["Parameters"],
+                    hovertemplate=(
+                        "Candidate=%{x}<br>"
+                        f"{metric}=%{{y:.4f}}<br>"
+                        "Params=%{text}<extra></extra>"
+                    ),
+                    visible=index == 0,
+                )
+            )
+        fig.update_layout(
+            template=template,
+            title="Cross-Validation Metric by Hyperparameter Candidate",
+            xaxis_title="Candidate",
+            yaxis_title="Mean R2",
+            updatemenus=[
+                {
+                    "buttons": [
+                        {
+                            "label": metric,
+                            "method": "update",
+                            "args": [
+                                {"visible": [name == metric for name in cv_metric_map]},
+                                {"yaxis": {"title": metric}},
+                            ],
+                        }
+                        for metric in cv_metric_map
+                    ],
+                    "direction": "down",
+                    "x": 1.12,
+                    "y": 1.15,
+                    "showactive": True,
+                }
+            ],
+        )
+        fig.write_html(results_dir / "cv_candidate_metrics_toggle.html", include_plotlyjs=True)
+
+        params = ["depth", "learning_rate", "l2_leaf_reg", "random_strength", "bagging_temperature"]
+        fig = go.Figure()
+        for index, param in enumerate(params):
+            fig.add_trace(
+                go.Scatter(
+                    x=cv_summary[param],
+                    y=cv_summary["Mean R2"],
+                    mode="markers",
+                    name=param,
+                    marker={"size": 12, "color": "#ab63fa"},
+                    text=cv_summary["Parameters"],
+                    hovertemplate=(
+                        f"{param}=%{{x}}<br>"
+                        "Mean R2=%{y:.4f}<br>"
+                        "Params=%{text}<extra></extra>"
+                    ),
+                    visible=index == 0,
+                )
+            )
+        fig.update_layout(
+            template=template,
+            title="Mean CV R2 vs Hyperparameter Values",
+            xaxis_title=params[0],
+            yaxis_title="Mean CV R2",
+            updatemenus=[
+                {
+                    "buttons": [
+                        {
+                            "label": param,
+                            "method": "update",
+                            "args": [
+                                {"visible": [name == param for name in params]},
+                                {"xaxis": {"title": param}},
+                            ],
+                        }
+                        for param in params
+                    ],
+                    "direction": "down",
+                    "x": 1.12,
+                    "y": 1.15,
+                    "showactive": True,
+                }
+            ],
+        )
+        fig.write_html(results_dir / "cv_r2_vs_hyperparameters_toggle.html", include_plotlyjs=True)
+
+    if cv_folds is not None and not cv_folds.empty:
+        fold_metric_names = ["R2", "RMSE", "MAE"]
+        fig = go.Figure()
+        trace_metric_names = []
+        for metric in fold_metric_names:
+            for candidate, group in cv_folds.groupby("Candidate"):
+                trace_metric_names.append(metric)
+                fig.add_trace(
+                    go.Scatter(
+                        x=group["Fold"],
+                        y=group[metric],
+                        mode="lines+markers",
+                        name=f"Candidate {candidate}",
+                        legendgroup=f"Candidate {candidate}",
+                        hovertemplate=f"Fold=%{{x}}<br>{metric}=%{{y:.4f}}<extra></extra>",
+                        visible=metric == "R2",
+                    )
+                )
+        fig.update_layout(
+            template=template,
+            title="Cross-Validation Fold Metrics by Candidate",
+            xaxis_title="Fold",
+            yaxis_title="R2",
+            updatemenus=[
+                {
+                    "buttons": [
+                        {
+                            "label": metric,
+                            "method": "update",
+                            "args": [
+                                {"visible": [name == metric for name in trace_metric_names]},
+                                {"yaxis": {"title": metric}},
+                            ],
+                        }
+                        for metric in fold_metric_names
+                    ],
+                    "direction": "down",
+                    "x": 1.12,
+                    "y": 1.15,
+                    "showactive": True,
+                }
+            ],
+        )
+        fig.write_html(results_dir / "cv_fold_metrics_toggle.html", include_plotlyjs=True)
+
+    top_counts = [10, 15, min(25, len(feature_importance)), len(feature_importance)]
+    top_counts = list(dict.fromkeys(top_counts))
+
+    fig = go.Figure()
+    for index, top_n in enumerate(top_counts):
+        top_features = feature_importance.head(top_n).sort_values("Importance")
+        fig.add_trace(
+            go.Bar(
+                x=top_features["Importance"],
+                y=top_features["Feature"],
+                orientation="h",
+                name=f"Top {top_n}",
+                marker_color="#ffa15a",
+                text=top_features["Importance"].round(4),
+                textposition="auto",
+                visible=(index == 1 if len(top_counts) > 1 else True),
+            )
+        )
+    fig.update_layout(
+        template=template,
+        title="Feature Importance",
+        xaxis_title="Importance",
+        yaxis_title="Feature",
+        height=700,
+        updatemenus=[
+            {
+                "buttons": [
+                    {
+                        "label": f"Top {top_n}",
+                        "method": "update",
+                        "args": [
+                            {"visible": [count == top_n for count in top_counts]},
+                            {"title": f"Top {top_n} Feature Importances"},
+                        ],
+                    }
+                    for top_n in top_counts
+                ],
+                "direction": "down",
+                "x": 1.12,
+                "y": 1.15,
+                "showactive": True,
+            }
+        ],
+    )
+    fig.write_html(results_dir / "feature_importance_toggle.html", include_plotlyjs=True)
+
+    cumulative = feature_importance.copy()
+    cumulative["Cumulative Importance"] = cumulative["Importance"].cumsum()
+
+    fig = go.Figure()
+    fig.add_trace(
+        go.Scatter(
+            x=cumulative["Feature"],
+            y=cumulative["Cumulative Importance"],
+            mode="lines+markers",
+            name="Cumulative Importance",
+            marker={"size": 8, "color": "#19d3f3"},
+            line={"color": "#19d3f3"},
+            hovertemplate="Feature=%{x}<br>Cumulative=%{y:.4f}<extra></extra>",
+        )
+    )
+    fig.update_layout(
+        template=template,
+        title="Cumulative Feature Importance",
+        xaxis_title="Feature",
+        yaxis_title="Cumulative Importance",
+        xaxis_tickangle=-45,
+    )
+    fig.write_html(results_dir / "feature_importance_cumulative.html", include_plotlyjs=True)
+    report("\nSaved interactive Plotly dark-theme graphs.")
 
 
 def train_catboost(
@@ -306,13 +671,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Train a CatBoost model for restaurant rating prediction.")
     parser.add_argument(
         "--csv",
-        default=r"D:\Internship\cleaned_dataset.csv",
+        default=r"D:\Git\Restaurant_Intelligent_System\Dataset\cleaned_dataset.csv",
         help="Path to cleaned_dataset.csv",
     )
     parser.add_argument(
         "--model-output",
         default="catboost_restaurant_rating_model.pkl",
         help="Output path for the trained model",
+    )
+    parser.add_argument(
+        "--results-dir",
+        default="rating_model_base_results",
+        help="Directory where reports, CSV files, and graphs will be saved",
     )
     parser.add_argument(
         "--cv-folds",
@@ -344,16 +714,18 @@ def main() -> None:
 
     X_train, X_val, X_test, y_train, y_val, y_test = split_dataset(X, y)
 
-    print("Dataset split")
-    print(f"Train     : {X_train.shape[0]} rows")
-    print(f"Validation: {X_val.shape[0]} rows")
-    print(f"Test      : {X_test.shape[0]} rows")
+    report("Dataset split")
+    report(f"Train     : {X_train.shape[0]} rows")
+    report(f"Validation: {X_val.shape[0]} rows")
+    report(f"Test      : {X_test.shape[0]} rows")
 
     if args.skip_tuning:
         best_params = None
-        print("\nSkipping hyperparameter tuning. Training with default parameters.")
+        cv_summary = pd.DataFrame()
+        cv_folds = pd.DataFrame()
+        report("\nSkipping hyperparameter tuning. Training with default parameters.")
     else:
-        best_params = tune_hyperparameters(
+        best_params, cv_summary, cv_folds = tune_hyperparameters(
             X_train,
             y_train,
             cv_folds=args.cv_folds,
@@ -364,15 +736,38 @@ def main() -> None:
 
     model = train_catboost(X_train, y_train, X_val, y_val, best_params=best_params)
 
-    evaluate_model(model, X_train, y_train, "Train")
-    evaluate_model(model, X_val, y_val, "Validation")
-    evaluate_model(model, X_test, y_test, "Test")
+    final_metrics = []
+    for label, features, target in [
+        ("Train", X_train, y_train),
+        ("Validation", X_val, y_val),
+        ("Test", X_test, y_test),
+    ]:
+        metrics = evaluate_model(model, features, target, label)
+        final_metrics.append({"Dataset": label, **metrics})
 
-    show_feature_importance(model)
+    feature_importance = show_feature_importance(model)
 
     output_path = Path(args.model_output)
     joblib.dump(model, output_path)
-    print(f"\nSaved model to: {output_path.resolve()}")
+    report(f"\nSaved model to: {output_path.resolve()}")
+
+    results_dir = Path(args.results_dir)
+    save_results(
+        results_dir=results_dir,
+        final_metrics=final_metrics,
+        feature_importance=feature_importance,
+        cv_summary=cv_summary,
+        cv_folds=cv_folds,
+    )
+    save_plots(
+        results_dir=results_dir,
+        final_metrics=final_metrics,
+        feature_importance=feature_importance,
+        cv_summary=cv_summary,
+        cv_folds=cv_folds,
+    )
+    report(f"Saved reports and graphs to: {results_dir.resolve()}")
+    (results_dir / "training_report.txt").write_text("\n".join(REPORT_LINES), encoding="utf-8")
 
 
 if __name__ == "__main__":

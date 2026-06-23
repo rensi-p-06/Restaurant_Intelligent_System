@@ -1,0 +1,23 @@
+Feature,Importance
+Popularity Category,0.37693495
+Cuisines,0.20213729
+Log Votes,0.12032291
+City Location Cluster,0.101853184
+City,0.0689602
+City Restaurant Count,0.03767358
+Country Code,0.03550855
+Location Cluster,0.015394676
+Has Online delivery,0.010224045
+Log Average Cost INR,0.0076063327
+Restaurant Cost Category,0.0073390426
+Average Cost INR,0.0059086517
+City wise Cost Category,0.0028950898
+Has Table booking,0.0016262254
+Cost Relative To City,0.0011354227
+Latitude,0.00081814214
+Longitude,0.0007732796
+Is delivering now,0.0007568832
+Cuisine Count,0.00071904255
+Average Cost for two,0.00065926125
+Price range,0.0004997851
+Is Expensive,0.00025346037

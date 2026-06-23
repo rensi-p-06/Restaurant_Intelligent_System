@@ -1,0 +1,9 @@
+Candidate,Parameters,Mean RMSE,RMSE STD,Mean MAE,Mean R2,depth,learning_rate,l2_leaf_reg,random_strength,bagging_temperature
+1,"depth=8, learning_rate=0.03, l2_leaf_reg=5, random_strength=1, bagging_temperature=1",0.3070552082682228,0.0032332109347576747,0.2052780097191822,0.9592990273629711,8,0.03,5,1.0,1
+2,"depth=8, learning_rate=0.03, l2_leaf_reg=7, random_strength=0.5, bagging_temperature=0",0.3077621895556608,0.0024100988315816007,0.20555786482813435,0.9591143711034036,8,0.03,7,0.5,0
+3,"depth=10, learning_rate=0.05, l2_leaf_reg=7, random_strength=0.5, bagging_temperature=0",0.30836651795840514,0.004743082758688182,0.2066485429030267,0.9589420949909996,10,0.05,7,0.5,0
+4,"depth=10, learning_rate=0.02, l2_leaf_reg=9, random_strength=0.5, bagging_temperature=0",0.3104287707566422,0.003323954164000962,0.20701492327794943,0.9583995324176136,10,0.02,9,0.5,0
+5,"depth=8, learning_rate=0.03, l2_leaf_reg=9, random_strength=2, bagging_temperature=1",0.3090960892151169,0.0029597885919954076,0.20840356065908713,0.9587578668520456,8,0.03,9,2.0,1
+6,"depth=6, learning_rate=0.03, l2_leaf_reg=7, random_strength=0.5, bagging_temperature=1",0.307636128049619,0.0023759022587451057,0.20522819745238685,0.9591484892427532,6,0.03,7,0.5,1
+7,"depth=6, learning_rate=0.02, l2_leaf_reg=5, random_strength=0.5, bagging_temperature=1",0.30888763360843946,0.0028404749263701654,0.2061975948532636,0.9588145718024953,6,0.02,5,0.5,1
+8,"depth=10, learning_rate=0.02, l2_leaf_reg=3, random_strength=2, bagging_temperature=0",0.30917138322263815,0.0030589867530629086,0.20811045590566316,0.9587370642962748,10,0.02,3,2.0,0

@@ -1,0 +1,50 @@
+Dataset split
+Train     : 6685 rows
+Validation: 1433 rows
+Test      : 1433 rows
+
+Train Results
+MAE : 0.7104
+RMSE: 0.9430
+R2  : 0.6163
+Within 0.25 Accuracy: 27.12%
+Within 0.50 Accuracy: 49.02%
+Rating Scale Accuracy: 85.79%
+
+Validation Results
+MAE : 0.8230
+RMSE: 1.0916
+R2  : 0.4630
+Within 0.25 Accuracy: 24.84%
+Within 0.50 Accuracy: 43.34%
+Rating Scale Accuracy: 83.54%
+
+Test Results
+MAE : 0.8028
+RMSE: 1.0664
+R2  : 0.5045
+Within 0.25 Accuracy: 22.82%
+Within 0.50 Accuracy: 44.66%
+Rating Scale Accuracy: 83.94%
+
+Feature Importance
+              Feature  Importance
+            Longitude   22.611507
+             Latitude   18.376426
+                 City   12.022244
+             Cuisines   11.597041
+  Has Online delivery    9.799552
+     Average Cost INR    5.293944
+Cost Relative To City    5.073214
+ Log Average Cost INR    4.268901
+        Cuisine Count    3.473178
+         Country Code    3.320029
+ Average Cost for two    2.587543
+          Price range    1.418524
+    Has Table booking    0.142446
+    Is delivering now    0.015453
+
+Saved model to: D:\Git\Restaurant_Intelligent_System\catboost_restaurant_rating_model_without_votes.pkl
+
+Saved interactive Plotly dark-theme graphs.
+Saved reports and graphs to: D:\Git\Restaurant_Intelligent_System\rating_model_without_votes_results

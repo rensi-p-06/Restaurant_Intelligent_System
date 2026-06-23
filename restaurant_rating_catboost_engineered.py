@@ -336,17 +336,25 @@ def train_catboost(
 
 def evaluate_model(model: CatBoostRegressor, X: pd.DataFrame, y: pd.Series, label: str) -> dict:
     predictions = model.predict(X)
+    errors = np.abs(y - predictions)
     rmse = np.sqrt(mean_squared_error(y, predictions))
+    mae = mean_absolute_error(y, predictions)
     metrics = {
-        "MAE": mean_absolute_error(y, predictions),
+        "MAE": mae,
         "RMSE": rmse,
         "R2": r2_score(y, predictions),
+        "Within 0.25 Accuracy": np.mean(errors <= 0.25) * 100,
+        "Within 0.50 Accuracy": np.mean(errors <= 0.50) * 100,
+        "Rating Scale Accuracy": max(0, (1 - mae / 5.0) * 100),
     }
 
     report(f"\n{label} Results")
     report(f"MAE : {metrics['MAE']:.4f}")
     report(f"RMSE: {metrics['RMSE']:.4f}")
     report(f"R2  : {metrics['R2']:.4f}")
+    report(f"Within 0.25 Accuracy: {metrics['Within 0.25 Accuracy']:.2f}%")
+    report(f"Within 0.50 Accuracy: {metrics['Within 0.50 Accuracy']:.2f}%")
+    report(f"Rating Scale Accuracy: {metrics['Rating Scale Accuracy']:.2f}%")
 
     return metrics
 
@@ -401,10 +409,17 @@ def save_plots(
 
     template = "plotly_dark"
     metrics_df = pd.DataFrame(final_metrics)
-    metric_names = ["MAE", "RMSE", "R2"]
+    metric_names = ["MAE", "RMSE", "R2", "Within 0.25 Accuracy", "Within 0.50 Accuracy", "Rating Scale Accuracy"]
 
     fig = go.Figure()
-    colors = {"MAE": "#00cc96", "RMSE": "#ef553b", "R2": "#636efa"}
+    colors = {
+        "MAE": "#00cc96",
+        "RMSE": "#ef553b",
+        "R2": "#636efa",
+        "Within 0.25 Accuracy": "#ab63fa",
+        "Within 0.50 Accuracy": "#ffa15a",
+        "Rating Scale Accuracy": "#19d3f3",
+    }
     for index, metric in enumerate(metric_names):
         fig.add_trace(
             go.Bar(
@@ -693,7 +708,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--results-dir",
-        default="rating_model_results",
+        default="rating_model_engineered_results",
         help="Directory where reports, CSV files, and graphs will be saved",
     )
     parser.add_argument(

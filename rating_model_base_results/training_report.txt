@@ -1,0 +1,115 @@
+Dataset split
+Train     : 6685 rows
+Validation: 1433 rows
+Test      : 1433 rows
+
+Hyperparameter tuning with cross-validation
+Candidates: 8
+CV folds  : 3
+
+Candidate 1/8: {'depth': 8, 'learning_rate': 0.03, 'l2_leaf_reg': 5, 'random_strength': 1, 'bagging_temperature': 1}
+    Fold 1: RMSE=0.3046, MAE=0.2018, R2=0.9603, best_iteration=788
+    Fold 2: RMSE=0.3116, MAE=0.2106, R2=0.9578, best_iteration=776
+    Fold 3: RMSE=0.3049, MAE=0.2034, R2=0.9598, best_iteration=779
+  Mean CV: RMSE=0.3071 (+/- 0.0032), MAE=0.2053, R2=0.9593
+
+Candidate 2/8: {'depth': 8, 'learning_rate': 0.03, 'l2_leaf_reg': 7, 'random_strength': 0.5, 'bagging_temperature': 0}
+    Fold 1: RMSE=0.3056, MAE=0.2016, R2=0.9600, best_iteration=799
+    Fold 2: RMSE=0.3111, MAE=0.2108, R2=0.9579, best_iteration=795
+    Fold 3: RMSE=0.3065, MAE=0.2043, R2=0.9594, best_iteration=795
+  Mean CV: RMSE=0.3078 (+/- 0.0024), MAE=0.2056, R2=0.9591
+
+Candidate 3/8: {'depth': 10, 'learning_rate': 0.05, 'l2_leaf_reg': 7, 'random_strength': 0.5, 'bagging_temperature': 0}
+    Fold 1: RMSE=0.3028, MAE=0.2010, R2=0.9608, best_iteration=799
+    Fold 2: RMSE=0.3144, MAE=0.2144, R2=0.9570, best_iteration=749
+    Fold 3: RMSE=0.3079, MAE=0.2046, R2=0.9591, best_iteration=600
+  Mean CV: RMSE=0.3084 (+/- 0.0047), MAE=0.2066, R2=0.9589
+
+Candidate 4/8: {'depth': 10, 'learning_rate': 0.02, 'l2_leaf_reg': 9, 'random_strength': 0.5, 'bagging_temperature': 0}
+    Fold 1: RMSE=0.3080, MAE=0.2025, R2=0.9594, best_iteration=799
+    Fold 2: RMSE=0.3151, MAE=0.2127, R2=0.9568, best_iteration=798
+    Fold 3: RMSE=0.3082, MAE=0.2059, R2=0.9590, best_iteration=799
+  Mean CV: RMSE=0.3104 (+/- 0.0033), MAE=0.2070, R2=0.9584
+
+Candidate 5/8: {'depth': 8, 'learning_rate': 0.03, 'l2_leaf_reg': 9, 'random_strength': 2, 'bagging_temperature': 1}
+    Fold 1: RMSE=0.3074, MAE=0.2047, R2=0.9595, best_iteration=798
+    Fold 2: RMSE=0.3133, MAE=0.2142, R2=0.9573, best_iteration=799
+    Fold 3: RMSE=0.3066, MAE=0.2063, R2=0.9594, best_iteration=799
+  Mean CV: RMSE=0.3091 (+/- 0.0030), MAE=0.2084, R2=0.9588
+
+Candidate 6/8: {'depth': 6, 'learning_rate': 0.03, 'l2_leaf_reg': 7, 'random_strength': 0.5, 'bagging_temperature': 1}
+    Fold 1: RMSE=0.3062, MAE=0.2015, R2=0.9599, best_iteration=799
+    Fold 2: RMSE=0.3110, MAE=0.2099, R2=0.9579, best_iteration=792
+    Fold 3: RMSE=0.3057, MAE=0.2043, R2=0.9596, best_iteration=798
+  Mean CV: RMSE=0.3076 (+/- 0.0024), MAE=0.2052, R2=0.9591
+
+Candidate 7/8: {'depth': 6, 'learning_rate': 0.02, 'l2_leaf_reg': 5, 'random_strength': 0.5, 'bagging_temperature': 1}
+    Fold 1: RMSE=0.3080, MAE=0.2028, R2=0.9594, best_iteration=799
+    Fold 2: RMSE=0.3127, MAE=0.2108, R2=0.9575, best_iteration=799
+    Fold 3: RMSE=0.3059, MAE=0.2050, R2=0.9596, best_iteration=798
+  Mean CV: RMSE=0.3089 (+/- 0.0028), MAE=0.2062, R2=0.9588
+
+Candidate 8/8: {'depth': 10, 'learning_rate': 0.02, 'l2_leaf_reg': 3, 'random_strength': 2, 'bagging_temperature': 0}
+    Fold 1: RMSE=0.3071, MAE=0.2042, R2=0.9596, best_iteration=798
+    Fold 2: RMSE=0.3135, MAE=0.2138, R2=0.9573, best_iteration=795
+    Fold 3: RMSE=0.3069, MAE=0.2064, R2=0.9593, best_iteration=799
+  Mean CV: RMSE=0.3092 (+/- 0.0031), MAE=0.2081, R2=0.9587
+
+Best Parameters
+{'depth': 8, 'learning_rate': 0.03, 'l2_leaf_reg': 5, 'random_strength': 1, 'bagging_temperature': 1}
+Best CV RMSE=0.3071, MAE=0.2053, R2=0.9593
+
+Train Results
+MAE : 0.1682
+RMSE: 0.2495
+R2  : 0.9731
+Within 0.25 Accuracy: 74.91%
+Within 0.50 Accuracy: 94.05%
+Rating Scale Accuracy: 96.64%
+
+Validation Results
+MAE : 0.1970
+RMSE: 0.2949
+R2  : 0.9608
+Within 0.25 Accuracy: 70.83%
+Within 0.50 Accuracy: 91.07%
+Rating Scale Accuracy: 96.06%
+
+Test Results
+MAE : 0.2032
+RMSE: 0.2997
+R2  : 0.9608
+Within 0.25 Accuracy: 68.67%
+Within 0.50 Accuracy: 89.18%
+Rating Scale Accuracy: 95.94%
+
+Feature Importance
+                 Feature  Importance
+               Log Votes   84.989623
+     Popularity Category    2.944804
+                Cuisines    1.516346
+                Latitude    1.134508
+   City Restaurant Count    1.010383
+Restaurant Cost Category    0.942854
+        Location Cluster    0.890893
+ City wise Cost Category    0.834105
+            Country Code    0.817748
+               Longitude    0.788077
+   City Location Cluster    0.634533
+                    City    0.605086
+           Cuisine Count    0.557089
+   Cost Relative To City    0.414485
+        Average Cost INR    0.393177
+    Average Cost for two    0.342250
+     Has Online delivery    0.258752
+    Log Average Cost INR    0.244791
+             Price range    0.220670
+ Has Delivery Or Booking    0.219632
+       Has Table booking    0.113880
+            Is Expensive    0.067214
+       Is delivering now    0.059098
+
+Saved model to: D:\Git\Restaurant_Intelligent_System\catboost_restaurant_rating_model.pkl
+
+Saved interactive Plotly dark-theme graphs.
+Saved reports and graphs to: D:\Git\Restaurant_Intelligent_System\rating_model_base_results

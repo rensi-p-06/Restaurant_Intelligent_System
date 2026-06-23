@@ -1,0 +1,114 @@
+Dataset split
+Train     : 6685 rows
+Validation: 1433 rows
+Test      : 1433 rows
+
+XGBoost hyperparameter tuning with cross-validation
+Candidates: 8
+CV folds  : 3
+
+Candidate 1/8: {'max_depth': 8, 'learning_rate': 0.03, 'n_estimators': 1200, 'subsample': 0.9, 'colsample_bytree': 0.9, 'reg_lambda': 5}
+    Fold 1: RMSE=0.3016, MAE=0.1958, R2=0.9611
+    Fold 2: RMSE=0.3064, MAE=0.2035, R2=0.9592
+    Fold 3: RMSE=0.3035, MAE=0.2001, R2=0.9602
+  Mean CV: RMSE=0.3038 (+/- 0.0020), MAE=0.1998, R2=0.9602
+
+Candidate 2/8: {'max_depth': 6, 'learning_rate': 0.03, 'n_estimators': 1200, 'subsample': 0.8, 'colsample_bytree': 0.8, 'reg_lambda': 3}
+    Fold 1: RMSE=0.3019, MAE=0.1974, R2=0.9610
+    Fold 2: RMSE=0.3068, MAE=0.2041, R2=0.9591
+    Fold 3: RMSE=0.3036, MAE=0.2013, R2=0.9602
+  Mean CV: RMSE=0.3041 (+/- 0.0020), MAE=0.2009, R2=0.9601
+
+Candidate 3/8: {'max_depth': 8, 'learning_rate': 0.05, 'n_estimators': 1200, 'subsample': 0.8, 'colsample_bytree': 0.8, 'reg_lambda': 3}
+    Fold 1: RMSE=0.3055, MAE=0.2011, R2=0.9600
+    Fold 2: RMSE=0.3107, MAE=0.2075, R2=0.9580
+    Fold 3: RMSE=0.3086, MAE=0.2046, R2=0.9589
+  Mean CV: RMSE=0.3083 (+/- 0.0021), MAE=0.2044, R2=0.9590
+
+Candidate 4/8: {'max_depth': 8, 'learning_rate': 0.02, 'n_estimators': 1200, 'subsample': 0.9, 'colsample_bytree': 0.8, 'reg_lambda': 3}
+    Fold 1: RMSE=0.3036, MAE=0.1998, R2=0.9606
+    Fold 2: RMSE=0.3097, MAE=0.2074, R2=0.9583
+    Fold 3: RMSE=0.3053, MAE=0.2038, R2=0.9597
+  Mean CV: RMSE=0.3062 (+/- 0.0026), MAE=0.2037, R2=0.9595
+
+Candidate 5/8: {'max_depth': 6, 'learning_rate': 0.03, 'n_estimators': 1200, 'subsample': 0.9, 'colsample_bytree': 0.9, 'reg_lambda': 7}
+    Fold 1: RMSE=0.3012, MAE=0.1957, R2=0.9612
+    Fold 2: RMSE=0.3041, MAE=0.2018, R2=0.9598
+    Fold 3: RMSE=0.3015, MAE=0.1995, R2=0.9607
+  Mean CV: RMSE=0.3023 (+/- 0.0013), MAE=0.1990, R2=0.9606
+
+Candidate 6/8: {'max_depth': 4, 'learning_rate': 0.03, 'n_estimators': 1200, 'subsample': 0.8, 'colsample_bytree': 0.8, 'reg_lambda': 5}
+    Fold 1: RMSE=0.3023, MAE=0.1982, R2=0.9609
+    Fold 2: RMSE=0.3060, MAE=0.2043, R2=0.9593
+    Fold 3: RMSE=0.3042, MAE=0.2040, R2=0.9600
+  Mean CV: RMSE=0.3042 (+/- 0.0015), MAE=0.2022, R2=0.9601
+
+Candidate 7/8: {'max_depth': 4, 'learning_rate': 0.02, 'n_estimators': 800, 'subsample': 0.9, 'colsample_bytree': 0.8, 'reg_lambda': 5}
+    Fold 1: RMSE=0.3095, MAE=0.2027, R2=0.9590
+    Fold 2: RMSE=0.3107, MAE=0.2083, R2=0.9580
+    Fold 3: RMSE=0.3089, MAE=0.2073, R2=0.9588
+  Mean CV: RMSE=0.3097 (+/- 0.0008), MAE=0.2061, R2=0.9586
+
+Candidate 8/8: {'max_depth': 8, 'learning_rate': 0.02, 'n_estimators': 800, 'subsample': 0.8, 'colsample_bytree': 0.9, 'reg_lambda': 5}
+    Fold 1: RMSE=0.3019, MAE=0.1958, R2=0.9610
+    Fold 2: RMSE=0.3061, MAE=0.2031, R2=0.9593
+    Fold 3: RMSE=0.3031, MAE=0.2003, R2=0.9603
+  Mean CV: RMSE=0.3037 (+/- 0.0018), MAE=0.1997, R2=0.9602
+
+Best Parameters
+{'max_depth': 6, 'learning_rate': 0.03, 'n_estimators': 1200, 'subsample': 0.9, 'colsample_bytree': 0.9, 'reg_lambda': 7}
+Best CV RMSE=0.3023, MAE=0.1990, R2=0.9606
+
+Train Results
+MAE : 0.1445
+RMSE: 0.2211
+R2  : 0.9789
+Within 0.25 Accuracy: 79.73%
+Within 0.50 Accuracy: 95.35%
+Rating Scale Accuracy: 97.11%
+
+Validation Results
+MAE : 0.1929
+RMSE: 0.2919
+R2  : 0.9616
+Within 0.25 Accuracy: 71.67%
+Within 0.50 Accuracy: 90.51%
+Rating Scale Accuracy: 96.14%
+
+Test Results
+MAE : 0.1977
+RMSE: 0.2954
+R2  : 0.9620
+Within 0.25 Accuracy: 69.92%
+Within 0.50 Accuracy: 90.30%
+Rating Scale Accuracy: 96.05%
+
+Feature Importance
+                 Feature  Importance
+     Popularity Category    0.376935
+                Cuisines    0.202137
+               Log Votes    0.120323
+   City Location Cluster    0.101853
+                    City    0.068960
+   City Restaurant Count    0.037674
+            Country Code    0.035509
+        Location Cluster    0.015395
+     Has Online delivery    0.010224
+    Log Average Cost INR    0.007606
+Restaurant Cost Category    0.007339
+        Average Cost INR    0.005909
+ City wise Cost Category    0.002895
+       Has Table booking    0.001626
+   Cost Relative To City    0.001135
+                Latitude    0.000818
+               Longitude    0.000773
+       Is delivering now    0.000757
+           Cuisine Count    0.000719
+    Average Cost for two    0.000659
+             Price range    0.000500
+            Is Expensive    0.000253
+
+Saved model to: D:\Git\Restaurant_Intelligent_System\xgboost_restaurant_rating_engineered_model.pkl
+
+Saved interactive Plotly dark-theme graphs.
+Saved reports and graphs to: D:\Git\Restaurant_Intelligent_System\rating_model_xgboost_engineered_results

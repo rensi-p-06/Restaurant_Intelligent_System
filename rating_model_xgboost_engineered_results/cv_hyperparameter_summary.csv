@@ -1,0 +1,9 @@
+Candidate,Parameters,Mean RMSE,RMSE STD,Mean MAE,Mean R2,max_depth,learning_rate,n_estimators,subsample,colsample_bytree,reg_lambda
+1,"max_depth=8, learning_rate=0.03, n_estimators=1200, subsample=0.9, colsample_bytree=0.9, reg_lambda=5",0.3038274613212966,0.0019613719453313266,0.19980413266566863,0.9601542619771667,8,0.03,1200,0.9,0.9,5
+2,"max_depth=6, learning_rate=0.03, n_estimators=1200, subsample=0.8, colsample_bytree=0.8, reg_lambda=3",0.30408204727357474,0.0020137728646617663,0.20092585251424508,0.9600873444125844,6,0.03,1200,0.8,0.8,3
+3,"max_depth=8, learning_rate=0.05, n_estimators=1200, subsample=0.8, colsample_bytree=0.8, reg_lambda=3",0.3082778450534558,0.0021368148876693607,0.20439893422674257,0.9589778327865129,8,0.05,1200,0.8,0.8,3
+4,"max_depth=8, learning_rate=0.02, n_estimators=1200, subsample=0.9, colsample_bytree=0.8, reg_lambda=3",0.3061836222915742,0.002589036149028957,0.20367089662938673,0.9595317861865952,8,0.02,1200,0.9,0.8,3
+5,"max_depth=6, learning_rate=0.03, n_estimators=1200, subsample=0.9, colsample_bytree=0.9, reg_lambda=7",0.3022795247925468,0.0012890627671438136,0.19899975644174242,0.9605615235687076,6,0.03,1200,0.9,0.9,7
+6,"max_depth=4, learning_rate=0.03, n_estimators=1200, subsample=0.8, colsample_bytree=0.8, reg_lambda=5",0.30415948293133765,0.0015397044974604828,0.20217693961728198,0.9600684366556133,4,0.03,1200,0.8,0.8,5
+7,"max_depth=4, learning_rate=0.02, n_estimators=800, subsample=0.9, colsample_bytree=0.8, reg_lambda=5",0.3097236424833173,0.0007657863809593348,0.20610757095264662,0.958596840662023,4,0.02,800,0.9,0.8,5
+8,"max_depth=8, learning_rate=0.02, n_estimators=800, subsample=0.8, colsample_bytree=0.9, reg_lambda=5",0.30371324743192635,0.0017777484378419769,0.19969836504642613,0.9601849171613154,8,0.02,800,0.8,0.9,5
