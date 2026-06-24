@@ -1,0 +1,101 @@
+Restaurant Name,Country Code,City,Locality,Has Table booking,Has Online delivery,Is delivering now,Longitude,Latitude,Log Average Cost INR,Price range,Aggregate rating,Log Votes,Actual Cuisines,Predicted Cuisines
+Goyal Eating Point,1,New Delhi,Shakarpur,No,No,No,77.2823353,28.6328128,5.303304908059076,1,2.8,2.4849066497880004,North Indian,North Indian
+The Garden Cafe - The Fern,1,Ahmedabad,"The Fern, Sola",No,No,No,72.5222172,23.0640914,7.090909822079984,3,4.1,5.262690188904886,"Asian, Italian, North Indian, South Indian","Continental, Italian, Mediterranean"
+Alvi's Food Spot,1,New Delhi,"Star City Mall, Mayur Vihar Phase 1",No,No,No,77.296194,28.5929234,5.860786223465865,1,3.2,2.8903717578961645,"Mughlai, North Indian",Chinese
+The Kitchen Exotica,1,New Delhi,Sarita Vihar,No,No,No,77.2821107,28.5400233,6.398594934535208,2,3.0,2.302585092994046,"Chinese, North Indian","Mughlai, North Indian"
+Pakwan,1,New Delhi,Vikaspuri,No,No,No,77.074213,28.6392656,6.398594934535208,2,2.8,3.044522437723423,"Chinese, North Indian","Chinese, Mughlai, North Indian"
+Chuk Chuk Mail,1,New Delhi,Paschim Vihar,No,No,No,77.1041432,28.6755527,5.707110264748875,1,2.9,3.80666248977032,"Chinese, Fast Food",Fast Food
+Moti Mahal Delux Tandoori Trail,1,New Delhi,"Metro Walk Mall, Rohini",Yes,Yes,No,77.1136837,28.7240733,6.90875477931522,3,3.2,5.0238805208462765,"Chinese, Mughlai, North Indian","Mughlai, North Indian"
+Bhatura King,1,New Delhi,Tilak Nagar,No,No,No,77.0954179,28.636751,5.017279836814924,1,2.9,2.079441541679836,Street Food,"Beverages, Ice Cream, Street Food"
+Haunted,1,Chennai,Anna Nagar East,Yes,Yes,No,80.2206723,13.0864385,6.68586094706836,2,3.8,6.253828811575473,"Arabian, Chinese, North Indian",North Indian
+Cocoberry,1,New Delhi,Punjabi Bagh,No,Yes,No,77.12341726,28.66653148,5.707110264748875,1,3.2,3.9318256327243257,Desserts,Desserts
+Ricks Bar - The Taj Mahal Hotel,1,New Delhi,"The Taj Mahal Hotel, Mansingh Road",Yes,No,No,77.22273611,28.60440165,8.343077871169383,4,3.6,4.174387269895637,"Malaysian, Thai","Continental, European, Japanese, Mediterranean, Seafood, Sushi"
+Veg Food Express,1,New Delhi,Vivek Vihar,No,No,No,0.0,0.0,5.993961427306569,1,0.0,0.0,North Indian,"Chinese, North Indian"
+Chargrill Resto Bar,1,New Delhi,Karol Bagh,Yes,Yes,No,77.18920581,28.64902483,6.803505257608338,2,3.6,3.784189633918261,"European, North Indian, South Indian","Chinese, North Indian"
+Choudhary Dhaba,1,New Delhi,MG Road,No,No,No,77.1462741,28.4930732,5.860786223465865,1,0.0,1.0986122886681096,North Indian,North Indian
+Cafe Du Rendezvous,1,Gurgaon,DLF Phase 3,No,Yes,No,77.0998522,28.4947415,5.993961427306569,1,3.2,3.091042453358316,"Cafe, Street Food",Mexican
+Chilli Tadka Food Villa,1,New Delhi,Shahdara,No,No,No,77.29282122,28.66869015,5.707110264748875,1,0.0,1.3862943611198906,"Chinese, North Indian","Chinese, North Indian"
+Satguru Tiffin Service,1,New Delhi,Tagore Garden,No,Yes,No,77.1122065,28.6498255,5.303304908059076,1,0.0,0.6931471805599453,North Indian,North Indian
+Thakur Bakers,1,Ghaziabad,Indirapuram,No,No,No,77.37419167,28.63602222,5.017279836814924,1,3.0,1.9459101490553128,Bakery,"Bakery, Desserts, Fast Food"
+Avatar Da Dhaba,1,New Delhi,Naraina,No,No,No,77.1364744,28.6205175,5.303304908059076,1,0.0,0.0,North Indian,North Indian
+Food Plaza,1,Noida,Greater Noida,No,No,No,77.5085078,28.4647244,5.993961427306569,1,0.0,0.6931471805599453,"Chinese, North Indian","Chinese, North Indian"
+Chickenette,1,Faridabad,Sector 15,No,No,No,77.3244107,28.3951035,6.478509642208569,2,3.7,5.638354669333745,"Chinese, Fast Food, North Indian, Raw Meats",Chinese
+Chao Chinese Bistro - Holiday Inn Jaipur City Centre,1,Jaipur,"Holiday Inn Jaipur City Centre, Bais Godam",No,No,No,75.7929342,26.9029076,7.824445930877619,4,4.3,5.733341276897746,"Asian, Chinese","Chinese, Continental, Mexican, Rajasthani"
+The Chocolate Avenue,1,New Delhi,Chanakyapuri,No,No,No,77.1863937,28.5795901,5.707110264748875,1,3.4,3.367295829986474,Bakery,"Bakery, Desserts"
+Swiss Gourmessa,1,New Delhi,MG Road,No,No,No,77.162106,28.4960891,6.2166061010848646,2,0.0,0.0,Bakery,North Indian
+Villa Shanti,1,Puducherry,"Villa Shanti, White Town",No,No,No,79.833191,11.929698,7.313886831633462,4,3.9,6.284134161070802,Continental,Italian
+KFC,1,Nagpur,Sitabuldi,No,Yes,No,79.08040556,21.14353333,6.311734809152915,2,2.2,4.997212273764115,"American, Fast Food","American, Burger, Fast Food"
+Domino's Pizza,1,New Delhi,Krishna Nagar,No,No,No,77.2788164,28.66104399,6.55250788703459,2,3.1,4.330733340286331,"Fast Food, Pizza","Fast Food, Pizza"
+The Yellow Chilli,1,Patna,Fraser Road Area,No,No,No,85.13588611,25.61034722,6.90875477931522,3,3.5,5.017279836814924,"Chinese, Continental, North Indian","Chinese, Mughlai, North Indian"
+Aggarwal's Sweets Paradise,1,New Delhi,Alaknanda,No,No,No,77.2542078,28.52497428,5.993961427306569,1,2.9,2.19722457733622,"Mithai, North Indian, South Indian, Street Food","Mithai, South Indian, Street Food"
+Nile Restro & Bar,1,New Delhi,Ashok Vihar Phase 1,Yes,No,No,77.1721967,28.6942435,6.90875477931522,3,2.7,3.58351893845611,"Chinese, North Indian","Chinese, North Indian"
+Hot Pot,1,New Delhi,Rajinder Nagar,No,No,No,77.1802949,28.6382645,5.707110264748875,1,2.5,4.718498871295094,"Chinese, Fast Food","Chinese, Fast Food"
+Chennai Dosa Express,1,New Delhi,Pandav Nagar,No,No,No,77.21252906,28.62789848,5.707110264748875,1,0.0,0.6931471805599453,South Indian,South Indian
+Gopala,1,Noida,Sector 50,No,No,No,77.3619175,28.570872,5.525452939131784,1,3.6,4.248495242049359,"Mithai, Street Food","Mithai, Street Food"
+Biryani Bot,1,New Delhi,Sarita Vihar,No,No,No,0.0,0.0,5.303304908059076,1,0.0,1.3862943611198906,Biryani,"Biryani, Hyderabadi, Mughlai"
+361 Restaurant & Banquet,1,New Delhi,Pitampura,Yes,Yes,No,77.1405619,28.6977426,7.00397413672268,3,3.4,4.219507705176107,"Chinese, North Indian, Seafood","Chinese, Mughlai, North Indian"
+DCK- Dana Choga's Kitchen,1,Gurgaon,Sector 7,No,Yes,No,77.0170336,28.4677392,6.68586094706836,2,3.5,5.003946305945459,"Mughlai, North Indian","Mughlai, North Indian"
+Ram Ji Snacks & Food Corner,1,New Delhi,Subhash Nagar,No,No,No,77.1183778,28.636237,4.61512051684126,1,0.0,0.6931471805599453,Street Food,Street Food
+Changezi Chicken,1,New Delhi,Daryaganj,No,Yes,No,77.2402908,28.6435145,6.2166061010848646,2,3.7,6.253828811575473,"Mughlai, North Indian","Mughlai, North Indian"
+Choc-oholic,1,New Delhi,Shalimar Bagh,No,No,No,0.0,0.0,5.707110264748875,1,0.0,1.0986122886681096,Desserts,Fast Food
+Ooma,162,Mandaluyong City,"SM Megamall, Ortigas, Mandaluyong City",No,No,No,121.056475,14.585318,9.264923249746474,4,4.9,5.902633333401366,"Japanese, Sushi","Asian, Seafood"
+Yum Yum Cha,1,Gurgaon,"Cyber Hub, DLF Cyber City",No,No,No,77.0885987,28.4950762,7.496097345175956,3,4.5,6.0112671744041615,"Chinese, Japanese, Sushi","Burger, Cafe"
+Spice Grill,1,New Delhi,Karkardooma,No,Yes,No,77.3070793,28.6520694,7.170888478512505,3,3.2,5.181783550292085,"Chinese, Continental, Mughlai, North Indian","Chinese, Mughlai, North Indian"
+The Krib,1,New Delhi,Kirti Nagar,Yes,No,No,77.1384406,28.6557286,7.824445930877619,4,3.2,2.70805020110221,"Continental, Italian","Chinese, Continental, Hyderabadi, Italian, Mughlai, North Indian"
+Star Restaurant,1,New Delhi,Sainik Farms,No,No,No,77.19856001,28.51784764,4.61512051684126,1,0.0,0.0,North Indian,North Indian
+Cafe Coffee Day,1,New Delhi,Vasant Vihar,No,No,No,77.16442622,28.55736507,6.111467339502679,1,0.0,1.0986122886681096,Cafe,Cafe
+Bobby Dhaba & Caterers,1,New Delhi,Mayur Vihar Phase 3,No,No,No,77.33470056,28.6042683,6.111467339502679,1,3.1,1.791759469228055,"Mughlai, North Indian",North Indian
+Green Chick Chop,1,New Delhi,East Patel Nagar,No,No,No,77.1740625,28.6458084,5.860786223465865,1,3.3,3.4657359027997265,"Fast Food, North Indian, Raw Meats","Fast Food, North Indian, Raw Meats"
+Sunil Momos.Com,1,New Delhi,Paschim Vihar,No,Yes,No,77.08380103,28.66988331,5.303304908059076,1,3.4,4.189654742026425,Chinese,"Biryani, Street Food"
+Jalsa,1,New Delhi,Safdarjung,No,Yes,No,77.19475061,28.56265773,6.111467339502679,1,2.7,1.9459101490553128,Chinese,Chinese
+Jai Jagannath Hotel,1,Faridabad,Dayal Bagh,No,No,No,77.294319,28.4937692,5.303304908059076,1,0.0,1.3862943611198906,South Indian,North Indian
+Punjab To China,1,New Delhi,Prashant Vihar,No,No,No,77.1369216,28.7128377,6.311734809152915,2,3.2,2.995732273553991,"Chinese, North Indian",Chinese
+Ronny Flavours,1,Gurgaon,Sector 22,No,No,No,0.0,0.0,5.707110264748875,1,0.0,1.0986122886681096,"Beverages, Fast Food",Raw Meats
+Royal Rasoi,1,Noida,Greater Noida,No,No,No,77.5077462,28.4665835,6.398594934535208,2,2.8,3.091042453358316,"Mughlai, North Indian","Chinese, North Indian"
+The Paradise Biryani,1,Gurgaon,DLF Phase 3,No,Yes,No,77.0994974,28.4942093,6.55250788703459,2,2.9,3.1354942159291497,"Biryani, North Indian","Biryani, Mughlai"
+Subway,1,New Delhi,Malviya Nagar,No,Yes,No,77.2095102,28.534046,6.2166061010848646,2,2.8,5.214935757608986,"American, Fast Food, Healthy Food, Salad","American, Fast Food, Healthy Food, Salad"
+Punjab Patiyala Sahi,1,New Delhi,Jail Road,No,No,No,77.0974053,28.6342008,5.860786223465865,1,0.0,0.6931471805599453,"Mughlai, North Indian",North Indian
+Deep Sweet Corner,1,New Delhi,New Friends Colony,No,No,No,77.27004256,28.56563745,5.993961427306569,1,2.7,2.833213344056216,"Chinese, Fast Food, Mithai, North Indian",Mithai
+Smokey Flavours,1,New Delhi,Safdarjung,No,No,No,77.19396817,28.56178754,6.2166061010848646,2,3.3,2.639057329615259,"Mughlai, North Indian","Korean, Mughlai"
+Mumbai Matinee,1,New Delhi,Shahpur Jat,Yes,Yes,No,77.2121775,28.5492461,6.90875477931522,3,3.5,4.442651256490317,"Continental, Italian, North Indian","Continental, Italian"
+Krispy Kreme,1,New Delhi,"DLF Promenade Mall, Vasant Kunj",No,Yes,No,77.15590451,28.54268656,5.860786223465865,1,3.9,4.59511985013459,"Beverages, Desserts","Beverages, Desserts"
+Cricket Club Cafe,191,Colombo,"Kollupitiya, Colombo 03",No,No,No,0.0,0.0,6.769641976852503,3,4.2,5.147494476813453,"American, Continental, Seafood","American, Beverages, Steak"
+Yo! China,1,New Delhi,Punjabi Bagh,Yes,Yes,No,77.12199099,28.66654178,7.090909822079984,3,3.6,4.852030263919617,Chinese,"Chinese, Japanese, Thai"
+Tea Villa Cafe,1,Mumbai,"Versova, Andheri West",Yes,Yes,No,72.8130738,19.1311405,6.90875477931522,3,4.1,7.16703787691222,"Cafe, Chinese, Desserts, Fast Food, Italian, Tea","Cafe, Desserts, Italian, Tea"
+Eggless Dukes,1,New Delhi,East Patel Nagar,No,No,No,77.1737102,28.6447002,5.303304908059076,1,3.1,1.791759469228055,"Bakery, Desserts",Mithai
+Midnight Espresso,148,Wellington City,Te Aro,No,No,No,174.774912,-41.294565,7.708051375059125,2,4.3,5.062595033026967,Cafe,"Cafe, Ice Cream, Italian"
+Svasti Cafe,1,New Delhi,Janpath,Yes,No,No,0.0,0.0,6.68586094706836,2,3.1,1.9459101490553128,"Fast Food, North Indian","Asian, Cafe, Continental, Italian, Kerala, Mediterranean"
+Hunger Stop,1,New Delhi,Vikaspuri,No,No,No,0.0,0.0,6.398594934535208,2,3.2,2.639057329615259,"Mughlai, North Indian","Fast Food, Mughlai"
+The Mustard,1,New Delhi,Chittaranjan Park,No,Yes,No,77.248798,28.540204,6.2166061010848646,2,2.9,2.079441541679836,Bengali,North Indian
+Lord of Grillz,1,Gurgaon,Golf Course Road,No,Yes,No,77.1042874,28.4372372,6.68586094706836,2,3.2,3.4339872044851463,"Chinese, Continental, Italian, North Indian","Chinese, Healthy Food"
+Brooklyn Central,1,Chandigarh,"Elante Mall, Chandigarh Industrial Area",No,No,No,76.8009555,30.7050693,7.378383712996714,3,4.2,6.517671272912275,"American, Cafe","Asian, Chinese, Continental, Italian, Thai"
+Malo,216,Des Moines,Downtown,No,No,No,-93.627896,41.583309,7.777478375039958,2,3.2,4.736198448394496,Mexican,"Bar Food, French, Pizza"
+Jamie's Italian,215,London,"Upper St Martin's Lane, Covent Garden",No,No,No,-0.126963,51.51259,8.762254778031378,3,4.3,5.605802066295998,Italian,"Indian, Italian"
+Tandoori Khazana,1,New Delhi,Majnu ka Tila,No,No,No,77.2276272,28.70116,5.860786223465865,1,0.0,0.0,"Fast Food, North Indian",Tibetan
+Samrat,1,Gurgaon,Old Railway Road,No,No,No,77.0259899,28.4598188,5.993961427306569,1,2.9,2.3978952727983707,"Bakery, Fast Food, Mithai",Fast Food
+Percussion,1,Lucknow,Gomti Nagar,No,No,No,80.9945959,26.8551778,6.90875477931522,3,3.7,6.244166900663736,"Asian, Continental, North Indian",Continental
+Mother's Kitchen,1,Faridabad,Sector 42,No,No,No,0.0,0.0,5.707110264748875,1,0.0,0.0,"Chinese, North Indian","Chinese, North Indian"
+Friends Shawarma,1,New Delhi,Paschim Vihar,No,No,No,77.1018159,28.6701038,5.860786223465865,1,3.5,4.68213122712422,"Mughlai, North Indian","Fast Food, Street Food"
+Flavors Of London,1,New Delhi,Naraina,No,No,No,77.1380897,28.6199849,5.303304908059076,1,3.0,2.079441541679836,"Desserts, Fast Food, Ice Cream","Desserts, Ice Cream"
+New Chow Maun,1,New Delhi,Rajendra Place,No,No,No,0.0,0.0,6.2166061010848646,2,0.0,0.0,Chinese,"Chinese, Mughlai"
+Purani Dilli Da Swad,1,Faridabad,Sector 21,No,No,No,77.2966226,28.4301909,4.61512051684126,1,0.0,1.0986122886681096,"Fast Food, Street Food","Mithai, Street Food"
+Dakshin Bistro,1,Gurgaon,Old Railway Road,No,No,No,0.0,0.0,6.398594934535208,2,0.0,1.3862943611198906,"Biryani, South Indian",Fast Food
+My Fathers Place,216,Macon,Warner Robins,No,No,No,-83.624,32.5786,7.777478375039958,2,3.7,4.653960350157523,Italian,"Japanese, Sushi"
+R1 Lounge,1,New Delhi,Karol Bagh,Yes,Yes,No,77.18532767,28.64555639,7.00397413672268,3,2.6,3.4657359027997265,"Chinese, Mughlai, North Indian","Chinese, Finger Food, North Indian"
+Sanjha Chula,1,Gurgaon,Old Railway Road,No,No,No,77.0200512,28.4570545,6.55250788703459,2,3.0,1.9459101490553128,North Indian,"Mughlai, North Indian"
+Lodhi Knights,1,New Delhi,Lodhi Colony,No,No,No,77.2202427,28.5853283,5.303304908059076,1,3.1,2.19722457733622,Fast Food,Bakery
+Cinch,1,Ghaziabad,"Shipra Mall, Indirapuram",Yes,No,No,77.36972552,28.63412753,7.313886831633462,3,2.6,4.532599493153256,"Chinese, Continental, North Indian","Chinese, North Indian"
+Pita Pit,1,New Delhi,Kailash Colony,No,Yes,No,77.236741,28.557442,6.398594934535208,2,3.8,6.293419278846481,"Healthy Food, Salad","Healthy Food, Lebanese, Salad"
+Steel Magnolias,216,Valdosta,Valdosta,No,No,No,-83.2796,30.8316,8.247324841595791,3,3.8,5.420534999272286,Southern,"American, Mexican, Seafood, Southern, Steak"
+Whipped,1,New Delhi,Defence Colony,No,Yes,No,77.230142,28.5739038,6.311734809152915,2,4.2,5.921578419643816,"Bakery, Desserts","Bakery, Desserts, Rajasthani"
+Ravi Raj Di Kulfi,1,New Delhi,Karol Bagh,No,No,No,77.1901673,28.649659,5.017279836814924,1,3.6,4.605170185988092,Desserts,Ice Cream
+Wok  In The Clouds,1,New Delhi,Khan Market,No,Yes,No,77.2275373,28.6005429,7.601402334583733,4,3.8,6.507277712385012,"Chinese, Continental, North Indian, Thai","Asian, Chinese, European, Japanese, Lebanese, Mexican, Thai"
+Savoury Street,1,Noida,"Ansal Plaza Mall, Greater Noida",No,No,No,77.5077014,28.4642008,6.398594934535208,2,0.0,1.3862943611198906,"Continental, Italian, North Indian",Chinese
+Bansi Vihar,1,Patna,Fraser Road Area,No,No,No,85.137825,25.60803333,5.707110264748875,1,3.4,4.718498871295094,"Fast Food, South Indian",Chinese
+Loretta,148,Wellington City,Te Aro,No,No,No,174.775296,-41.294154,8.400973932423536,4,4.2,4.736198448394496,"Cafe, European","Cafe, European, Italian, Malaysian, Mexican"
+Bandhani Fast Food,1,Gurgaon,Udyog Vihar,No,No,No,77.0823439,28.501278,5.707110264748875,1,0.0,0.0,North Indian,"Chinese, South Indian"
+Zambar,1,Gurgaon,"Ambience Mall, Gurgaon",Yes,Yes,No,77.0971853,28.5026128,7.244941546337007,3,4.0,6.688354713946762,"Kerala, Seafood, South Indian",North Indian
+Pho Bac,216,Augusta,Evans,No,No,No,-82.126161,33.532249,6.861816047040692,1,4.1,5.602118820879701,Vietnamese,Sandwich
+Little Cafe,1,Faridabad,"Parsavnath City Mall, Sector 12, Faridabad",No,No,No,77.3145373,28.3836738,5.707110264748875,1,0.0,0.0,"Beverages, Fast Food","Cafe, Fast Food"
+Raasa The Luxuriate Fine Dine,1,New Delhi,Karkardooma,Yes,Yes,No,77.3094489,28.654069,7.048386408721883,3,3.7,5.081404364984463,"Chinese, Mughlai, North Indian","Chinese, Continental, North Indian"
+Shake Eat Up,1,New Delhi,Netaji Subhash Place,No,No,No,77.1512576,28.6930397,5.993961427306569,1,3.9,5.049856007249537,"Beverages, Fast Food","Beverages, Fast Food"

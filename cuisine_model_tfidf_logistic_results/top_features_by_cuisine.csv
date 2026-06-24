@@ -1,0 +1,856 @@
+Cuisine,Rank,Feature,Coefficient
+American,1,Restaurant Name: subway,7.851210481648722
+American,2,Restaurant Name: kfc,6.094972038137529
+American,3,Locality_Sector 33,5.322971054034271
+American,4,Restaurant Name: machine,4.265903951164007
+American,5,Restaurant Name: chili,3.9025330565798937
+American,6,Restaurant Name: jack,3.7540419797285063
+American,7,Restaurant Name: cube,3.553573879005852
+American,8,Restaurant Name: social,3.4434029690774937
+American,9,Restaurant Name: wiches,3.393909860965856
+American,10,Restaurant Name: pepper kitchen,3.373418927129726
+American,11,Restaurant Name: baby,3.3299557258683268
+American,12,Restaurant Name: avenue,3.2166596782379187
+American,13,Restaurant Name: lala,3.1983021227391637
+American,14,Locality_Koramangala 5th Block,3.06869877936785
+American,15,Restaurant Name: cafe bar,3.066498919712696
+Arabian,1,Restaurant Name: arabian,7.506564622290475
+Arabian,2,Restaurant Name: zizo,6.287297009949931
+Arabian,3,Locality_Al Dhafrah,5.396112882504309
+Arabian,4,"Locality_The Gate, Dafna",4.955583996790963
+Arabian,5,Locality_Sarita Vihar,4.507387437988747
+Arabian,6,Restaurant Name: al,4.454480367513463
+Arabian,7,Restaurant Name: habibi,4.202481867396731
+Arabian,8,Locality_Vila Sonia,4.106986721518481
+Arabian,9,Restaurant Name: pan,4.0707622918536215
+Arabian,10,Restaurant Name: pita,4.017711065712679
+Arabian,11,Locality_Kailash Colony,3.8926064349835725
+Arabian,12,Restaurant Name: delites,3.6744336782906424
+Arabian,13,Restaurant Name: arabian delites,3.6744336782906424
+Arabian,14,Locality_Asa Sul,3.627280009061505
+Arabian,15,Restaurant Name: pier,3.3450343217944996
+Asian,1,Restaurant Name: kylin,5.6029579741599145
+Asian,2,Locality_Yusuf Sarai,5.277679128454514
+Asian,3,Restaurant Name: house restaurant,4.621767499072606
+Asian,4,Restaurant Name: zasty,4.578870461594775
+Asian,5,Restaurant Name: fat,4.331168431677712
+Asian,6,Locality_Vasant Kunj,4.197111492991339
+Asian,7,Locality_Sector 53,4.138511118810169
+Asian,8,Restaurant Name: social,3.8580572075492445
+Asian,9,Restaurant Name: do,3.845486813342952
+Asian,10,Locality_Bhawar Kuan,3.537974098010641
+Asian,11,Restaurant Name: mongolian,3.5226085505135916
+Asian,12,Restaurant Name: thai,3.507600860935224
+Asian,13,"Locality_Spice World Mall, Sector 25",3.4384572089734866
+Asian,14,Locality_Majnu ka Tila,3.39857112333302
+Asian,15,Restaurant Name: fire,3.394139295322761
+BBQ,1,Restaurant Name: pig,4.4476258668755895
+BBQ,2,Restaurant Name: bbq,4.315328672423987
+BBQ,3,Restaurant Name: country,3.8258093910663447
+BBQ,4,Restaurant Name: roma,3.607998526774699
+BBQ,5,Restaurant Name: que,3.4551037111705747
+BBQ,6,City_Dalton,3.2906292781850928
+BBQ,7,Locality_Windermere,3.183869275814298
+BBQ,8,Locality_Clearwater,2.943004725427895
+BBQ,9,Restaurant Name: barbecue,2.926163346180827
+BBQ,10,Restaurant Name: texas roadhouse,2.9020569659248947
+BBQ,11,Restaurant Name: roadhouse,2.9020569659248947
+BBQ,12,Locality_Calhoun,2.8643477678494595
+BBQ,13,Locality_Beaverdale,2.6880901804354016
+BBQ,14,Restaurant Name: tony,2.520828817402318
+BBQ,15,Restaurant Name: texas,2.4530318639228343
+Bakery,1,Restaurant Name: bakery,8.063733936538739
+Bakery,2,Restaurant Name: cake,7.947464294863822
+Bakery,3,Restaurant Name: bakers,6.397610795333045
+Bakery,4,Restaurant Name: cakes,5.712857950796076
+Bakery,5,Restaurant Name: pastry,5.334968358037678
+Bakery,6,Restaurant Name: bake,5.257910357194194
+Bakery,7,"Locality_DLF South Point Mall, Golf Course Road",4.658397395739385
+Bakery,8,Restaurant Name: baker,4.243740828245913
+Bakery,9,Restaurant Name: sugar,4.038538223633527
+Bakery,10,Restaurant Name: oven,3.9341740176624596
+Bakery,11,Restaurant Name: patisserie,3.9218463181673524
+Bakery,12,Restaurant Name: frontier,3.655572788392446
+Bakery,13,Restaurant Name: breads,3.653092160165552
+Bakery,14,Restaurant Name: san,3.5542518745272362
+Bakery,15,Restaurant Name: bakes,3.5297980720990285
+Bar Food,1,Restaurant Name: pub,4.01890189754883
+Bar Food,2,City_Rio de Janeiro,3.89017094804596
+Bar Food,3,Locality_Palma Ceia,3.709522225901226
+Bar Food,4,Restaurant Name: moon,3.0991174896627647
+Bar Food,5,Restaurant Name: oyster bar,2.933814767034165
+Bar Food,6,Locality_Macon,2.9173292059427163
+Bar Food,7,Restaurant Name: oyster,2.835245758656307
+Bar Food,8,Restaurant Name: pizza,2.8156892976127517
+Bar Food,9,Locality_Caddebostan,2.7240128062586186
+Bar Food,10,Restaurant Name: crystal,2.6486341583014035
+Bar Food,11,Restaurant Name: parlor,2.6481719472081395
+Bar Food,12,Restaurant Name: royal,2.476955538967536
+Bar Food,13,Restaurant Name: tin,2.454366801123891
+Bar Food,14,Restaurant Name: harvest,2.397655991987357
+Bar Food,15,Restaurant Name: the,2.3789850431299904
+Bengali,1,Restaurant Name: bengali,6.277092245336711
+Bengali,2,"Locality_DT Mega Mall, DLF Phase 1",6.021406887953132
+Bengali,3,Locality_Sector 41,6.020019914394045
+Bengali,4,Locality_Sohna Road,5.7962844380260234
+Bengali,5,Locality_Janakpuri,5.7897494019425375
+Bengali,6,Restaurant Name: oh,5.265608135677641
+Bengali,7,Restaurant Name: kitchen,5.173236131601988
+Bengali,8,Restaurant Name: mother india,4.9018668197576165
+Bengali,9,Locality_Sector 56,4.773729384866421
+Bengali,10,Restaurant Name: rendezvous,4.3119503947771936
+Bengali,11,Locality_Sector 11,4.245775461082394
+Bengali,12,Restaurant Name: country,4.192665066693586
+Bengali,13,Restaurant Name: maa,4.105171446358656
+Bengali,14,Restaurant Name: joy,4.030863860322003
+Bengali,15,Restaurant Name: mummy,4.024185888722257
+Beverages,1,Restaurant Name: keventers,7.268916184269503
+Beverages,2,Restaurant Name: bikanervala,6.191121269964334
+Beverages,3,Restaurant Name: cad,4.8181400705961535
+Beverages,4,Locality_Prahlad Nagar,4.7210034920294035
+Beverages,5,Restaurant Name: healthy,4.545971201155229
+Beverages,6,Restaurant Name: gogourmet,4.442878864229127
+Beverages,7,Restaurant Name: juice,4.4021787638215395
+Beverages,8,Restaurant Name: potet,3.879280437024702
+Beverages,9,Restaurant Name: chai,3.8615954150099605
+Beverages,10,Restaurant Name: zoe,3.8015739546428953
+Beverages,11,Restaurant Name: nirula,3.6368230761269884
+Beverages,12,Restaurant Name: tea,3.6269444188598086
+Beverages,13,Restaurant Name: shake,3.537235409612148
+Beverages,14,Restaurant Name: tpot,3.4900856301998218
+Beverages,15,Locality_Sector 18,3.358815821859728
+Biryani,1,Restaurant Name: biryani,13.11607031090476
+Biryani,2,Restaurant Name: muradabadi,4.924537303338817
+Biryani,3,Restaurant Name: hyderabad,4.688416664865031
+Biryani,4,Restaurant Name: gazebo,3.8338365110005332
+Biryani,5,Restaurant Name: chicken restaurant,3.6587256178081193
+Biryani,6,Restaurant Name: mughlai,3.5889858724483696
+Biryani,7,Restaurant Name: nawab,3.5396511924252256
+Biryani,8,Restaurant Name: in,3.5291316493887703
+Biryani,9,Locality_Pragati Maidan,3.468395354408601
+Biryani,10,Restaurant Name: kerala,3.39546810963079
+Biryani,11,Locality_Udyog Vihar,3.3604018475575175
+Biryani,12,Locality_Hauz Khas,3.3285910573503643
+Biryani,13,Restaurant Name: metro dhaba,3.20534802823682
+Biryani,14,Locality_INA,3.1923191046114967
+Biryani,15,City_Vizag,3.187003315888611
+Brazilian,1,Locality_Boise,3.3324999043531838
+Brazilian,2,City_Rio de Janeiro,2.810121521029027
+Brazilian,3,Country Code_30,2.8009641001779992
+Brazilian,4,City_Boise,2.7795452306006165
+Brazilian,5,Locality_Itaim Bibi,2.452649422635433
+Brazilian,6,Locality_I-Drive/Universal,2.3450757110190876
+Brazilian,7,Restaurant Name: de,2.310642014925624
+Brazilian,8,Locality_Asa Norte,2.2517249528041687
+Brazilian,9,Restaurant Name: texas,2.2415829310470476
+Brazilian,10,Price range,2.042848671677031
+Brazilian,11,City_Orlando,1.770506882169507
+Brazilian,12,Locality_Vila Maria,1.7224084596777884
+Brazilian,13,Restaurant Name: cafe,1.6798584324538182
+Brazilian,14,Locality_Ipanema,1.5473634150326725
+Brazilian,15,Locality_Tijuca,1.4831454709823695
+Breakfast,1,Restaurant Name: bread,4.147718922335078
+Breakfast,2,Restaurant Name: the grill,3.620234560902613
+Breakfast,3,Locality_Iowa City,3.5964362555877343
+Breakfast,4,Restaurant Name: cafe,3.5152613305267466
+Breakfast,5,Locality_Pocatello,3.25626310739826
+Breakfast,6,Restaurant Name: gazebo,2.761739298296063
+Breakfast,7,Restaurant Name: kitchen,2.680028308399698
+Breakfast,8,Restaurant Name: factory,2.56611346845038
+Breakfast,9,Country Code_216,2.5518313595807274
+Breakfast,10,Country Code_14,2.5183739896130453
+Breakfast,11,Restaurant Name: goldy,2.5096648144636524
+Breakfast,12,Locality_Northeast St Petersburg,2.3867769308784674
+Breakfast,13,Restaurant Name: breakfast,2.2983440313394503
+Breakfast,14,Locality_Bettendorf,2.2005885765397295
+Breakfast,15,Locality_Sylvester,2.199317909791508
+Burger,1,Restaurant Name: mcdonald,8.17152467878559
+Burger,2,Restaurant Name: burger,7.382981342783276
+Burger,3,Restaurant Name: kfc,4.967207014283425
+Burger,4,Restaurant Name: yum,4.696812414271767
+Burger,5,Restaurant Name: dunkin,4.522239718205322
+Burger,6,Restaurant Name: dunkin donuts,4.522239718205322
+Burger,7,Restaurant Name: burgers,4.51809004515398
+Burger,8,Restaurant Name: burger point,4.2541494804388575
+Burger,9,Restaurant Name: hub,4.1253711481829844
+Burger,10,Restaurant Name: donuts,4.006909908665826
+Burger,11,Restaurant Name: burgrill,3.837834838862479
+Burger,12,Restaurant Name: smoke,3.805453246061699
+Burger,13,Restaurant Name: wendy,3.789758939928112
+Burger,14,Restaurant Name: shakes,3.7100925355945007
+Burger,15,Restaurant Name: fork,3.649025064106767
+Cafe,1,Restaurant Name: coffee,6.018923774942214
+Cafe,2,Restaurant Name: chaayos,5.5715439780528415
+Cafe,3,Restaurant Name: starbucks,5.202933762183398
+Cafe,4,Restaurant Name: barista,5.045903817864211
+Cafe,5,Restaurant Name: cafe,4.919056305409078
+Cafe,6,Restaurant Name: tea,4.225617985011159
+Cafe,7,Restaurant Name: tpot,4.02543733897039
+Cafe,8,Restaurant Name: chez,3.608269994134181
+Cafe,9,Locality_Satyaniketan,3.301553796612801
+Cafe,10,Restaurant Name: beans,3.044859725854385
+Cafe,11,Restaurant Name: celeste,3.029825610509689
+Cafe,12,Restaurant Name: cinnabon,2.9164455269157
+Cafe,13,Restaurant Name: caffe,2.9042358448995054
+Cafe,14,Locality_Anand Lok,2.8663308340316997
+Cafe,15,Locality_Sector 30,2.814617550623539
+Chinese,1,Restaurant Name: chinese,6.122983553010397
+Chinese,2,Restaurant Name: china,4.858414917110693
+Chinese,3,Country Code_1,3.141519872244109
+Chinese,4,Restaurant Name: bikanervala,2.8435487302261113
+Chinese,5,Restaurant Name: dimsum,2.7995117461702215
+Chinese,6,Restaurant Name: dragon,2.7335703032570873
+Chinese,7,Restaurant Name: haldiram,2.6966610625771414
+Chinese,8,Restaurant Name: momos,2.682677444140538
+Chinese,9,Restaurant Name: chang,2.492234591226387
+Chinese,10,Restaurant Name: wok,2.440581271782658
+Chinese,11,Restaurant Name: momo,2.432311134252065
+Chinese,12,Restaurant Name: beijing,2.4196976594324258
+Chinese,13,Restaurant Name: kylin,2.3996203554417064
+Chinese,14,City_Patna,2.3773597557967396
+Chinese,15,Restaurant Name: hawkers,2.1660354578670207
+Continental,1,Restaurant Name: freshmenu,3.9971843922726635
+Continental,2,Country Code_1,3.7328689466385
+Continental,3,Restaurant Name: stoned,3.6478757804562343
+Continental,4,Locality_Delhi Cantt.,3.2397078761556113
+Continental,5,Restaurant Name: chip,3.2246443884545295
+Continental,6,Restaurant Name: nutrition,3.2080084971499634
+Continental,7,Locality_Parade,3.1042538062142917
+Continental,8,Restaurant Name: pepper,2.980743244022862
+Continental,9,Restaurant Name: sky,2.932563821203965
+Continental,10,Locality_Sector 4,2.9195119929693254
+Continental,11,Restaurant Name: pure,2.884040585177464
+Continental,12,Restaurant Name: nine,2.866457260378518
+Continental,13,Restaurant Name: smaaash,2.8296831822621775
+Continental,14,Locality_DLF Phase 2,2.810481514366037
+Continental,15,Locality_Mansingh Road,2.7961590746172935
+Desserts,1,Restaurant Name: giani,5.916011881712588
+Desserts,2,Restaurant Name: chocolate,5.010241906395722
+Desserts,3,Restaurant Name: nirula,4.993348072734797
+Desserts,4,Restaurant Name: cake point,4.528668142085069
+Desserts,5,Restaurant Name: choco,4.377966119665264
+Desserts,6,Restaurant Name: bikanervala,4.200663656158746
+Desserts,7,Restaurant Name: cake,4.045452578724589
+Desserts,8,Restaurant Name: cocoberry,3.9224121424440406
+Desserts,9,Restaurant Name: donuts,3.8179214877510415
+Desserts,10,Restaurant Name: haldiram,3.7155449355902763
+Desserts,11,Locality_Rakabganj,3.667084441496236
+Desserts,12,Restaurant Name: dezertfox,3.559530299762468
+Desserts,13,Restaurant Name: desserts,3.482510662215736
+Desserts,14,Restaurant Name: patisserie,3.3682848167794908
+Desserts,15,Restaurant Name: san,3.346786461569297
+European,1,Locality_Gopalapuram,4.3089616567211735
+European,2,Locality_Sunder Nagar,4.29599792962429
+European,3,"Locality_Silver Arc Mall, Gurdev Nagar",3.971764948360018
+European,4,"Locality_District Centre, Janakpuri",3.8474085583705246
+European,5,"Locality_Sungai Pinang, Rochor",3.8213080432365873
+European,6,"Locality_DLF South Point Mall, Golf Course Road",3.8168252482027714
+European,7,Restaurant Name: eatery,3.798301363782073
+European,8,Restaurant Name: street,3.7885686535787544
+European,9,"Locality_Spice World Mall, Sector 25",3.6408229116512483
+European,10,Restaurant Name: three,3.4146922659984904
+European,11,Restaurant Name: box,3.3478436718440507
+European,12,Restaurant Name: fries company,3.315393679818971
+European,13,Restaurant Name: belgian fries,3.315393679818971
+European,14,Locality_C Scheme,3.253095403559882
+European,15,Restaurant Name: dog,3.232742583605624
+Fast Food,1,Restaurant Name: burger,5.037744924878616
+Fast Food,2,Restaurant Name: mcdonald,4.226323516307035
+Fast Food,3,Restaurant Name: subway,4.201266074570362
+Fast Food,4,Restaurant Name: kathi,3.7684789482345145
+Fast Food,5,Restaurant Name: bikanervala,3.519655844296158
+Fast Food,6,Restaurant Name: kfc,3.4372551154856
+Fast Food,7,Restaurant Name: faasos,2.9353358903192333
+Fast Food,8,Restaurant Name: pizza,2.866244308530037
+Fast Food,9,Restaurant Name: burgers,2.835128409838084
+Fast Food,10,City_Allahabad,2.8176049287487444
+Fast Food,11,Restaurant Name: instapizza,2.768211140432288
+Fast Food,12,Restaurant Name: domino pizza,2.6355571770264663
+Fast Food,13,Restaurant Name: domino,2.6355571770264663
+Fast Food,14,Restaurant Name: nirula,2.5127813713105174
+Fast Food,15,Restaurant Name: cafe restaurant,2.4638622002051527
+Finger Food,1,Restaurant Name: bar,4.905633605400602
+Finger Food,2,Restaurant Name: beer,4.736859294983116
+Finger Food,3,Locality_Paharganj,4.664426851623742
+Finger Food,4,Locality_Lalbagh,4.60079703536254
+Finger Food,5,Locality_South City 1,4.594672589551402
+Finger Food,6,Restaurant Name: burger singh,4.159367724590333
+Finger Food,7,"Locality_MGF Metropolitan Mall, Saket",3.9765105138243007
+Finger Food,8,Locality_C Scheme,3.7046685290464616
+Finger Food,9,Restaurant Name: beer cafe,3.4934507871420717
+Finger Food,10,Locality_Greater Kailash (GK) 1,3.414312227715511
+Finger Food,11,Restaurant Name: desire,3.325926840771442
+Finger Food,12,Restaurant Name: the beer,3.2871214034759566
+Finger Food,13,City_Mangalore,3.2753737068443276
+Finger Food,14,Restaurant Name: club,3.242910168709375
+Finger Food,15,Locality_Vivek Vihar,3.234495006868667
+French,1,Locality_Defence Colony,5.332791594447775
+French,2,Restaurant Name: le,4.9359831030202885
+French,3,Restaurant Name: bread,4.1544397075640624
+French,4,Locality_Downtown,4.038282750728499
+French,5,City_Puducherry,3.8444329879155754
+French,6,Locality_Itaim Bibi,3.6006399157704285
+French,7,Restaurant Name: museum,3.3457242047919054
+French,8,Restaurant Name: the blue,3.2298237296178365
+French,9,Locality_Thamrin,3.1444648768327803
+French,10,City_Goa,3.1332124518903224
+French,11,Locality_Arambol,3.1062955892384894
+French,12,Locality_Anjuna,3.055569270777079
+French,13,Restaurant Name: door,2.9783047245509007
+French,14,Restaurant Name: au,2.9444870642840892
+French,15,Restaurant Name: chez,2.934537783545028
+Goan,1,"Locality_Dilli Haat, INA",9.029745225505774
+Goan,2,City_Goa,5.914730909995741
+Goan,3,Restaurant Name: lady,5.735922049635558
+Goan,4,Locality_Sushant Lok,4.3241647433845545
+Goan,5,"Locality_Supermart 1, DLF Phase 4",4.266419695482541
+Goan,6,Locality_Gachibowli,3.5339180650432165
+Goan,7,"Locality_Ambience Mall, Vasant Kunj",3.532450599401644
+Goan,8,Locality_Calangute,3.504837240268364
+Goan,9,Restaurant Name: the,3.4554753631926842
+Goan,10,Restaurant Name: peninsular,3.0119136244189875
+Goan,11,Restaurant Name: peninsular kitchen,3.0119136244189875
+Goan,12,Locality_Umm Hurair,3.0005806066100194
+Goan,13,Restaurant Name: classic,2.6165788856029994
+Goan,14,City_Dubai,2.330940181040254
+Goan,15,Restaurant Name: shack,2.030564693604828
+Grill,1,Locality_Northern Quarter,4.024027511352776
+Grill,2,Locality_Green Point,3.1674187174101887
+Grill,3,Restaurant Name: cow,3.148361768918857
+Grill,4,Locality_Waterkloof,3.1181425681985946
+Grill,5,Country Code_189,3.0697710968493515
+Grill,6,Locality_New Town,3.0181975901546263
+Grill,7,Country Code_215,3.014323451681058
+Grill,8,City_Manchester,2.860772997113156
+Grill,9,Locality_Itaim Bibi,2.8566669626275876
+Grill,10,Locality_Rosebank,2.5221976204560947
+Grill,11,"Locality_Menlyn Shopping Centre, Menlyn",2.4165395996910064
+Grill,12,Locality_Deansgate,2.234506873125815
+Grill,13,Restaurant Name: red,2.0959813307447113
+Grill,14,Restaurant Name: cafe,1.8698417878209446
+Grill,15,"Locality_Nelson Mandela Square, Sandown",1.822407973183087
+Healthy Food,1,Restaurant Name: subway,9.177160721689493
+Healthy Food,2,Restaurant Name: diet,7.396981473697908
+Healthy Food,3,Restaurant Name: healthy,6.866059035695196
+Healthy Food,4,Restaurant Name: fit,6.2371927172708785
+Healthy Food,5,Restaurant Name: health,5.46411354328964
+Healthy Food,6,Restaurant Name: bonjuz,5.229761937184729
+Healthy Food,7,Restaurant Name: gogourmet,5.140117590354966
+Healthy Food,8,Restaurant Name: nutrition,4.686354695863124
+Healthy Food,9,Restaurant Name: salad,3.975055115595149
+Healthy Food,10,Restaurant Name: nation,3.943191723097681
+Healthy Food,11,Locality_Pitampura,3.9098926997190357
+Healthy Food,12,Restaurant Name: organic express,3.894453318339314
+Healthy Food,13,Locality_Sector 30,3.7877396114689073
+Healthy Food,14,Locality_Golf Course Road,3.5665688955577264
+Healthy Food,15,Restaurant Name: organic,3.5379671250687794
+Hyderabadi,1,Restaurant Name: hyderabad,8.519215587533528
+Hyderabadi,2,Restaurant Name: biryani,6.9138053063482605
+Hyderabadi,3,Locality_Kirti Nagar,6.602224229987421
+Hyderabadi,4,Restaurant Name: hyderabadi,5.089390265574773
+Hyderabadi,5,Restaurant Name: blues,4.344218961109896
+Hyderabadi,6,Restaurant Name: biryani blues,4.344218961109896
+Hyderabadi,7,Restaurant Name: bikkgane,3.948537317754976
+Hyderabadi,8,Restaurant Name: bikkgane biryani,3.948537317754976
+Hyderabadi,9,Locality_Ohri' Hitech City,3.5997070314541166
+Hyderabadi,10,Restaurant Name: yalla,3.3581949619972837
+Hyderabadi,11,Restaurant Name: angaar,3.3182428021747
+Hyderabadi,12,Restaurant Name: muradabadi biryani,3.2919984554225112
+Hyderabadi,13,Locality_Mussafah Sanaiya,3.212743375198824
+Hyderabadi,14,Restaurant Name: biryani art,3.155332440033351
+Hyderabadi,15,"Locality_Ambience Mall, Vasant Kunj",3.012541789140761
+Ice Cream,1,Restaurant Name: giani,7.879658000727493
+Ice Cream,2,Restaurant Name: nirula,7.498424937885621
+Ice Cream,3,"Locality_Select Citywalk Mall, Saket",5.448242521479157
+Ice Cream,4,Restaurant Name: kulfi,5.041355191115082
+Ice Cream,5,Restaurant Name: ice,4.9919154006388515
+Ice Cream,6,Restaurant Name: cream,4.785353007570607
+Ice Cream,7,Restaurant Name: gelato,4.117062552554916
+Ice Cream,8,Restaurant Name: baskin,4.060877252760221
+Ice Cream,9,Restaurant Name: baskin robbins,4.060877252760221
+Ice Cream,10,Restaurant Name: robbins,4.060877252760221
+Ice Cream,11,Restaurant Name: kings,3.9860384907708934
+Ice Cream,12,Restaurant Name: goosebumps,3.9601587484911254
+Ice Cream,13,"Locality_ITC Maurya, Chanakyapuri",3.9154267500675664
+Ice Cream,14,Locality_Alaknanda,3.876736731362592
+Ice Cream,15,Restaurant Name: frozen,3.8602615742336193
+Indian,1,Restaurant Name: brewpub,5.832386630671988
+Indian,2,"Locality_DLF South Square, Sarojini Nagar",4.1528545977748825
+Indian,3,Restaurant Name: india,4.086098715169512
+Indian,4,Locality_Connaught Place,3.363084662918947
+Indian,5,Country Code_214,3.322076033954211
+Indian,6,Locality_Nehru Place,3.243468020172564
+Indian,7,Locality_Podanur,3.170498603036141
+Indian,8,Restaurant Name: bay,3.020644648642873
+Indian,9,Restaurant Name: nosh,2.970222789696013
+Indian,10,Restaurant Name: dishoom,2.90187807655322
+Indian,11,City_Coimbatore,2.7979641213122597
+Indian,12,Restaurant Name: indian,2.718911674816329
+Indian,13,Restaurant Name: of india,2.622109875881573
+Indian,14,Restaurant Name: meatwale com,2.5790756191108155
+Indian,15,Restaurant Name: meatwale,2.5790756191108155
+International,1,Restaurant Name: zunzi,5.178109196567122
+International,2,Restaurant Name: bee,4.705517779281074
+International,3,"Locality_CITY WALK, Al Safa",4.208832383206278
+International,4,Locality_Setor De Clubes Esportivos Sul,3.3878624545228204
+International,5,Restaurant Name: world,3.314076685878395
+International,6,Locality_Rosebank,3.1318712257820587
+International,7,"Locality_The St. Regis, Westbay",2.9207866525848254
+International,8,Restaurant Name: global grill,2.8838230834905882
+International,9,Restaurant Name: st,2.7042471348194805
+International,10,Restaurant Name: global,2.703906483762818
+International,11,"Locality_Hotel Unique, Jardim Paulista",2.684052485944571
+International,12,City_Johannesburg,2.460961777750578
+International,13,Locality_Lynnwood,2.416561300293886
+International,14,Locality_Seminole Heights,2.222274229349341
+International,15,Locality_Iowa City,2.1491940271412497
+Italian,1,Restaurant Name: trattoria,3.839813230270333
+Italian,2,Restaurant Name: pizza hut,3.8328081218305785
+Italian,3,Restaurant Name: cool,3.755517264684471
+Italian,4,Restaurant Name: pizzeria,3.667147419457093
+Italian,5,Restaurant Name: italian,3.6005081120168936
+Italian,6,Restaurant Name: zone,3.5683079813078558
+Italian,7,Restaurant Name: freshmenu,3.4926611567455486
+Italian,8,Restaurant Name: italy,3.470768315441605
+Italian,9,Locality_Sector 30,3.3265478313776597
+Italian,10,Restaurant Name: tomatoes,3.3104289387650256
+Italian,11,"Locality_Worldmark 3, Aerocity",3.241643769704004
+Italian,12,Restaurant Name: lounge restaurant,3.1486308610516307
+Italian,13,Restaurant Name: sbarro,3.0686322782462736
+Italian,14,Restaurant Name: da pizza,2.962726548821469
+Italian,15,Restaurant Name: machine,2.816380520121947
+Japanese,1,Restaurant Name: japanese,6.128660899940513
+Japanese,2,Restaurant Name: sushi,5.151524448830896
+Japanese,3,"Locality_DLF Mall of India, Sector 18,  Noida",4.966733936875145
+Japanese,4,Restaurant Name: pema,4.809732304917739
+Japanese,5,Locality_Vijay Nagar,4.629321837867233
+Japanese,6,Restaurant Name: kylin,4.5843470001829365
+Japanese,7,Restaurant Name: tamura,4.507225104053829
+Japanese,8,Restaurant Name: ichiban,4.396934370181845
+Japanese,9,Restaurant Name: bamboo,4.116231028292565
+Japanese,10,Restaurant Name: cafe restaurant,4.059496367519675
+Japanese,11,"Locality_JMD Regent Arcade Mall, MG Road",4.058333762974842
+Japanese,12,Restaurant Name: bowl,3.9371802358151564
+Japanese,13,Restaurant Name: life,3.5589540583330614
+Japanese,14,Locality_MG Road,3.4004192097164365
+Japanese,15,Locality_Old Town,3.313821584443183
+Juices,1,Restaurant Name: bonjuz,6.33587859728943
+Juices,2,Restaurant Name: juice,6.075396648115083
+Juices,3,Restaurant Name: nation,5.912762330150165
+Juices,4,Restaurant Name: zoe,5.776168792936396
+Juices,5,Restaurant Name: health,5.747125536013417
+Juices,6,Restaurant Name: fit,5.021542521565932
+Juices,7,Restaurant Name: drinks,4.84441598437413
+Juices,8,Restaurant Name: burger singh,4.60959438902241
+Juices,9,Restaurant Name: in,4.39800233961828
+Juices,10,Restaurant Name: smoothie,4.3326353866789065
+Juices,11,Restaurant Name: shakes,4.297874924871221
+Juices,12,Locality_South City 2,4.192690481189274
+Juices,13,Locality_Uzan Bazaar,4.134085948107655
+Juices,14,Locality_Ipanema,3.561198894714538
+Juices,15,Restaurant Name: coldpress company,3.5043087186307864
+Kashmiri,1,Restaurant Name: wazwan,6.913712548952101
+Kashmiri,2,Locality_DLF Phase 1,6.753850004263995
+Kashmiri,3,Restaurant Name: daawat,6.44236724437978
+Kashmiri,4,Restaurant Name: samavar,5.932902273427857
+Kashmiri,5,"Locality_Cross Point Mall, DLF Phase 4",5.657231123156952
+Kashmiri,6,Restaurant Name: bytes,5.499753577334862
+Kashmiri,7,Restaurant Name: kashmiri,4.972750878697448
+Kashmiri,8,Restaurant Name: zaffran,4.578474115131476
+Kashmiri,9,Locality_Sector 34,4.428364130884403
+Kashmiri,10,Locality_Sector 72,4.156691203819273
+Kashmiri,11,"Locality_Hotel Broadway, Daryaganj",4.001648652269408
+Kashmiri,12,Restaurant Name: highway,3.916203459542257
+Kashmiri,13,Restaurant Name: 44,3.5425089876800446
+Kashmiri,14,"Locality_Dilli Haat, INA",3.4213090224812768
+Kashmiri,15,Restaurant Name: dilli,3.385219735531064
+Kerala,1,Locality_Janpath,7.497404336881209
+Kerala,2,Restaurant Name: kovilakam,7.107236379344181
+Kerala,3,Locality_Hauz Khas,6.354710061308767
+Kerala,4,City_Kochi,5.547662603401315
+Kerala,5,Locality_Sector 29,4.599776098980865
+Kerala,6,Locality_Vyttila,4.506674722896047
+Kerala,7,Locality_Hauz Khas Village,4.3686082597498865
+Kerala,8,Locality_INA,4.208751165545829
+Kerala,9,Locality_Edappally,4.092858847257937
+Kerala,10,Restaurant Name: the,3.9554068372134052
+Kerala,11,Restaurant Name: catering,3.844444937145289
+Kerala,12,Locality_Mayapuri Phase 2,3.8041990358671565
+Kerala,13,"Locality_The Imperial, Janpath",3.7864754233698448
+Kerala,14,Restaurant Name: kerala,3.711228348975956
+Kerala,15,Restaurant Name: new,3.6969178140316883
+Korean,1,Locality_Safdarjung,7.063216104422751
+Korean,2,Restaurant Name: bamboo,5.681641126107268
+Korean,3,Restaurant Name: village,5.271281691535992
+Korean,4,"Locality_One Horizon Center, Golf Course Road",4.656555243665544
+Korean,5,"Locality_Gandaria City Mall, Gandaria",4.322634819383466
+Korean,6,Restaurant Name: di,4.279998940004117
+Korean,7,Restaurant Name: k2,4.209786790110188
+Korean,8,Restaurant Name: cookhouse,3.871386667645828
+Korean,9,"Locality_BGC Stopover Pavillion, Bonifacio Global City",3.692306147106679
+Korean,10,"Locality_Global Foyer Mall, Golf Course Road",3.6180163884656964
+Korean,11,"Locality_Hotel Broadway, Daryaganj",3.4568458260449395
+Korean,12,Restaurant Name: dessert,3.39324129903403
+Korean,13,"Locality_Ansal Plaza Mall, Khel Gaon Marg",3.221111768860006
+Korean,14,Restaurant Name: de,3.2140920725631528
+Korean,15,Locality_Civil Lines,3.048793134043248
+Lebanese,1,Restaurant Name: arabian,7.31468277389105
+Lebanese,2,"Locality_V3S Mall, Laxmi Nagar",6.657510721337084
+Lebanese,3,Restaurant Name: freshmenu,6.313766903457882
+Lebanese,4,Restaurant Name: restaurant cafe,6.1457809990734065
+Lebanese,5,Locality_Khan Market,5.091511792071925
+Lebanese,6,Locality_Sector 4,5.010188745164588
+Lebanese,7,Restaurant Name: patlu,4.925759887396085
+Lebanese,8,Locality_Jasola,4.899496188004294
+Lebanese,9,Restaurant Name: zizo,4.861189067360985
+Lebanese,10,"Locality_Z Square Mall, Mall Road",4.334284551916931
+Lebanese,11,Locality_Vila Sonia,3.966677150502317
+Lebanese,12,Locality_Netaji Subhash Place,3.884425706856386
+Lebanese,13,Restaurant Name: cafe and,3.871697861462181
+Lebanese,14,"Locality_Ninex City Mart Mall, Sohna Road",3.747172190297203
+Lebanese,15,Restaurant Name: public,3.713160553421789
+Malaysian,1,Restaurant Name: kylin,6.715763242109272
+Malaysian,2,Restaurant Name: jom,5.105135775691902
+Malaysian,3,Restaurant Name: oriental,4.268833945281314
+Malaysian,4,"Locality_Sky City Metro, Auckland CBD",4.069071399826633
+Malaysian,5,"Locality_The Imperial, Janpath",3.9358641693918828
+Malaysian,6,Restaurant Name: penang,3.8842904061752637
+Malaysian,7,"Locality_Ansal Plaza Mall, Khel Gaon Marg",3.858518575840669
+Malaysian,8,Locality_South Extension 2,3.8516465254288996
+Malaysian,9,Restaurant Name: fusion,3.765174077885145
+Malaysian,10,Restaurant Name: tree,3.279839514693289
+Malaysian,11,Restaurant Name: haus,3.1064049651811305
+Malaysian,12,Restaurant Name: side wok,3.0836122604138985
+Malaysian,13,"Locality_Supermart 1, DLF Phase 4",3.0337740355902745
+Malaysian,14,Restaurant Name: side,2.981474236171821
+Malaysian,15,Restaurant Name: asian,2.9365790219608723
+Mediterranean,1,Restaurant Name: freshmenu,7.341045755010042
+Mediterranean,2,Locality_Sector 4,5.181358135938331
+Mediterranean,3,Locality_Bhawar Kuan,4.646141718411038
+Mediterranean,4,Restaurant Name: taste,4.565060584018194
+Mediterranean,5,Restaurant Name: zunzi,4.399836770145105
+Mediterranean,6,"Locality_Acropolis Mall, Kasba",4.314963296270174
+Mediterranean,7,Restaurant Name: zizo,4.203725736412303
+Mediterranean,8,Restaurant Name: habibi,4.1305364211949795
+Mediterranean,9,"Locality_Spice World Mall, Sector 25",4.040905515644666
+Mediterranean,10,Locality_Moseley,3.9266095567892947
+Mediterranean,11,Restaurant Name: bistro,3.7594833716837814
+Mediterranean,12,Restaurant Name: olive,3.7583901395669557
+Mediterranean,13,Restaurant Name: imperfecto,3.71738049298698
+Mediterranean,14,"Locality_Cantonment Road, Outram",3.614395249004639
+Mediterranean,15,Restaurant Name: oven,3.6023503604905422
+Mexican,1,"Locality_Worldmark 3, Aerocity",5.923613729881921
+Mexican,2,Restaurant Name: senorita,4.886972165847717
+Mexican,3,"Locality_The Galgotias, Sector 23",4.833488461275105
+Mexican,4,Restaurant Name: el,4.463318810301609
+Mexican,5,Restaurant Name: head,4.380305820535798
+Mexican,6,Restaurant Name: hungry,4.29971686055211
+Mexican,7,Locality_Laxmi Nagar,4.289833835184904
+Mexican,8,Restaurant Name: mexican,4.1327483078150165
+Mexican,9,Restaurant Name: los,4.103404948195659
+Mexican,10,Locality_Jasola,4.098750397991794
+Mexican,11,Locality_Khan Market,3.8560815353552322
+Mexican,12,Restaurant Name: chili,3.802855339350223
+Mexican,13,"Locality_The Mailbox, Broad Street",3.754562457984811
+Mexican,14,Restaurant Name: sol,3.5768428711181732
+Mexican,15,Locality_DLF Phase 3,3.564135945066044
+Middle Eastern,1,Restaurant Name: habibi,6.945646760751443
+Middle Eastern,2,Restaurant Name: zizo,6.120774628076195
+Middle Eastern,3,Locality_Al Dhafrah,5.902303220069978
+Middle Eastern,4,Restaurant Name: masha,5.629382919802573
+Middle Eastern,5,Locality_Greater Kailash (GK) 2,4.550260152786935
+Middle Eastern,6,Restaurant Name: coffee house,4.324836487080931
+Middle Eastern,7,City_Panchkula,4.311563729821372
+Middle Eastern,8,Locality_Sector 9,4.159513892396141
+Middle Eastern,9,Restaurant Name: kraft,3.596744231546869
+Middle Eastern,10,Locality_Al Nahda,3.5896885386246655
+Middle Eastern,11,Locality_Moseley,3.578859517284817
+Middle Eastern,12,Locality_Hauz Khas Village,3.3096993568070476
+Middle Eastern,13,Locality_Ballygunge,3.0787559983933144
+Middle Eastern,14,Locality_Sector 54,2.969739354007507
+Middle Eastern,15,"Locality_DLF Place Mall, Saket",2.7966409815242064
+Mithai,1,Restaurant Name: sweets,10.71155522006679
+Mithai,2,Restaurant Name: bikanervala,6.905255957555643
+Mithai,3,Restaurant Name: haldiram,6.533850912021774
+Mithai,4,Restaurant Name: sweet,5.9847227370629
+Mithai,5,Restaurant Name: gulab,5.164643263398535
+Mithai,6,Restaurant Name: bikaner,5.160144409324629
+Mithai,7,Restaurant Name: btw,4.847872169690322
+Mithai,8,Restaurant Name: aggarwal,4.638697985016444
+Mithai,9,Restaurant Name: mithaas,4.013379671945779
+Mithai,10,Restaurant Name: gopala,4.010220297655658
+Mithai,11,Restaurant Name: bhog,3.401187891346252
+Mithai,12,Restaurant Name: mehta,3.300787585125474
+Mithai,13,"Locality_Vasant Square Mall, Vasant Kunj",3.2535556443525113
+Mithai,14,Restaurant Name: kanwarji,3.1779313700807847
+Mithai,15,Restaurant Name: namkeen,3.1571402926817003
+Mughlai,1,Restaurant Name: kabab,3.7023588929070415
+Mughlai,2,Restaurant Name: karim,3.6606011233407516
+Mughlai,3,Restaurant Name: mughlai,3.5595035697081965
+Mughlai,4,Restaurant Name: gullu,3.320406392076245
+Mughlai,5,Restaurant Name: mughal,3.2757080132673733
+Mughlai,6,Restaurant Name: daawat,3.1098630749380067
+Mughlai,7,Restaurant Name: shahi,3.042317202227238
+Mughlai,8,Restaurant Name: chinese king,3.038337416113342
+Mughlai,9,Locality_Jama Masjid,2.946625242566917
+Mughlai,10,Restaurant Name: kebabs,2.9386705201060312
+Mughlai,11,Restaurant Name: sardar ji,2.917297046933143
+Mughlai,12,Restaurant Name: al,2.8303566422833364
+Mughlai,13,Restaurant Name: zaika,2.7863307596492533
+Mughlai,14,Restaurant Name: chicken corner,2.769844871306949
+Mughlai,15,Restaurant Name: muradabadi,2.752961209815548
+North Indian,1,Restaurant Name: dhaba,5.195830712679902
+North Indian,2,Country Code_1,4.218365119909939
+North Indian,3,Restaurant Name: punjabi,3.967606507685786
+North Indian,4,Restaurant Name: rasoi,3.9556727476256097
+North Indian,5,Restaurant Name: restaurant,2.8539809666352505
+North Indian,6,Restaurant Name: bhojnalaya,2.822672487219634
+North Indian,7,Restaurant Name: masala,2.547969130963474
+North Indian,8,Restaurant Name: kabab,2.5033909466864914
+North Indian,9,Restaurant Name: parantha,2.4908385163266966
+North Indian,10,Restaurant Name: haldiram,2.490346048696292
+North Indian,11,Restaurant Name: curries,2.429590405313618
+North Indian,12,Restaurant Name: bikanervala,2.3252723365087022
+North Indian,13,Restaurant Name: curry,2.3106700194070173
+North Indian,14,Restaurant Name: foods,2.2572315488195716
+North Indian,15,Restaurant Name: punjab,2.256139919774187
+Pizza,1,Restaurant Name: pizza,14.004092076127709
+Pizza,2,Restaurant Name: instapizza,5.072495231142114
+Pizza,3,Restaurant Name: pizzeria,4.93747219574707
+Pizza,4,Restaurant Name: pie,4.849227059218399
+Pizza,5,Locality_Asaf Ali Road,4.545844664459746
+Pizza,6,Restaurant Name: slice,4.07037984691275
+Pizza,7,Restaurant Name: sbarro,3.9977363724306754
+Pizza,8,Restaurant Name: hub,3.789311097701095
+Pizza,9,Restaurant Name: italian,3.5990365650512604
+Pizza,10,Restaurant Name: crust,3.490098697749874
+Pizza,11,Locality_Adchini,3.4590126638111323
+Pizza,12,Restaurant Name: grill cafe,3.443245822018661
+Pizza,13,"Locality_MGF Metropolitan Mall, MG Road",3.4338976229685714
+Pizza,14,Restaurant Name: zone,3.392738460428718
+Pizza,15,Restaurant Name: stick,3.3764770714343477
+Rajasthani,1,Restaurant Name: khana,7.243222428296932
+Rajasthani,2,"Locality_Supermart 1, DLF Phase 4",6.968915040171823
+Rajasthani,3,Restaurant Name: thali,6.711366679022397
+Rajasthani,4,Locality_Defence Colony,6.110627369043988
+Rajasthani,5,"Locality_The Great India Place, Sector 38",5.844232323564003
+Rajasthani,6,"Locality_Crown Interiorz Mall, Sector 35, Faridabad",5.269303923163229
+Rajasthani,7,Locality_East Patel Nagar,4.146338621246758
+Rajasthani,8,Restaurant Name: jugaad,4.10082895785271
+Rajasthani,9,City_Jaipur,4.092891281639314
+Rajasthani,10,Restaurant Name: marwari,3.6972497310604964
+Rajasthani,11,Locality_Sector 56,3.2893473270472615
+Rajasthani,12,"Locality_Devraj Niwas, Bani Park",3.0440902807830135
+Rajasthani,13,"Locality_Holiday Inn Jaipur City Centre, Bais Godam",2.711114836871284
+Rajasthani,14,City_Agra,2.601208935911306
+Rajasthani,15,Locality_Sector 50,2.590243092314013
+Raw Meats,1,Locality_Sector 53,5.874489877693692
+Raw Meats,2,Restaurant Name: chat,5.601310482711771
+Raw Meats,3,Restaurant Name: meat,5.440825788400514
+Raw Meats,4,Restaurant Name: fresh,5.3506118088224
+Raw Meats,5,Locality_Sector 28,5.2775433005776975
+Raw Meats,6,Restaurant Name: chick,5.05236268149283
+Raw Meats,7,Restaurant Name: chick chop,4.254188359501189
+Raw Meats,8,Restaurant Name: green chick,4.254188359501189
+Raw Meats,9,Restaurant Name: chop,4.226422808317807
+Raw Meats,10,Locality_Sector 22,4.22131557564058
+Raw Meats,11,Restaurant Name: of chicken,4.201118077016815
+Raw Meats,12,Restaurant Name: chand,4.179453304854897
+Raw Meats,13,Restaurant Name: republic of,3.898935096344122
+Raw Meats,14,Restaurant Name: republic,3.5433778394142768
+Raw Meats,15,Restaurant Name: meatwale com,3.542576613485674
+Salad,1,Restaurant Name: subway,10.998970389531607
+Salad,2,Restaurant Name: salad,6.010026661712815
+Salad,3,"Locality_Shangri La's - Eros hotel, Janpath",4.609709112815642
+Salad,4,Restaurant Name: nation,4.119033434354599
+Salad,5,Locality_DLF Phase 1,3.7643420724683474
+Salad,6,Locality_Uzan Bazaar,3.6680187436693386
+Salad,7,Restaurant Name: pita pit,3.5432291245101757
+Salad,8,Locality_Sector 31,3.465264301492795
+Salad,9,Restaurant Name: pit,3.4612722112757455
+Salad,10,Restaurant Name: pita,3.254209746629333
+Salad,11,Locality_Borivali West,3.1437229769082027
+Salad,12,Locality_Model Town 2,2.939384796369332
+Salad,13,Locality_Sohna Road,2.8557871144567555
+Salad,14,Restaurant Name: american,2.855256278974774
+Salad,15,City_Guwahati,2.791448200355499
+Sandwich,1,Locality_Leblon,4.905161252782298
+Sandwich,2,Restaurant Name: kabir,3.3535271847899786
+Sandwich,3,Locality_Gurukul,3.0769576809501893
+Sandwich,4,Restaurant Name: pizzeria,2.9532313371005006
+Sandwich,5,Restaurant Name: big,2.85851240816186
+Sandwich,6,Restaurant Name: italian restaurant,2.831051190140431
+Sandwich,7,City_Ahmedabad,2.74764514388117
+Sandwich,8,Restaurant Name: dog,2.6739912824417886
+Sandwich,9,Restaurant Name: moon,2.623946825015662
+Sandwich,10,Locality_LaFayette,2.579144130153356
+Sandwich,11,Restaurant Name: deli,2.5337589243347933
+Sandwich,12,Locality_Helen,2.5282861887329786
+Sandwich,13,Locality_Madeira Beach/Redington Beach,2.5266044965546834
+Sandwich,14,Restaurant Name: greek,2.4853957944453073
+Sandwich,15,Restaurant Name: tony,2.435516284330354
+Seafood,1,Restaurant Name: swagath,5.380412040418847
+Seafood,2,Locality_Sector 41,4.887560508957557
+Seafood,3,Locality_Lawsons Bay,4.215938223967818
+Seafood,4,Restaurant Name: lady,4.211848886251907
+Seafood,5,Restaurant Name: bite,3.861985526176722
+Seafood,6,"Locality_Cross Point Mall, DLF Phase 4",3.836470838200774
+Seafood,7,Restaurant Name: wong,3.668451629633378
+Seafood,8,Locality_Geeta Colony,3.6683383005891783
+Seafood,9,"Locality_Marina Centre, Downtown Core",3.6349407228289756
+Seafood,10,Restaurant Name: fish,3.495873975518099
+Seafood,11,Restaurant Name: coffee bar,3.394781766343931
+Seafood,12,Locality_Sector 29,3.3846219094522936
+Seafood,13,Restaurant Name: shack,3.352033170589511
+Seafood,14,City_Goa,3.331700098457796
+Seafood,15,Locality_Satpur,3.238648853987075
+South Indian,1,Restaurant Name: dosa,6.925612617358933
+South Indian,2,Restaurant Name: south,5.160923007927951
+South Indian,3,Restaurant Name: bikanervala,5.093537836000908
+South Indian,4,Restaurant Name: haldiram,4.780953124011226
+South Indian,5,Restaurant Name: ratna,4.376453231966438
+South Indian,6,Restaurant Name: barichi,4.3325992065842795
+South Indian,7,Restaurant Name: shree,4.306892673639083
+South Indian,8,Restaurant Name: madras,4.155872177692906
+South Indian,9,Restaurant Name: swagath,3.9714710209582385
+South Indian,10,Restaurant Name: tripti,3.863563870376261
+South Indian,11,Restaurant Name: south indian,3.761687624098876
+South Indian,12,Restaurant Name: naivedyam,3.627769624898059
+South Indian,13,Locality_Sector 4,3.5834924000669495
+South Indian,14,Restaurant Name: chennai,3.570293294499263
+South Indian,15,Restaurant Name: sagar ratna,3.5465076618217832
+Southern,1,City_Dalton,3.407565236224269
+Southern,2,City_Gainesville,3.2448899399581173
+Southern,3,Locality_Flowery Branch,3.2203050363285732
+Southern,4,Restaurant Name: north,3.097237617482507
+Southern,5,Locality_Columbus,3.028788716223446
+Southern,6,Locality_Ringgold,2.7981174999097855
+Southern,7,Restaurant Name: cafe,2.7320235744674806
+Southern,8,City_Columbus,2.6695399900179173
+Southern,9,Restaurant Name: boy,2.6550825014280472
+Southern,10,Restaurant Name: re,2.396139977451612
+Southern,11,Locality_Seminole Heights,2.3280984110589675
+Southern,12,Locality_Savannah,2.306484763478255
+Southern,13,Restaurant Name: grille and,2.2386027282756893
+Southern,14,Restaurant Name: resort,2.1925299803254608
+Southern,15,Restaurant Name: last,2.192281705069626
+Steak,1,"Locality_Beak Street, Soho",5.3799143019284115
+Steak,2,"Locality_Caravan Complex, Al Hilal",4.607721779907288
+Steak,3,Restaurant Name: steakhouse,3.784384371253547
+Steak,4,Restaurant Name: texas,3.291397190069869
+Steak,5,"Locality_Bayfront Subzone, Downtown Core",3.270520215118444
+Steak,6,Restaurant Name: parrot,3.144943563488379
+Steak,7,Restaurant Name: bistro,2.7696216546354937
+Steak,8,Restaurant Name: co,2.7370333388062638
+Steak,9,Locality_Lahaina,2.690876631104898
+Steak,10,Restaurant Name: steak,2.689241756716079
+Steak,11,Locality_Winchester Bay,2.5992910072945397
+Steak,12,City_Winchester Bay,2.5992910072945397
+Steak,13,Locality_Gazi Osman Pasa,2.435541077903609
+Steak,14,Restaurant Name: restaurant lounge,2.3754169037254433
+Steak,15,Price range,2.3328842586011906
+Street Food,1,Restaurant Name: bikanervala,5.448139267084374
+Street Food,2,Restaurant Name: haldiram,5.006024916051602
+Street Food,3,Restaurant Name: republic,4.521058129476809
+Street Food,4,Restaurant Name: chat,4.485061689083908
+Street Food,5,Restaurant Name: bikaner,4.3718339672911615
+Street Food,6,Restaurant Name: gulab,4.270287445600846
+Street Food,7,Restaurant Name: silver,4.261733345787761
+Street Food,8,Restaurant Name: sweets,4.148097742953547
+Street Food,9,Restaurant Name: chaat,4.084080809870108
+Street Food,10,Locality_Sector 1,3.8090645013514375
+Street Food,11,Restaurant Name: btw,3.7378322709262184
+Street Food,12,Restaurant Name: snacks,3.611664709404017
+Street Food,13,Restaurant Name: nukkadwala,3.486998366188911
+Street Food,14,Restaurant Name: masala,3.4859381202382753
+Street Food,15,Restaurant Name: namkeen,3.4603161127892
+Sushi,1,Restaurant Name: sushi,7.035823514384735
+Sushi,2,Restaurant Name: japanese,6.01733016605672
+Sushi,3,Locality_Lodhi Colony,4.400536439388206
+Sushi,4,Restaurant Name: sushiya express,3.9997164336718085
+Sushi,5,Restaurant Name: sushiya,3.9997164336718085
+Sushi,6,Locality_Old Town,3.773309632995709
+Sushi,7,Locality_Sector 29,3.523329215638308
+Sushi,8,Locality_Moema,3.434509578716856
+Sushi,9,Restaurant Name: thai,3.3094477300722063
+Sushi,10,Restaurant Name: big,3.2710222832163525
+Sushi,11,Locality_East Village,3.2108898954390916
+Sushi,12,Locality_Greater Kailash (GK) 1,3.0799844887665433
+Sushi,13,Restaurant Name: parrot,3.0775699631359075
+Sushi,14,Locality_Claremont,2.9199102819498655
+Sushi,15,"Locality_Menlyn Shopping Centre, Menlyn",2.744430935980126
+Tea,1,Restaurant Name: chaayos,9.508133598724328
+Tea,2,Restaurant Name: chai,5.983282624329916
+Tea,3,Locality_Green Park,5.60825683495022
+Tea,4,Restaurant Name: tea,5.600326003442185
+Tea,5,Locality_Laxmi Nagar,4.679707857319563
+Tea,6,Locality_Khan Market,4.6146648494351945
+Tea,7,Restaurant Name: lounge,4.120522620715634
+Tea,8,Restaurant Name: chai point,3.9277252963959506
+Tea,9,Locality_De Waterkant,3.5854031814069174
+Tea,10,Locality_Shahpur Jat,3.547939864690893
+Tea,11,Locality_Sahid Nagar,3.3834242343927627
+Tea,12,City_Mumbai,3.2976348580810484
+Tea,13,Restaurant Name: by,3.1490595291251116
+Tea,14,Restaurant Name: the tea,3.1151148891984657
+Tea,15,"Locality_Logix City Centre, Sector 32, Noida",2.953188333659298
+Thai,1,Restaurant Name: thai,8.326396179368178
+Thai,2,Restaurant Name: chinese restaurant,5.3710503212626515
+Thai,3,Restaurant Name: asian,5.309995823254825
+Thai,4,Restaurant Name: freshmenu,5.00076648247229
+Thai,5,Restaurant Name: smaaash,4.925726596304246
+Thai,6,Restaurant Name: noodles,4.754129034877078
+Thai,7,Locality_Sector 63,4.719444135266155
+Thai,8,Restaurant Name: wong,4.469757384309952
+Thai,9,Restaurant Name: berco,4.322493358001169
+Thai,10,Restaurant Name: drifters cafe,4.25597212208833
+Thai,11,Restaurant Name: drifters,4.25597212208833
+Thai,12,Restaurant Name: the lounge,4.218378396230745
+Thai,13,Restaurant Name: china,4.181402994961396
+Thai,14,Restaurant Name: beijing,4.0033052402437
+Thai,15,Restaurant Name: kylin,3.959398139192942
+Tibetan,1,Locality_Majnu ka Tila,7.954962586253789
+Tibetan,2,Restaurant Name: tibet,6.841245731851931
+Tibetan,3,Restaurant Name: bamboo,5.918323255830006
+Tibetan,4,Restaurant Name: pema,5.674101223159375
+Tibetan,5,Locality_Vijay Nagar,5.511410914512225
+Tibetan,6,Restaurant Name: china,4.968524305760632
+Tibetan,7,Restaurant Name: kitchen,4.557005562971184
+Tibetan,8,Restaurant Name: wow momo,4.552062693878093
+Tibetan,9,Restaurant Name: wow,4.377686910302047
+Tibetan,10,Locality_Safdarjung,4.362194782410883
+Tibetan,11,Restaurant Name: everest,4.31867414529115
+Tibetan,12,Restaurant Name: druk,3.862096891403882
+Tibetan,13,Locality_Sector 51,3.7977798231533306
+Tibetan,14,Restaurant Name: momos,3.5025295864297243
+Tibetan,15,Restaurant Name: diner,3.45641628423535
+Vegetarian,1,Restaurant Name: brown,4.523360360254408
+Vegetarian,2,Locality_Iowa City,4.234513237219328
+Vegetarian,3,Restaurant Name: bee,4.198545997301442
+Vegetarian,4,Restaurant Name: family,4.106272854843505
+Vegetarian,5,Locality_De Waterkant,3.971386938772564
+Vegetarian,6,Locality_Dahlonega,3.2606582818459344
+Vegetarian,7,Restaurant Name: bar and,2.9345389238891033
+Vegetarian,8,Restaurant Name: and,2.861561685045707
+Vegetarian,9,Restaurant Name: and grill,2.8456644480653948
+Vegetarian,10,Restaurant Name: da,2.829387208000574
+Vegetarian,11,Restaurant Name: sushi,2.6191686879475524
+Vegetarian,12,Restaurant Name: cafe and,2.616132783332994
+Vegetarian,13,Restaurant Name: irish,2.4772533962880385
+Vegetarian,14,Restaurant Name: coffee,2.4612856938873797
+Vegetarian,15,Log Votes,2.434601202258516
+Vietnamese,1,Restaurant Name: kylin,6.92327896514877
+Vietnamese,2,Restaurant Name: bamboo,5.684165637686649
+Vietnamese,3,Restaurant Name: little,5.212729070948484
+Vietnamese,4,Restaurant Name: do,4.73143179604338
+Vietnamese,5,Restaurant Name: da,4.54473914374442
+Vietnamese,6,Restaurant Name: plate,4.466784199551207
+Vietnamese,7,Restaurant Name: eatery,4.3218167934757075
+Vietnamese,8,"Locality_The Imperial, Janpath",3.866831049756511
+Vietnamese,9,Restaurant Name: fisherman,3.542209336907338
+Vietnamese,10,Restaurant Name: haus,3.4420321160054828
+Vietnamese,11,Restaurant Name: asian,3.439997778261589
+Vietnamese,12,Restaurant Name: go kylin,3.3425079223421417
+Vietnamese,13,"Locality_The Promenade, White Town",3.3214409643395624
+Vietnamese,14,Restaurant Name: central,3.2982013062941373
+Vietnamese,15,"Locality_Crowne Plaza Abu Dhabi, Al Markaziya",3.0573630652297727

@@ -1,0 +1,208 @@
+Cuisine Classification: TF-IDF + OneVsRest Logistic Regression
+Dataset path: D:\Git\Restaurant_Intelligent_System\Dataset\cleaned_dataset.csv
+Target column: Cuisines
+Text feature: Restaurant Name
+Categorical features: ['Country Code', 'City', 'Locality', 'Has Table booking', 'Has Online delivery', 'Is delivering now']
+Numeric features: ['Longitude', 'Latitude', 'Log Average Cost INR', 'Price range', 'Aggregate rating', 'Log Votes']
+Leakage columns excluded: ['Cuisines', 'Primary Cuisine', 'Cuisine Count']
+Minimum cuisine samples: 10
+Cross-validation folds: 3
+Tuning trials: 8
+
+Hyperparameter tuning with K-fold cross-validation
+Candidates: 8
+CV folds  : 3
+Selection metric: Mean Micro F1
+
+Candidate 1/8: {'min_cuisine_samples': 10, 'max_name_features': 3000, 'ngram_max': 2, 'tfidf_min_df': 2, 'C': 1.0}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.65, micro_f1=0.5137, macro_f1=0.2952, sample_f1=0.5289
+    Fold 2: threshold=0.60, micro_f1=0.5164, macro_f1=0.3017, sample_f1=0.5374
+    Fold 3: threshold=0.65, micro_f1=0.5214, macro_f1=0.2922, sample_f1=0.5318
+  Mean CV: micro_f1=0.5171 (+/- 0.0032), macro_f1=0.2963, sample_f1=0.5327, threshold=0.63
+
+Candidate 2/8: {'min_cuisine_samples': 10, 'max_name_features': 5000, 'ngram_max': 2, 'tfidf_min_df': 2, 'C': 0.5}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.60, micro_f1=0.4915, macro_f1=0.2770, sample_f1=0.5221
+    Fold 2: threshold=0.65, micro_f1=0.4972, macro_f1=0.2969, sample_f1=0.5210
+    Fold 3: threshold=0.70, micro_f1=0.5006, macro_f1=0.2906, sample_f1=0.5112
+  Mean CV: micro_f1=0.4964 (+/- 0.0038), macro_f1=0.2882, sample_f1=0.5181, threshold=0.65
+
+Candidate 3/8: {'min_cuisine_samples': 10, 'max_name_features': 3000, 'ngram_max': 2, 'tfidf_min_df': 1, 'C': 0.5}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.60, micro_f1=0.4941, macro_f1=0.2794, sample_f1=0.5240
+    Fold 2: threshold=0.65, micro_f1=0.4982, macro_f1=0.2960, sample_f1=0.5207
+    Fold 3: threshold=0.70, micro_f1=0.5034, macro_f1=0.2942, sample_f1=0.5144
+  Mean CV: micro_f1=0.4986 (+/- 0.0038), macro_f1=0.2899, sample_f1=0.5197, threshold=0.65
+
+Candidate 4/8: {'min_cuisine_samples': 30, 'max_name_features': 2000, 'ngram_max': 1, 'tfidf_min_df': 2, 'C': 0.5}
+  Candidate data: rows=9336, cuisine_labels=39
+    Fold 1: threshold=0.65, micro_f1=0.5235, macro_f1=0.4251, sample_f1=0.5335
+    Fold 2: threshold=0.60, micro_f1=0.5256, macro_f1=0.4150, sample_f1=0.5466
+    Fold 3: threshold=0.65, micro_f1=0.5377, macro_f1=0.4431, sample_f1=0.5500
+  Mean CV: micro_f1=0.5289 (+/- 0.0062), macro_f1=0.4277, sample_f1=0.5434, threshold=0.63
+
+Candidate 5/8: {'min_cuisine_samples': 10, 'max_name_features': 5000, 'ngram_max': 1, 'tfidf_min_df': 2, 'C': 1.0}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.65, micro_f1=0.5109, macro_f1=0.2936, sample_f1=0.5268
+    Fold 2: threshold=0.65, micro_f1=0.5127, macro_f1=0.3043, sample_f1=0.5292
+    Fold 3: threshold=0.65, micro_f1=0.5199, macro_f1=0.2956, sample_f1=0.5307
+  Mean CV: micro_f1=0.5145 (+/- 0.0039), macro_f1=0.2978, sample_f1=0.5289, threshold=0.65
+
+Candidate 6/8: {'min_cuisine_samples': 20, 'max_name_features': 3000, 'ngram_max': 2, 'tfidf_min_df': 1, 'C': 2.0}
+  Candidate data: rows=9421, cuisine_labels=57
+    Fold 1: threshold=0.65, micro_f1=0.5401, macro_f1=0.3557, sample_f1=0.5442
+    Fold 2: threshold=0.65, micro_f1=0.5441, macro_f1=0.3403, sample_f1=0.5476
+    Fold 3: threshold=0.65, micro_f1=0.5376, macro_f1=0.3352, sample_f1=0.5432
+  Mean CV: micro_f1=0.5406 (+/- 0.0027), macro_f1=0.3437, sample_f1=0.5450, threshold=0.65
+
+Candidate 7/8: {'min_cuisine_samples': 10, 'max_name_features': 2000, 'ngram_max': 1, 'tfidf_min_df': 1, 'C': 0.5}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.60, micro_f1=0.4995, macro_f1=0.2806, sample_f1=0.5300
+    Fold 2: threshold=0.60, micro_f1=0.4989, macro_f1=0.2921, sample_f1=0.5290
+    Fold 3: threshold=0.70, micro_f1=0.5071, macro_f1=0.3053, sample_f1=0.5176
+  Mean CV: micro_f1=0.5018 (+/- 0.0037), macro_f1=0.2927, sample_f1=0.5256, threshold=0.63
+
+Candidate 8/8: {'min_cuisine_samples': 10, 'max_name_features': 5000, 'ngram_max': 1, 'tfidf_min_df': 1, 'C': 0.5}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.60, micro_f1=0.5275, macro_f1=0.3121, sample_f1=0.5531
+    Fold 2: threshold=0.65, micro_f1=0.5259, macro_f1=0.3301, sample_f1=0.5437
+    Fold 3: threshold=0.70, micro_f1=0.5355, macro_f1=0.3369, sample_f1=0.5422
+  Mean CV: micro_f1=0.5296 (+/- 0.0042), macro_f1=0.3264, sample_f1=0.5463, threshold=0.65
+
+Best Hyperparameters
+{'min_cuisine_samples': 20, 'max_name_features': 3000, 'ngram_max': 2, 'tfidf_min_df': 1, 'C': 2.0}
+Best CV micro_f1=0.5406, macro_f1=0.3437, sample_f1=0.5450
+
+Final model parameters
+{'min_cuisine_samples': 20, 'max_name_features': 3000, 'ngram_max': 2, 'tfidf_min_df': 1, 'C': 2.0}
+
+Dataset Summary
+Original rows: 9551
+Rows used after rare-cuisine filtering: 9421
+Original individual cuisines: 146
+Cuisine labels used in model: 57
+Rare cuisine labels dropped: 89
+Average labels per used restaurant: 2.0331
+
+Dataset Split
+Train     : 6594 rows
+Validation: 1413 rows
+Test      : 1414 rows
+
+Training model...
+Training complete.
+
+Best validation threshold: 0.70
+
+Train Results
+Exact Match Accuracy: 0.5297
+Hamming Loss: 0.0140
+Micro Precision: 0.7740
+Micro Recall: 0.8608
+Micro F1: 0.8151
+Macro Precision: 0.6407
+Macro Recall: 0.9732
+Macro F1: 0.7522
+Weighted F1: 0.8219
+Sample F1: 0.8145
+Average True Labels: 2.0361
+Average Predicted Labels: 2.2645
+
+Validation Results
+Exact Match Accuracy: 0.2534
+Hamming Loss: 0.0335
+Micro Precision: 0.5256
+Micro Recall: 0.5472
+Micro F1: 0.5362
+Macro Precision: 0.3041
+Macro Recall: 0.3732
+Macro F1: 0.3253
+Weighted F1: 0.5597
+Sample F1: 0.5409
+Average True Labels: 2.0149
+Average Predicted Labels: 2.0977
+
+Test Results
+Exact Match Accuracy: 0.2412
+Hamming Loss: 0.0347
+Micro Precision: 0.5144
+Micro Recall: 0.5394
+Micro F1: 0.5266
+Macro Precision: 0.3164
+Macro Recall: 0.4237
+Macro F1: 0.3473
+Weighted F1: 0.5479
+Sample F1: 0.5282
+Average True Labels: 2.0375
+Average Predicted Labels: 2.1365
+
+Lowest Test F1 Cuisines
+       Cuisine  Precision   Recall  F1-score  Support
+    Hyderabadi   0.000000 0.000000  0.000000      1.0
+        Korean   0.000000 0.000000  0.000000      2.0
+    Vietnamese   0.000000 0.000000  0.000000      2.0
+        French   0.000000 0.000000  0.000000      3.0
+        Juices   0.000000 0.000000  0.000000      3.0
+Middle Eastern   0.000000 0.000000  0.000000      4.0
+        Kerala   0.000000 0.000000  0.000000      5.0
+    Vegetarian   0.000000 0.000000  0.000000      5.0
+ International   0.000000 0.000000  0.000000      6.0
+       Arabian   0.000000 0.000000  0.000000      9.0
+      Lebanese   0.074074 0.142857  0.097561     14.0
+      Bar Food   0.062500 0.250000  0.100000      4.0
+       Bengali   0.071429 0.333333  0.117647      6.0
+    Rajasthani   0.111111 0.250000  0.153846      4.0
+         Steak   0.117647 0.285714  0.166667      7.0
+
+Highest Test F1 Cuisines
+     Cuisine  Precision   Recall  F1-score  Support
+   Raw Meats   0.809524 0.850000  0.829268     20.0
+       Salad   0.700000 0.875000  0.777778     16.0
+      Mithai   0.734375 0.824561  0.776860     57.0
+        Goan   0.750000 0.750000  0.750000      4.0
+   Ice Cream   0.684211 0.787879  0.732394     33.0
+North Indian   0.809717 0.650407  0.721371    615.0
+       Pizza   0.795455 0.614035  0.693069     57.0
+      Bakery   0.704762 0.643478  0.672727    115.0
+Healthy Food   0.535714 0.714286  0.612245     21.0
+      Indian   0.500000 0.769231  0.606061     13.0
+ Street Food   0.516129 0.685714  0.588957     70.0
+        Cafe   0.539683 0.635514  0.583691    107.0
+   Fast Food   0.638655 0.527778  0.577947    288.0
+     Chinese   0.644231 0.507576  0.567797    396.0
+     Biryani   0.531250 0.548387  0.539683     31.0
+
+Top Overall Features
+                     Feature  Mean Absolute Coefficient
+      Restaurant Name: pizza                   1.682752
+       Restaurant Name: cafe                   1.551190
+ Restaurant Name: restaurant                   1.366978
+    Restaurant Name: biryani                   1.351700
+     Restaurant Name: subway                   1.332040
+              Country Code_1                   1.283338
+        Is delivering now_No                   1.266228
+    Restaurant Name: kitchen                   1.240423
+        Has Table booking_No                   1.179040
+        Restaurant Name: the                   1.164494
+      Has Online delivery_No                   1.140522
+     Restaurant Name: burger                   1.067951
+     Restaurant Name: coffee                   1.041240
+      Restaurant Name: china                   1.008630
+      Restaurant Name: dhaba                   0.984157
+            Country Code_216                   0.965213
+      Restaurant Name: giani                   0.962997
+     Restaurant Name: sweets                   0.952552
+       Has Table booking_Yes                   0.947937
+     Restaurant Name: bakery                   0.944718
+Restaurant Name: bikanervala                   0.925906
+      Restaurant Name: sushi                   0.925161
+       Restaurant Name: food                   0.910365
+   Restaurant Name: mcdonald                   0.899115
+     Has Online delivery_Yes                   0.896213
+
+Saved model to: D:\Git\Restaurant_Intelligent_System\cuisine_tfidf_logistic_model.pkl
+Saved label binarizer to: D:\Git\Restaurant_Intelligent_System\cuisine_label_binarizer.pkl
+
+Saved interactive Plotly dark-theme graphs.
+Saved reports and graphs to: D:\Git\Restaurant_Intelligent_System\cuisine_model_tfidf_logistic_results
