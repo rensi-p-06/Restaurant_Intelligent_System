@@ -123,7 +123,11 @@ def build_preprocessor(max_name_features: int, ngram_max: int, tfidf_min_df: int
 
 
 def load_dataset(csv_path: str) -> pd.DataFrame:
-    data = pd.read_csv(csv_path)
+    dataset_path = Path(csv_path)
+    if not dataset_path.exists() and not dataset_path.is_absolute():
+        dataset_path = Path(__file__).resolve().parent / dataset_path
+
+    data = pd.read_csv(dataset_path)
     data.columns = data.columns.str.strip()
 
     if "Log votes" in data.columns and "Log Votes" not in data.columns:
@@ -859,8 +863,8 @@ def main() -> None:
     )
     parser.add_argument(
         "--csv",
-        default="cleaned_dataset.csv",
-        help="Path to cleaned_dataset.csv. Default expects the CSV in the current workspace.",
+        default=r"Dataset\cleaned_dataset.csv",
+        help="Path to cleaned_dataset.csv. Relative paths are resolved from this script folder.",
     )
     parser.add_argument(
         "--model-output",

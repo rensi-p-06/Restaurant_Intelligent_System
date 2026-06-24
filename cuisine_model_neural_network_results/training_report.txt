@@ -1,0 +1,165 @@
+Cuisine Classification: TF-IDF + Neural Network
+Dataset path: Dataset\cleaned_dataset.csv
+Target column: Cuisines
+Text feature: Restaurant Name
+Categorical features: ['Country Code', 'City', 'Locality', 'Has Table booking', 'Has Online delivery', 'Is delivering now']
+Numeric features: ['Longitude', 'Latitude', 'Log Average Cost INR', 'Price range', 'Aggregate rating', 'Log Votes']
+Leakage columns excluded: ['Cuisines', 'Primary Cuisine', 'Cuisine Count']
+Tuning trials: 6
+Cross-validation folds: 3
+
+Neural network hyperparameter tuning with K-fold cross-validation
+Candidates: 6
+CV folds  : 3
+Selection metric: Mean Micro F1
+
+Candidate 1/6: {'min_cuisine_samples': 20, 'max_name_features': 3000, 'ngram_max': 2, 'tfidf_min_df': 1, 'hidden_layer_sizes': (256,), 'alpha': 0.0001, 'learning_rate_init': 0.001}
+  Candidate data: rows=9421, cuisine_labels=57
+    Fold 1: threshold=0.30, micro_f1=0.5927, macro_f1=0.3364, sample_f1=0.5776
+    Fold 2: threshold=0.30, micro_f1=0.5978, macro_f1=0.3449, sample_f1=0.5845
+    Fold 3: threshold=0.30, micro_f1=0.5980, macro_f1=0.3345, sample_f1=0.5834
+  Mean CV: micro_f1=0.5962 (+/- 0.0025), macro_f1=0.3386, sample_f1=0.5818, threshold=0.30
+
+Candidate 2/6: {'min_cuisine_samples': 10, 'max_name_features': 2000, 'ngram_max': 2, 'tfidf_min_df': 2, 'hidden_layer_sizes': (256,), 'alpha': 0.0001, 'learning_rate_init': 0.001}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.25, micro_f1=0.5914, macro_f1=0.2408, sample_f1=0.5792
+    Fold 2: threshold=0.30, micro_f1=0.5815, macro_f1=0.2489, sample_f1=0.5716
+    Fold 3: threshold=0.35, micro_f1=0.5887, macro_f1=0.2558, sample_f1=0.5717
+  Mean CV: micro_f1=0.5872 (+/- 0.0042), macro_f1=0.2485, sample_f1=0.5742, threshold=0.30
+
+Candidate 3/6: {'min_cuisine_samples': 20, 'max_name_features': 2000, 'ngram_max': 1, 'tfidf_min_df': 2, 'hidden_layer_sizes': (256,), 'alpha': 0.0001, 'learning_rate_init': 0.001}
+  Candidate data: rows=9421, cuisine_labels=57
+    Fold 1: threshold=0.35, micro_f1=0.5924, macro_f1=0.3453, sample_f1=0.5774
+    Fold 2: threshold=0.30, micro_f1=0.5920, macro_f1=0.3538, sample_f1=0.5829
+    Fold 3: threshold=0.30, micro_f1=0.5938, macro_f1=0.3329, sample_f1=0.5786
+  Mean CV: micro_f1=0.5928 (+/- 0.0008), macro_f1=0.3440, sample_f1=0.5797, threshold=0.32
+
+Candidate 4/6: {'min_cuisine_samples': 10, 'max_name_features': 2000, 'ngram_max': 1, 'tfidf_min_df': 1, 'hidden_layer_sizes': (256,), 'alpha': 0.001, 'learning_rate_init': 0.001}
+  Candidate data: rows=9500, cuisine_labels=82
+    Fold 1: threshold=0.30, micro_f1=0.5813, macro_f1=0.2718, sample_f1=0.5696
+    Fold 2: threshold=0.30, micro_f1=0.5917, macro_f1=0.2355, sample_f1=0.5823
+    Fold 3: threshold=0.40, micro_f1=0.5864, macro_f1=0.2886, sample_f1=0.5703
+  Mean CV: micro_f1=0.5865 (+/- 0.0043), macro_f1=0.2653, sample_f1=0.5740, threshold=0.33
+
+Candidate 5/6: {'min_cuisine_samples': 30, 'max_name_features': 3000, 'ngram_max': 1, 'tfidf_min_df': 2, 'hidden_layer_sizes': (128,), 'alpha': 0.001, 'learning_rate_init': 0.001}
+  Candidate data: rows=9336, cuisine_labels=39
+    Fold 1: threshold=0.25, micro_f1=0.5975, macro_f1=0.4344, sample_f1=0.5839
+    Fold 2: threshold=0.30, micro_f1=0.6003, macro_f1=0.4908, sample_f1=0.5937
+    Fold 3: threshold=0.30, micro_f1=0.6080, macro_f1=0.4473, sample_f1=0.5969
+  Mean CV: micro_f1=0.6019 (+/- 0.0044), macro_f1=0.4575, sample_f1=0.5915, threshold=0.28
+
+Candidate 6/6: {'min_cuisine_samples': 20, 'max_name_features': 3000, 'ngram_max': 1, 'tfidf_min_df': 2, 'hidden_layer_sizes': (128,), 'alpha': 0.0001, 'learning_rate_init': 0.001}
+  Candidate data: rows=9421, cuisine_labels=57
+    Fold 1: threshold=0.30, micro_f1=0.5840, macro_f1=0.3542, sample_f1=0.5704
+    Fold 2: threshold=0.30, micro_f1=0.5930, macro_f1=0.3339, sample_f1=0.5814
+    Fold 3: threshold=0.25, micro_f1=0.5882, macro_f1=0.3654, sample_f1=0.5804
+  Mean CV: micro_f1=0.5884 (+/- 0.0037), macro_f1=0.3512, sample_f1=0.5774, threshold=0.28
+
+Best Neural Network Hyperparameters
+{'min_cuisine_samples': 30, 'max_name_features': 3000, 'ngram_max': 1, 'tfidf_min_df': 2, 'hidden_layer_sizes': (128,), 'alpha': 0.001, 'learning_rate_init': 0.001}
+Best CV micro_f1=0.6019, macro_f1=0.4575, sample_f1=0.5915
+
+Final neural network parameters
+{'min_cuisine_samples': 30, 'max_name_features': 3000, 'ngram_max': 1, 'tfidf_min_df': 2, 'hidden_layer_sizes': (128,), 'alpha': 0.001, 'learning_rate_init': 0.001}
+
+Dataset Summary
+Original rows: 9551
+Rows used after rare-cuisine filtering: 9336
+Original individual cuisines: 146
+Cuisine labels used in model: 39
+Rare cuisine labels dropped: 107
+Average labels per used restaurant: 2.0058
+
+Dataset Split
+Train     : 6534 rows
+Validation: 1401 rows
+Test      : 1401 rows
+
+Training final neural network...
+Training complete.
+
+Best validation threshold: 0.30
+
+Train Results
+Exact Match Accuracy: 0.5401
+Hamming Loss: 0.0205
+Micro Precision: 0.7876
+Micro Recall: 0.8237
+Micro F1: 0.8053
+Macro Precision: 0.8589
+Macro Recall: 0.6878
+Macro F1: 0.7443
+Weighted F1: 0.8006
+Sample F1: 0.7979
+Average True Labels: 2.0069
+Average Predicted Labels: 2.0987
+
+Validation Results
+Exact Match Accuracy: 0.2662
+Hamming Loss: 0.0416
+Micro Precision: 0.5915
+Micro Recall: 0.6019
+Micro F1: 0.5966
+Macro Precision: 0.5513
+Macro Recall: 0.3929
+Macro F1: 0.4383
+Weighted F1: 0.5837
+Sample F1: 0.5836
+Average True Labels: 1.9936
+Average Predicted Labels: 2.0286
+
+Test Results
+Exact Match Accuracy: 0.2641
+Hamming Loss: 0.0425
+Micro Precision: 0.5853
+Micro Recall: 0.6060
+Micro F1: 0.5955
+Macro Precision: 0.5508
+Macro Recall: 0.3911
+Macro F1: 0.4281
+Weighted F1: 0.5772
+Sample F1: 0.5796
+Average True Labels: 2.0128
+Average Predicted Labels: 2.0842
+
+Lowest Test F1 Cuisines
+      Cuisine  Precision   Recall  F1-score  Support
+          BBQ   0.000000 0.000000  0.000000      3.0
+    Breakfast   0.000000 0.000000  0.000000      6.0
+      Tibetan   0.000000 0.000000  0.000000      7.0
+Mediterranean   0.000000 0.000000  0.000000     17.0
+  Finger Food   0.000000 0.000000  0.000000     25.0
+     Sandwich   0.166667 0.111111  0.133333      9.0
+     Lebanese   1.000000 0.090909  0.166667     11.0
+        Asian   0.333333 0.136364  0.193548     44.0
+     Bar Food   0.500000 0.125000  0.200000      8.0
+     European   0.285714 0.153846  0.200000     26.0
+        Steak   1.000000 0.125000  0.222222      8.0
+     Japanese   0.500000 0.206897  0.292683     29.0
+      Mexican   0.636364 0.194444  0.297872     36.0
+        Sushi   0.500000 0.214286  0.300000     14.0
+      Seafood   0.409091 0.281250  0.333333     32.0
+
+Highest Test F1 Cuisines
+     Cuisine  Precision   Recall  F1-score  Support
+      Mithai   0.887097 0.820896  0.852713     67.0
+   Raw Meats   0.857143 0.800000  0.827586     15.0
+       Pizza   0.913043 0.750000  0.823529     56.0
+   Ice Cream   0.961538 0.694444  0.806452     36.0
+       Salad   1.000000 0.666667  0.800000      6.0
+North Indian   0.672173 0.901193  0.770015    587.0
+      Bakery   0.849462 0.617188  0.714932    128.0
+     Biryani   0.708333 0.586207  0.641509     29.0
+ Street Food   0.609756 0.625000  0.617284     80.0
+     Chinese   0.547348 0.706601  0.616862    409.0
+      Burger   0.551724 0.666667  0.603774     24.0
+        Cafe   0.543860 0.601942  0.571429    103.0
+Healthy Food   0.666667 0.500000  0.571429      8.0
+   Fast Food   0.498498 0.594982  0.542484    279.0
+      Indian   0.666667 0.444444  0.533333      9.0
+
+Saved model to: D:\Git\Restaurant_Intelligent_System\cuisine_neural_network_model.pkl
+Saved label binarizer to: D:\Git\Restaurant_Intelligent_System\cuisine_neural_network_label_binarizer.pkl
+
+Saved interactive Plotly dark-theme graphs.
+Saved reports and graphs to: D:\Git\Restaurant_Intelligent_System\cuisine_model_neural_network_results

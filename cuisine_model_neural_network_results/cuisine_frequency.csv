@@ -1,0 +1,147 @@
+Cuisine,Count,Used In Model
+North Indian,3960,True
+Chinese,2735,True
+Fast Food,1986,True
+Mughlai,995,True
+Italian,764,True
+Bakery,745,True
+Continental,736,True
+Cafe,703,True
+Desserts,653,True
+South Indian,636,True
+Street Food,562,True
+American,390,True
+Pizza,381,True
+Mithai,380,True
+Burger,251,True
+Thai,234,True
+Asian,233,True
+Beverages,229,True
+Ice Cream,226,True
+Mexican,181,True
+Biryani,177,True
+Seafood,174,True
+Healthy Food,150,True
+European,148,True
+Japanese,135,True
+Finger Food,114,True
+Raw Meats,114,True
+Mediterranean,112,True
+Salad,93,True
+Sushi,75,True
+Indian,70,True
+Lebanese,69,True
+Steak,62,True
+Sandwich,53,True
+Tea,48,True
+Tibetan,44,True
+Breakfast,41,True
+Bar Food,39,True
+BBQ,33,True
+Bengali,29,False
+French,29,False
+Juices,29,False
+Arabian,28,False
+Brazilian,28,False
+Hyderabadi,26,False
+Southern,24,False
+Kerala,23,False
+Vegetarian,23,False
+Malaysian,22,False
+Middle Eastern,22,False
+Grill,21,False
+International,21,False
+Korean,21,False
+Rajasthani,21,False
+Vietnamese,21,False
+Goan,20,False
+Kashmiri,20,False
+Coffee and Tea,19,False
+Tapas,19,False
+Tex-Mex,19,False
+British,16,False
+Modern Indian,16,False
+Spanish,16,False
+Greek,15,False
+Turkish,15,False
+Afghani,14,False
+Indonesian,14,False
+Lucknowi,13,False
+Pakistani,12,False
+Awadhi,11,False
+Chettinad,11,False
+Gujarati,11,False
+Latin American,11,False
+Modern Australian,11,False
+Andhra,10,False
+Burmese,10,False
+Cajun,10,False
+Filipino,10,False
+German,10,False
+Kebab,10,False
+Maharashtrian,10,False
+Western,10,False
+Contemporary,9,False
+Nepalese,9,False
+North Eastern,9,False
+Unknown,9,False
+African,8,False
+Hawaiian,8,False
+Naga,8,False
+Parsi,8,False
+Turkish Pizza,8,False
+Caribbean,7,False
+Portuguese,7,False
+Southwestern,7,False
+Bihari,6,False
+Curry,6,False
+Diner,6,False
+Kiwi,6,False
+South African,6,False
+Australian,5,False
+Moroccan,5,False
+Sri Lankan,5,False
+Assamese,4,False
+Charcoal Grill,4,False
+Fusion,4,False
+Mangalorean,4,False
+Patisserie,4,False
+Restaurant Cafe,4,False
+Singaporean,4,False
+World Cuisine,4,False
+Armenian,3,False
+Deli,3,False
+Dim Sum,3,False
+Iranian,3,False
+Scottish,3,False
+Sunda,3,False
+Argentine,2,False
+Asian Fusion,2,False
+Belgian,2,False
+Cantonese,2,False
+Cuban,2,False
+Drinks Only,2,False
+Izgara,2,False
+New American,2,False
+Oriya,2,False
+Persian,2,False
+Pub Food,2,False
+Ramen,2,False
+South American,2,False
+Taiwanese,2,False
+Teriyaki,2,False
+Borek,1,False
+Bubble Tea,1,False
+Canadian,1,False
+Cuisine Varies,1,False
+Doner,1,False
+Durban,1,False
+Fish and Chips,1,False
+Gourmet Fast Food,1,False
+Irish,1,False
+Malay,1,False
+Malwani,1,False
+Mineira,1,False
+Peranakan,1,False
+Peruvian,1,False
+Soul Food,1,False
