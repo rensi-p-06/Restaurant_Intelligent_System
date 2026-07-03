@@ -5,30 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Restaurant Intelligence System</title>
     <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/theme.css?v=20260703" />
   </head>
   <body>
+    <div id="sidebarOverlay" class="sidebar-overlay app-shell hidden"></div>
     <section id="authScreen" class="auth-screen">
       <div class="auth-card">
-        <div class="brand auth-brand">
-          <div class="brand-mark">RI</div>
-          <div>
-            <h1>Restaurant Intelligence</h1>
-            <p>Sign in or create the first account</p>
+        <div class="auth-copy">
+          <div class="brand auth-brand">
+            <div class="brand-mark">RI</div>
+            <div>
+              <h1>Restaurant Intelligence</h1>
+              <p>Smart dining analytics and recommendations</p>
+            </div>
+          </div>
+          <p class="eyebrow">Fresh data. Better dining decisions.</p>
+          <h2>Taste the data behind every great restaurant.</h2>
+          <p class="lead">Recommendations, rating prediction, and location analytics — all served fresh from your own FastAPI backend.</p>
+          <div class="auth-stats">
+            <span><strong>9,551</strong> Restaurants</span>
+            <span><strong>PostgreSQL</strong> Backend</span>
+            <span><strong>Role</strong> Access</span>
           </div>
         </div>
 
-        <label>API Base URL<input id="authApiBase" value="http://127.0.0.1:8000" /></label>
+        <div class="auth-forms">
+          <div class="auth-heading">
+            <h2 id="authModeTitle">Sign in</h2>
+            <p id="authModeText">Create the first admin account once. After that, user and manager accounts can be registered.</p>
+          </div>
 
-        <div class="auth-grid">
-          <form id="loginForm" class="auth-panel">
-            <h2>Login</h2>
+          <div class="auth-switch">
+            <button class="auth-tab active" type="button" data-auth-tab="login">Login</button>
+            <button class="auth-tab" type="button" data-auth-tab="register">Register</button>
+          </div>
+
+          <label class="api-label">API Base URL<input id="authApiBase" value="http://127.0.0.1:8000" /></label>
+
+          <div class="auth-grid">
+          <form id="loginForm" class="auth-panel" data-auth-panel="login">
             <label>Email<input name="email" type="email" required placeholder="admin@example.com" /></label>
             <label>Password<input name="password" type="password" required placeholder="Password" /></label>
-            <button class="primary-btn" type="submit">Login</button>
+            <button class="primary-btn" type="submit">Sign in</button>
           </form>
 
-          <form id="registerForm" class="auth-panel">
-            <h2>Create Account</h2>
+          <form id="registerForm" class="auth-panel hidden" data-auth-panel="register">
             <label>Name<input name="name" required placeholder="Your name" /></label>
             <label>Email<input name="email" type="email" required placeholder="you@example.com" /></label>
             <label>Password<input name="password" type="password" required minlength="6" placeholder="Minimum 6 characters" /></label>
@@ -36,9 +57,10 @@
             <label>Managed Restaurant ID<input name="managed_restaurant_id" type="number" placeholder="Only for manager" /></label>
             <button class="secondary-btn" type="submit">Register</button>
           </form>
-        </div>
+          </div>
 
-        <pre id="authOutput" class="output-box">Create the first admin account once. After that, only user and manager accounts can be created from registration.</pre>
+          <pre id="authOutput" class="output-box">Create the first admin account once. After that, the backend blocks any second admin account.</pre>
+        </div>
       </div>
     </section>
 
@@ -63,7 +85,7 @@
         <label for="apiBase">API Base URL</label>
         <input id="apiBase" value="http://127.0.0.1:8000" />
         <label for="currentUserId">Logged in user ID</label>
-        <input id="currentUserId" placeholder="Admin/manager/user id" />
+        <input id="currentUserId" placeholder="Admin/manager/user id" readonly />
         <p id="sessionStatus" class="status muted">Not logged in</p>
         <button id="healthBtn" class="secondary-btn">Check API</button>
         <button id="logoutBtn" class="secondary-btn">Logout</button>
@@ -73,7 +95,13 @@
 
     <main class="main app-shell hidden">
       <section class="topbar">
+        <button id="menuToggle" class="menu-toggle" type="button" aria-label="Open navigation menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <div>
+          <p class="eyebrow">Restaurant intelligence workspace</p>
           <h2 id="pageTitle">Dashboard</h2>
           <p id="pageSubtitle">Overview of your restaurant intelligence project.</p>
         </div>
@@ -81,11 +109,25 @@
       </section>
 
       <section id="dashboard" class="view active">
+        <div class="hero">
+          <div class="hero-content">
+            <p class="eyebrow">Taste-led recommendations</p>
+            <h2>Find the right restaurant with data, ratings, location and preferences.</h2>
+            <p>The project combines recommendation logic, rating prediction outputs, location analysis and role-based restaurant management in one dashboard.</p>
+            <div class="action-row">
+              <button class="primary-btn" data-view-jump="recommendations">Get Recommendations</button>
+              <button class="secondary-btn" data-view-jump="location">Explore Maps</button>
+              <button class="secondary-btn" data-view-jump="admin" data-roles="admin">Admin Panel</button>
+            </div>
+          </div>
+          <div class="hero-plate" aria-label="Fresh restaurant food preview"></div>
+        </div>
+
         <div class="metric-grid">
           <article class="metric-card">
             <span>Total Modules</span>
             <strong>4</strong>
-            <p>Rating, recommendation, location, reporting</p>
+            <p>Recommendation, rating, location, reporting</p>
           </article>
           <article class="metric-card">
             <span>Backend</span>
@@ -98,35 +140,55 @@
             <p>Restaurants in cleaned data</p>
           </article>
           <article class="metric-card">
-            <span>Frontend</span>
-            <strong>Ready</strong>
-            <p>API-powered dashboard</p>
+            <span>Access</span>
+            <strong>3 Roles</strong>
+            <p>User, manager and admin views</p>
+          </article>
+        </div>
+
+        <div class="feature-strip">
+          <article>
+            <span class="feature-icon">01</span>
+            <h3>Personal Picks</h3>
+            <p>Users can search by cuisine, city, budget, rating and service preferences.</p>
+          </article>
+          <article>
+            <span class="feature-icon">02</span>
+            <h3>Manager Control</h3>
+            <p>Managers can update only their assigned restaurant details.</p>
+          </article>
+          <article>
+            <span class="feature-icon">03</span>
+            <h3>Admin Console</h3>
+            <p>Admin can import data, create users, add restaurants and assign managers.</p>
           </article>
         </div>
 
         <div class="panel-grid">
-          <article class="panel">
-            <h3>Project Modules</h3>
+          <article class="panel food-panel">
+            <h3>Featured Workflow</h3>
             <div class="module-list">
-              <div><strong>Rating Prediction</strong><span>Model reports and prediction workflow</span></div>
-              <div><strong>Restaurant Recommendation</strong><span>Preference-based recommendations via backend API</span></div>
-              <div><strong>Location Analysis</strong><span>Maps, density, city and cluster insights</span></div>
-              <div><strong>Admin / Manager</strong><span>Role-based project design for real-world use</span></div>
+              <div><strong>Recommend</strong><span>Generate ranked restaurants using live backend scoring.</span></div>
+              <div><strong>Analyze</strong><span>Open city, cuisine and map-based analysis outputs.</span></div>
+              <div><strong>Operate</strong><span>Let admin and managers maintain restaurant records.</span></div>
             </div>
           </article>
           <article class="panel">
-            <h3>Quick Actions</h3>
-            <div class="action-row">
-              <button class="secondary-btn" data-view-jump="recommendations">Get Recommendations</button>
-              <button class="secondary-btn" data-view-jump="location">View Maps</button>
-              <button class="secondary-btn" data-view-jump="admin" data-roles="admin">Admin Panel</button>
-            </div>
+            <h3>Dataset Import</h3>
+            <p class="muted">Admin can load the cleaned CSV into PostgreSQL before using recommendations.</p>
             <pre id="importOutput" class="output-box">Dataset import response will appear here.</pre>
           </article>
         </div>
       </section>
 
       <section id="recommendations" class="view">
+        <div class="section-intro image-intro recommendation-intro">
+          <div>
+            <p class="eyebrow">For users</p>
+            <h2>Build a dining shortlist from preferences.</h2>
+            <p>Choose cuisine, city, budget, rating and service filters. The backend ranks restaurants and explains why each result matched.</p>
+          </div>
+        </div>
         <div class="workspace">
           <form id="recommendForm" class="form-panel">
             <h3>User Preferences</h3>
@@ -146,12 +208,19 @@
           </form>
           <div class="results-panel">
             <h3>Recommendation Results</h3>
-            <div id="recommendationResults" class="cards-list"></div>
+            <div id="recommendationResults" class="cards-list empty-state">Submit preferences to see restaurant cards.</div>
           </div>
         </div>
       </section>
 
       <section id="rating" class="view">
+        <div class="section-intro image-intro rating-intro">
+          <div>
+            <p class="eyebrow">Model reports</p>
+            <h2>Review rating prediction outputs.</h2>
+            <p>Open saved CatBoost and XGBoost metrics, feature importance and comparison reports from the training pipeline.</p>
+          </div>
+        </div>
         <div class="panel-grid">
           <article class="panel">
             <h3>Rating Prediction Module</h3>
@@ -176,6 +245,13 @@
       </section>
 
       <section id="location" class="view">
+        <div class="section-intro image-intro location-intro">
+          <div>
+            <p class="eyebrow">Geographical analysis</p>
+            <h2>Explore restaurant concentration by place.</h2>
+            <p>Open map visualizations and generated statistics for cities, localities, ratings, cuisines and price ranges.</p>
+          </div>
+        </div>
         <div class="panel">
           <h3>Location Analysis</h3>
           <p>Open the generated maps and city analysis graphs. Marker maps include legends for rating levels, and heatmaps show restaurant density.</p>
@@ -191,6 +267,13 @@
       </section>
 
       <section id="admin" class="view">
+        <div class="section-intro admin-intro">
+          <div>
+            <p class="eyebrow">Admin only</p>
+            <h2>Manage platform users and restaurant records.</h2>
+            <p>Only one admin is allowed by the backend. Admin can create managers/users, import data, add restaurants and assign managers.</p>
+          </div>
+        </div>
         <div class="workspace">
           <form id="userForm" class="form-panel">
             <h3>Create User / Admin Record</h3>
@@ -243,6 +326,13 @@
       </section>
 
       <section id="manager" class="view">
+        <div class="section-intro manager-intro">
+          <div>
+            <p class="eyebrow">Manager workspace</p>
+            <h2>Update assigned restaurant details.</h2>
+            <p>Managers can only update the restaurant assigned by an admin. Admins can update any restaurant.</p>
+          </div>
+        </div>
         <div class="workspace">
           <form id="managerRestaurantForm" class="form-panel">
             <h3>Edit Assigned Restaurant</h3>
@@ -276,6 +366,13 @@
       </section>
 
       <section id="reports" class="view">
+        <div class="section-intro image-intro report-intro">
+          <div>
+            <p class="eyebrow">Saved outputs</p>
+            <h2>Open project reports and generated artifacts.</h2>
+            <p>Use this section during presentation to show model metrics, analysis CSVs and location insights.</p>
+          </div>
+        </div>
         <div class="panel">
           <h3>Saved Reports</h3>
           <div class="link-grid">

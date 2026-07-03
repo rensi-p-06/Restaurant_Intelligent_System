@@ -18,6 +18,10 @@ const authScreen = document.querySelector("#authScreen");
 const appShell = document.querySelectorAll(".app-shell");
 const sessionStatus = document.querySelector("#sessionStatus");
 const authOutput = document.querySelector("#authOutput");
+const authModeTitle = document.querySelector("#authModeTitle");
+const authModeText = document.querySelector("#authModeText");
+const menuToggle = document.querySelector("#menuToggle");
+const sidebarOverlay = document.querySelector("#sidebarOverlay");
 
 let currentUser = null;
 
@@ -64,6 +68,7 @@ function setView(viewName) {
   document.querySelectorAll(".nav-item").forEach((item) => item.classList.toggle("active", item.dataset.view === viewName));
   pageTitle.textContent = views[viewName][0];
   pageSubtitle.textContent = views[viewName][1];
+  closeMenu();
 }
 
 document.querySelectorAll(".nav-item").forEach((button) => {
@@ -73,6 +78,36 @@ document.querySelectorAll(".nav-item").forEach((button) => {
 document.querySelectorAll("[data-view-jump]").forEach((button) => {
   button.addEventListener("click", () => setView(button.dataset.viewJump));
 });
+
+menuToggle.addEventListener("click", () => {
+  document.body.classList.toggle("sidebar-open");
+});
+
+sidebarOverlay.addEventListener("click", closeMenu);
+
+function closeMenu() {
+  document.body.classList.remove("sidebar-open");
+}
+
+document.querySelectorAll("[data-auth-tab]").forEach((button) => {
+  button.addEventListener("click", () => setAuthMode(button.dataset.authTab));
+});
+
+function setAuthMode(mode) {
+  document.querySelectorAll("[data-auth-tab]").forEach((button) => {
+    button.classList.toggle("active", button.dataset.authTab === mode);
+  });
+  document.querySelectorAll("[data-auth-panel]").forEach((panel) => {
+    panel.classList.toggle("hidden", panel.dataset.authPanel !== mode);
+  });
+  if (mode === "register") {
+    authModeTitle.textContent = "Register";
+    authModeText.textContent = "Create user and manager accounts. Only one admin account is allowed.";
+  } else {
+    authModeTitle.textContent = "Sign in";
+    authModeText.textContent = "Create the first admin account once. After that, user and manager accounts can be registered.";
+  }
+}
 
 async function request(path, options = {}) {
   const userId = currentUserIdInput.value.trim();
@@ -178,12 +213,9 @@ document.querySelector("#userForm").addEventListener("submit", async (event) => 
   };
   try {
     const data = await request("/users", { method: "POST", body: JSON.stringify(payload) });
-    if (data.user_id) {
-      currentUserIdInput.value = data.user_id;
-      output.textContent = `Created user_id: ${data.user_id}\n\n${JSON.stringify(data, null, 2)}`;
-    } else {
-      output.textContent = JSON.stringify(data, null, 2);
-    }
+    output.textContent = data.user_id
+      ? `Created ${data.role} account with user_id: ${data.user_id}\n\n${JSON.stringify(data, null, 2)}`
+      : JSON.stringify(data, null, 2);
   } catch (error) {
     output.textContent = error.message;
   }
@@ -285,6 +317,7 @@ document.querySelector("#recommendForm").addEventListener("submit", async (event
   event.preventDefault();
   const form = new FormData(event.currentTarget);
   const results = document.querySelector("#recommendationResults");
+  results.className = "cards-list empty-state";
   results.innerHTML = "<p class='muted'>Loading recommendations...</p>";
 
   const cuisines = optionalText(form.get("cuisines"));
@@ -317,10 +350,12 @@ document.querySelector("#recommendForm").addEventListener("submit", async (event
 function renderRecommendations(items) {
   const results = document.querySelector("#recommendationResults");
   if (!items.length) {
+    results.className = "cards-list empty-state";
     results.innerHTML = "<p class='muted'>No recommendations found.</p>";
     return;
   }
 
+  results.className = "cards-list";
   results.innerHTML = items.map((item) => `
     <article class="restaurant-card">
       <header>
