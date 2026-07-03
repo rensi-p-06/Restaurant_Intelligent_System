@@ -1,0 +1,1858 @@
+City,Cuisine,Restaurant_Count,Avg_Rating,Avg_Cost_INR
+Abu Dhabi,Indian,7,4.214285714285714,4618.114285714286
+Abu Dhabi,American,4,4.449999999999999,5865.75
+Abu Dhabi,Chinese,3,4.2,6083.0
+Abu Dhabi,North Indian,3,4.3,4779.5
+Abu Dhabi,Arabian,2,4.15,1824.9
+Abu Dhabi,Asian,2,4.55,3649.8
+Abu Dhabi,Italian,2,4.25,4953.3
+Abu Dhabi,Japanese,2,4.45,5865.75
+Abu Dhabi,Middle Eastern,2,4.15,1824.9
+Abu Dhabi,Pizza,2,4.25,4953.3
+Abu Dhabi,Afghani,1,4.0,1303.5
+Abu Dhabi,Biryani,1,4.0,3128.4
+Abu Dhabi,Burger,1,4.2,2607.0
+Abu Dhabi,Desserts,1,4.6,5214.0
+Abu Dhabi,Fast Food,1,4.2,2607.0
+Abu Dhabi,Filipino,1,4.5,2607.0
+Abu Dhabi,Hyderabadi,1,4.0,1303.5
+Abu Dhabi,Indonesian,1,4.4,9124.5
+Abu Dhabi,Lebanese,1,4.0,1824.9
+Abu Dhabi,Mexican,1,4.0,6517.5
+Abu Dhabi,Mughlai,1,4.0,3128.4
+Abu Dhabi,Pakistani,1,4.0,1303.5
+Abu Dhabi,Seafood,1,4.0,6517.5
+Abu Dhabi,South Indian,1,3.6,1564.2
+Abu Dhabi,Thai,1,4.4,9124.5
+Abu Dhabi,Turkish,1,4.3,1824.9
+Abu Dhabi,Vietnamese,1,4.4,9124.5
+Agra,North Indian,15,3.9466666666666668,1150.0
+Agra,Mughlai,9,3.822222222222222,1550.0
+Agra,Chinese,6,4.066666666666666,866.6666666666666
+Agra,Continental,5,3.84,840.0
+Agra,Italian,3,4.166666666666667,666.6666666666666
+Agra,Cafe,2,4.4,300.0
+Agra,Rajasthani,2,3.8,600.0
+Agra,Desserts,1,4.1,550.0
+Agra,European,1,4.0,2000.0
+Agra,Fast Food,1,4.1,700.0
+Agra,Gujarati,1,3.6,800.0
+Agra,Mexican,1,3.9,300.0
+Agra,Pizza,1,4.4,700.0
+Agra,South Indian,1,4.1,550.0
+Ahmedabad,Continental,12,4.058333333333334,975.0
+Ahmedabad,Italian,10,4.220000000000001,875.0
+Ahmedabad,North Indian,9,4.011111111111111,1061.111111111111
+Ahmedabad,Desserts,6,4.266666666666667,641.6666666666666
+Ahmedabad,Cafe,5,4.1,770.0
+Ahmedabad,Chinese,5,4.0200000000000005,1080.0
+Ahmedabad,Fast Food,4,4.1,575.0
+Ahmedabad,Beverages,3,4.266666666666667,850.0
+Ahmedabad,Mexican,3,4.033333333333333,900.0
+Ahmedabad,Pizza,3,4.233333333333333,700.0
+Ahmedabad,South Indian,3,4.033333333333333,1016.6666666666666
+Ahmedabad,Asian,2,3.8499999999999996,1300.0
+Ahmedabad,Ice Cream,2,4.55,325.0
+Ahmedabad,Mediterranean,2,4.35,925.0
+Ahmedabad,American,1,3.9,550.0
+Ahmedabad,Armenian,1,3.9,550.0
+Ahmedabad,Burger,1,4.5,950.0
+Ahmedabad,Healthy Food,1,4.5,950.0
+Ahmedabad,Sandwich,1,3.8,600.0
+Ahmedabad,Street Food,1,4.4,450.0
+Ahmedabad,Thai,1,4.2,900.0
+Albany,American,4,3.425,1669.675
+Albany,Steak,4,3.525,4174.1875
+Albany,Bar Food,3,3.6666666666666665,4293.45
+Albany,Chinese,3,3.766666666666667,1431.1499999999999
+Albany,Sandwich,3,3.533333333333333,1908.2
+Albany,Seafood,3,3.5666666666666664,2862.2999999999997
+Albany,Unknown,3,3.5666666666666664,954.1
+Albany,BBQ,2,3.3,1669.675
+Albany,Burger,2,3.4,2385.25
+Albany,Japanese,2,3.55,3816.4
+Albany,Pizza,2,3.7,1669.675
+Albany,Sushi,2,3.55,3816.4
+Albany,Tapas,2,3.65,5247.55
+Albany,Vegetarian,2,3.75,1669.675
+Albany,Asian,1,3.9,954.1
+Albany,Breakfast,1,3.4,954.1
+Albany,Coffee and Tea,1,3.4,954.1
+Albany,Diner,1,3.4,954.1
+Albany,Fast Food,1,3.5,954.1
+Albany,Italian,1,3.7,954.1
+Albany,Mexican,1,3.4,954.1
+Allahabad,North Indian,12,3.375,516.6666666666666
+Allahabad,Chinese,8,3.3625,525.0
+Allahabad,Fast Food,8,3.3875,456.25
+Allahabad,South Indian,4,3.425,500.0
+Allahabad,Italian,3,3.4333333333333336,633.3333333333334
+Allahabad,American,2,3.4,450.0
+Allahabad,Continental,2,3.55,700.0
+Allahabad,Mughlai,2,3.25,800.0
+Allahabad,Cafe,1,3.3,350.0
+Allahabad,Desserts,1,3.6,500.0
+Allahabad,Healthy Food,1,3.4,400.0
+Allahabad,Pizza,1,3.4,700.0
+Allahabad,Salad,1,3.4,400.0
+Allahabad,Street Food,1,3.2,500.0
+Amritsar,North Indian,15,3.6466666666666665,580.0
+Amritsar,Fast Food,6,3.6,441.6666666666667
+Amritsar,Chinese,4,3.45,800.0
+Amritsar,Mughlai,2,3.4,1000.0
+Amritsar,Street Food,2,3.75,175.0
+Amritsar,Bakery,1,3.4,500.0
+Amritsar,Beverages,1,4.0,100.0
+Amritsar,Cafe,1,3.4,500.0
+Amritsar,Italian,1,3.5,400.0
+Amritsar,Mithai,1,4.1,100.0
+Amritsar,South Indian,1,3.4,600.0
+Ankara,Kebab,10,4.38,149.04
+Ankara,Turkish Pizza,8,4.325,139.725
+Ankara,Cafe,4,4.125,131.96249999999998
+Ankara,Desserts,3,4.3,120.74999999999999
+Ankara,World Cuisine,2,4.65,238.05
+Ankara,Coffee and Tea,1,3.4,103.5
+Ankara,Doner,1,4.4,103.5
+Ankara,Italian,1,4.4,310.5
+Ankara,Izgara,1,4.4,124.2
+Ankara,Mexican,1,4.4,310.5
+Ankara,Patisserie,1,3.4,103.5
+Ankara,Pizza,1,4.7,82.8
+Ankara,Steak,1,4.1,827.9999999999999
+Armidale,Bar Food,1,3.5,1908.2
+Armidale,Steak,1,3.5,1908.2
+Athens,American,5,4.220000000000001,2671.48
+Athens,Sandwich,5,4.14,954.1
+Athens,Italian,4,4.15,2385.25
+Athens,Southern,4,4.325,2385.25
+Athens,Burger,3,4.033333333333334,1431.1499999999999
+Athens,Pizza,3,4.166666666666667,1908.2
+Athens,Bar Food,2,4.300000000000001,1669.675
+Athens,Breakfast,2,4.0,954.1
+Athens,International,2,4.15,2385.25
+Athens,Japanese,2,4.05,1669.675
+Athens,Mexican,2,4.35,954.1
+Athens,Argentine,1,4.1,954.1
+Athens,Asian,1,4.2,2385.25
+Athens,Desserts,1,4.1,954.1
+Athens,Korean,1,3.9,954.1
+Athens,Latin American,1,4.1,954.1
+Athens,Southwestern,1,4.5,3816.4
+Athens,Spanish,1,4.1,954.1
+Athens,Sushi,1,4.2,2385.25
+Athens,Vegetarian,1,4.2,954.1
+Auckland,Cafe,5,4.26,3393.4300000000003
+Auckland,European,4,3.8,6119.3
+Auckland,Desserts,3,4.833333333333333,1761.6166666666668
+Auckland,American,2,4.35,3476.875
+Auckland,Asian,2,4.0,3476.875
+Auckland,Asian Fusion,2,3.85,4450.4
+Auckland,Kiwi,2,4.5,5006.7
+Auckland,Malaysian,2,3.75,3615.95
+Auckland,Seafood,2,4.65,4033.175
+Auckland,Thai,2,3.9,3059.65
+Auckland,Chinese,1,4.3,1947.05
+Auckland,Filipino,1,3.5,3894.1
+Auckland,Fusion,1,3.5,3894.1
+Auckland,Ice Cream,1,4.7,1112.6
+Auckland,Italian,1,4.6,6675.6
+Auckland,Pub Food,1,3.5,3894.1
+Auckland,Street Food,1,4.4,2781.5
+Auckland,Sushi,1,4.5,3059.65
+Auckland,Taiwanese,1,4.4,2781.5
+Augusta,American,3,4.366666666666666,3339.35
+Augusta,Mexican,3,4.133333333333334,1908.2
+Augusta,Sandwich,3,4.1000000000000005,1908.2
+Augusta,Seafood,3,4.3,2862.2999999999997
+Augusta,Burger,2,3.95,2385.25
+Augusta,Desserts,2,4.0,1669.675
+Augusta,Italian,2,4.25,2385.25
+Augusta,Pizza,2,4.25,2385.25
+Augusta,Steak,2,4.3,3816.4
+Augusta,BBQ,1,3.5,2385.25
+Augusta,Bar Food,1,4.0,2385.25
+Augusta,Breakfast,1,3.8,3816.4
+Augusta,Caribbean,1,4.9,3816.4
+Augusta,Chinese,1,4.6,3816.4
+Augusta,French,1,3.8,3816.4
+Augusta,German,1,3.9,2385.25
+Augusta,Indian,1,4.0,2385.25
+Augusta,International,1,4.5,2385.25
+Augusta,Southern,1,3.9,954.1
+Augusta,Southwestern,1,4.2,3816.4
+Augusta,Sushi,1,4.2,3816.4
+Augusta,Tapas,1,4.5,2385.25
+Augusta,Thai,1,4.3,3339.35
+Augusta,Vegetarian,1,4.5,2385.25
+Augusta,Vietnamese,1,4.1,954.1
+Aurangabad,North Indian,15,3.3866666666666663,643.3333333333334
+Aurangabad,Chinese,9,3.388888888888889,761.1111111111111
+Aurangabad,Continental,4,3.475,1112.5
+Aurangabad,Italian,4,3.4,987.5
+Aurangabad,Mughlai,4,3.3,587.5
+Aurangabad,South Indian,4,3.3499999999999996,412.5
+Aurangabad,Fast Food,3,3.3333333333333335,466.6666666666667
+Aurangabad,Biryani,2,3.45,850.0
+Aurangabad,Cafe,1,3.2,400.0
+Aurangabad,Desserts,1,3.5,300.0
+Aurangabad,Hyderabadi,1,3.3,500.0
+Aurangabad,Juices,1,3.5,300.0
+Aurangabad,Maharashtrian,1,3.4,450.0
+Aurangabad,Mexican,1,3.4,1800.0
+Aurangabad,Pizza,1,3.1,700.0
+Balingup,Modern Australian,1,3.2,1908.2
+Bandung,Cafe,1,4.2,795.0
+Bandung,Coffee and Tea,1,4.2,795.0
+Bandung,Western,1,4.2,795.0
+Bangalore,Italian,8,4.4624999999999995,1043.75
+Bangalore,North Indian,8,4.325,1231.25
+Bangalore,Cafe,6,4.483333333333333,725.0
+Bangalore,Continental,6,4.283333333333333,1358.3333333333333
+Bangalore,American,4,4.675,1312.5
+Bangalore,Pizza,4,4.574999999999999,950.0
+Bangalore,European,3,4.2,1366.6666666666667
+Bangalore,Mediterranean,3,4.366666666666666,1333.3333333333333
+Bangalore,Asian,2,4.550000000000001,1800.0
+Bangalore,Chinese,2,4.5,675.0
+Bangalore,Desserts,2,4.15,600.0
+Bangalore,Modern Indian,2,4.300000000000001,1500.0
+Bangalore,Bakery,1,4.0,800.0
+Bangalore,Burger,1,4.7,800.0
+Bangalore,Finger Food,1,4.5,1800.0
+Bangalore,Mughlai,1,4.1,1300.0
+Bangalore,South Indian,1,4.5,1800.0
+Bangalore,Street Food,1,4.3,400.0
+Bangalore,Thai,1,4.5,1800.0
+Beechworth,Bar Food,1,4.6,1908.2
+Beechworth,Pizza,1,4.6,1908.2
+Bhopal,Fast Food,8,4.0,468.75
+Bhopal,North Indian,7,3.9285714285714284,721.4285714285714
+Bhopal,Chinese,6,3.75,725.0
+Bhopal,South Indian,4,3.975,462.5
+Bhopal,Bakery,3,4.1000000000000005,433.3333333333333
+Bhopal,Cafe,3,3.5,466.6666666666667
+Bhopal,Italian,2,3.7,700.0
+Bhopal,Mexican,2,3.7,625.0
+Bhopal,Pizza,2,3.8499999999999996,575.0
+Bhopal,Street Food,2,4.25,400.0
+Bhopal,Tex-Mex,1,3.6,350.0
+Bhubaneshwar,Chinese,12,3.9499999999999997,675.0
+Bhubaneshwar,North Indian,10,3.9299999999999997,665.0
+Bhubaneshwar,Cafe,8,4.0125,637.5
+Bhubaneshwar,Continental,4,4.1,825.0
+Bhubaneshwar,Asian,3,3.9333333333333336,816.6666666666666
+Bhubaneshwar,Fast Food,2,3.8499999999999996,475.0
+Bhubaneshwar,Italian,2,4.199999999999999,1100.0
+Bhubaneshwar,Mexican,2,3.9499999999999997,1000.0
+Bhubaneshwar,Arabian,1,4.6,1200.0
+Bhubaneshwar,Bakery,1,4.1,1400.0
+Bhubaneshwar,Beverages,1,3.8,600.0
+Bhubaneshwar,Charcoal Grill,1,4.5,600.0
+Bhubaneshwar,European,1,3.7,850.0
+Bhubaneshwar,Mediterranean,1,4.6,1200.0
+Bhubaneshwar,Mughlai,1,3.7,500.0
+Bhubaneshwar,Rajasthani,1,4.1,300.0
+Bhubaneshwar,Seafood,1,3.8,450.0
+Bhubaneshwar,Steak,1,4.5,600.0
+Bhubaneshwar,Tea,1,3.8,500.0
+Birmingham,British,4,3.925,3992.1875
+Birmingham,Indian,4,3.9,6068.125
+Birmingham,Cafe,3,3.533333333333333,2129.1666666666665
+Birmingham,Italian,3,4.033333333333334,6174.583333333333
+Birmingham,Latin American,2,4.3,5748.75
+Birmingham,Pakistani,2,3.85,5748.75
+Birmingham,American,1,3.7,4471.25
+Birmingham,Burger,1,3.7,4471.25
+Birmingham,Contemporary,1,4.5,15330.0
+Birmingham,Desserts,1,3.1,1916.25
+Birmingham,Fast Food,1,2.8,1277.5
+Birmingham,Greek,1,0.0,2555.0
+Birmingham,Ice Cream,1,3.1,1916.25
+Birmingham,Mediterranean,1,0.0,2555.0
+Birmingham,Mexican,1,4.0,2555.0
+Birmingham,Middle Eastern,1,0.0,2555.0
+Birmingham,South Indian,1,3.8,2555.0
+Birmingham,Steak,1,4.0,7665.0
+Birmingham,Thai,1,3.9,3832.5
+Birmingham,Turkish,1,3.6,3832.5
+Bogor,Beverages,1,3.7,371.0
+Bogor,Cafe,1,3.7,371.0
+Bogor,Desserts,1,3.7,371.0
+Bogor,Indonesian,1,4.0,1325.0
+Bogor,Peranakan,1,4.0,1325.0
+Boise,American,8,4.2625,2743.0375
+Boise,Burger,3,4.333333333333333,1431.1499999999999
+Boise,Pizza,3,4.333333333333333,1908.2
+Boise,Steak,3,4.0,5247.55
+Boise,Bar Food,2,4.4,2385.25
+Boise,Breakfast,2,4.4,1669.675
+Boise,Italian,2,4.5,2385.25
+Boise,Sandwich,2,4.35,1669.675
+Boise,Seafood,2,4.15,4531.975
+Boise,Sushi,2,4.05,3100.825
+Boise,BBQ,1,4.0,2385.25
+Boise,Brazilian,1,4.0,3816.4
+Boise,European,1,4.3,954.1
+Boise,Japanese,1,4.1,2385.25
+Boise,Latin American,1,4.1,6678.7
+Boise,Mexican,1,4.4,954.1
+Boise,Spanish,1,4.3,954.1
+Boise,Teriyaki,1,4.1,2385.25
+Boise,Thai,1,4.0,3816.4
+Boise,Vegetarian,1,4.4,2385.25
+Brasilia,Brazilian,3,2.466666666666667,930.0
+Brasilia,American,2,3.8,1860.0
+Brasilia,Cafe,2,1.9,558.0
+Brasilia,Grill,2,4.15,2325.0
+Brasilia,International,2,4.550000000000001,4278.0
+Brasilia,Italian,2,3.6999999999999997,4650.0
+Brasilia,Japanese,2,3.4000000000000004,2604.0000000000005
+Brasilia,Pizza,2,3.1500000000000004,1395.0
+Brasilia,Arabian,1,3.7,1674.0000000000002
+Brasilia,Bakery,1,3.7,837.0000000000001
+Brasilia,Bar Food,1,3.6,1116.0
+Brasilia,Burger,1,3.6,930.0
+Brasilia,Fast Food,1,3.0,1023.0
+Brasilia,French,1,3.0,1023.0
+Brasilia,Latin American,1,3.6,1860.0
+Brasilia,Mexican,1,4.3,1860.0
+Brasilia,Peruvian,1,3.6,1860.0
+Brasilia,Seafood,1,3.2,4464.0
+Cape Town,Cafe,7,4.285714285714286,1253.45
+Cape Town,Sushi,6,3.9499999999999997,2482.608333333333
+Cape Town,Burger,4,4.225,1457.5
+Cape Town,Grill,4,3.8,1915.155
+Cape Town,Seafood,4,4.0,2995.1625
+Cape Town,Asian,3,3.9,2497.1833333333334
+Cape Town,Bakery,3,4.2,981.3833333333333
+Cape Town,Japanese,3,4.1000000000000005,2633.2166666666667
+Cape Town,American,2,4.25,1515.8
+Cape Town,Desserts,2,4.45,685.025
+Cape Town,Mediterranean,2,4.3,1953.05
+Cape Town,Patisserie,2,4.25,1238.875
+Cape Town,African,1,3.8,2623.5
+Cape Town,Fast Food,1,3.6,1457.5
+Cape Town,Ice Cream,1,4.5,641.3
+Cape Town,Pizza,1,3.7,1714.02
+Cape Town,Spanish,1,3.7,2098.8
+Cape Town,Tapas,1,3.7,2098.8
+Cape Town,Tea,1,4.0,1166.0
+Cape Town,Vegetarian,1,4.0,1166.0
+Cedar Rapids/Iowa City,American,7,4.057142857142857,2794.15
+Cedar Rapids/Iowa City,Breakfast,4,4.074999999999999,2385.25
+Cedar Rapids/Iowa City,Burger,4,4.475,2027.4625
+Cedar Rapids/Iowa City,Pizza,4,4.225,2743.0375
+Cedar Rapids/Iowa City,BBQ,2,4.300000000000001,2385.25
+Cedar Rapids/Iowa City,Chinese,2,4.2,954.1
+Cedar Rapids/Iowa City,Indian,2,4.15,2385.25
+Cedar Rapids/Iowa City,International,2,4.05,3816.4
+Cedar Rapids/Iowa City,Italian,2,3.9499999999999997,3100.825
+Cedar Rapids/Iowa City,Mediterranean,2,3.85,3816.4
+Cedar Rapids/Iowa City,Sushi,2,4.0,2385.25
+Cedar Rapids/Iowa City,Diner,1,3.6,2385.25
+Cedar Rapids/Iowa City,Mexican,1,4.1,954.1
+Cedar Rapids/Iowa City,Sandwich,1,4.7,2385.25
+Cedar Rapids/Iowa City,Seafood,1,3.7,3816.4
+Cedar Rapids/Iowa City,Tapas,1,4.0,3816.4
+Cedar Rapids/Iowa City,Thai,1,4.2,954.1
+Cedar Rapids/Iowa City,Vegetarian,1,4.0,3816.4
+Chandigarh,North Indian,6,3.783333333333333,975.0
+Chandigarh,American,4,4.2,1350.0
+Chandigarh,Chinese,4,3.925,1187.5
+Chandigarh,Continental,4,3.775,1112.5
+Chandigarh,Italian,4,4.025,1500.0
+Chandigarh,Burger,3,3.966666666666667,650.0
+Chandigarh,Cafe,3,4.133333333333333,966.6666666666666
+Chandigarh,Desserts,3,4.033333333333333,566.6666666666666
+Chandigarh,Fast Food,3,4.233333333333333,516.6666666666666
+Chandigarh,Asian,2,4.05,1400.0
+Chandigarh,Bakery,2,4.1,650.0
+Chandigarh,Mexican,2,4.25,1000.0
+Chandigarh,Thai,2,4.05,1500.0
+Chandigarh,Beverages,1,4.0,450.0
+Chandigarh,Burmese,1,4.1,1600.0
+Chandigarh,Finger Food,1,4.0,1400.0
+Chandigarh,Japanese,1,4.1,1600.0
+Chandigarh,Malaysian,1,4.1,1600.0
+Chandigarh,Mughlai,1,3.3,800.0
+Chandigarh,Pizza,1,3.7,850.0
+Chandigarh,Tex-Mex,1,4.3,1800.0
+Chatham-Kent,Japanese,1,3.7,2385.25
+Chatham-Kent,Sushi,1,3.7,2385.25
+Chennai,North Indian,11,4.2727272727272725,1168.1818181818182
+Chennai,Chinese,6,4.116666666666666,958.3333333333334
+Chennai,Italian,6,4.333333333333333,1016.6666666666666
+Chennai,Cafe,5,4.3,1000.0
+Chennai,European,5,4.42,1110.0
+Chennai,Continental,4,4.35,1337.5
+Chennai,South Indian,4,4.275,887.5
+Chennai,Mediterranean,3,4.666666666666667,1500.0
+Chennai,Mughlai,3,4.3,850.0
+Chennai,Arabian,2,4.199999999999999,1100.0
+Chennai,Desserts,2,4.300000000000001,775.0
+Chennai,Mexican,2,4.4,1600.0
+Chennai,American,1,4.8,1700.0
+Chennai,Asian,1,4.6,1400.0
+Chennai,Biryani,1,3.8,900.0
+Chennai,Burger,1,4.8,1700.0
+Chennai,Chettinad,1,4.2,1000.0
+Chennai,Greek,1,4.5,1500.0
+Chennai,Spanish,1,4.5,1500.0
+Chennai,Tex-Mex,1,4.8,1700.0
+Chennai,Thai,1,4.0,1500.0
+Clatskanie,American,1,4.3,954.1
+Clatskanie,Breakfast,1,4.3,954.1
+Clatskanie,Desserts,1,4.3,954.1
+Cochrane,Asian,1,3.1,2385.25
+Cochrane,Japanese,1,3.1,2385.25
+Coimbatore,North Indian,10,4.09,1010.0
+Coimbatore,Chinese,5,4.08,900.0
+Coimbatore,Continental,4,4.0249999999999995,787.5
+Coimbatore,Desserts,4,4.25,650.0
+Coimbatore,Fast Food,4,4.175,587.5
+Coimbatore,Cafe,3,4.133333333333333,600.0
+Coimbatore,South Indian,3,4.233333333333333,450.0
+Coimbatore,Biryani,2,4.35,875.0
+Coimbatore,Italian,2,4.0,1250.0
+Coimbatore,Bakery,1,4.9,350.0
+Coimbatore,Chettinad,1,3.9,600.0
+Coimbatore,European,1,4.4,1400.0
+Coimbatore,Ice Cream,1,4.3,300.0
+Coimbatore,Indian,1,3.8,450.0
+Coimbatore,Malaysian,1,3.8,1200.0
+Coimbatore,Mediterranean,1,4.4,1400.0
+Coimbatore,Mexican,1,4.0,1000.0
+Coimbatore,Parsi,1,4.2,1200.0
+Coimbatore,Pizza,1,3.5,600.0
+Coimbatore,Street Food,1,4.2,700.0
+Coimbatore,Thai,1,3.8,1200.0
+Colombo,American,6,3.8333333333333335,797.5
+Colombo,Cafe,4,3.775,761.25
+Colombo,Desserts,4,4.125,420.5
+Colombo,Sri Lankan,4,3.475,601.75
+Colombo,Chinese,3,2.766666666666667,560.6666666666666
+Colombo,Continental,3,4.1000000000000005,725.0
+Colombo,Fast Food,3,4.033333333333333,725.0
+Colombo,Italian,3,3.766666666666667,870.0
+Colombo,North Indian,3,2.8000000000000003,512.3333333333334
+Colombo,Seafood,3,4.366666666666667,1111.6666666666667
+Colombo,Beverages,2,4.0,942.5
+Colombo,Steak,2,4.1,1015.0
+Colombo,Arabian,1,4.2,696.0
+Colombo,Bakery,1,4.2,290.0
+Colombo,Ice Cream,1,4.1,290.0
+Colombo,Juices,1,4.5,377.0
+Colombo,Malaysian,1,3.5,435.0
+Colombo,Middle Eastern,1,4.2,696.0
+Columbus,American,5,4.38,2957.71
+Columbus,Steak,5,4.08,3530.1699999999996
+Columbus,Pizza,4,4.0,2385.25
+Columbus,Japanese,3,3.733333333333333,3816.4
+Columbus,Seafood,3,4.3999999999999995,3339.35
+Columbus,Southern,3,3.8333333333333335,1908.2
+Columbus,Asian,2,3.75,954.1
+Columbus,Bar Food,2,3.8499999999999996,2385.25
+Columbus,Chinese,2,4.1,1669.675
+Columbus,Italian,2,4.0,2385.25
+Columbus,Sushi,2,3.6500000000000004,3816.4
+Columbus,BBQ,1,4.0,2385.25
+Columbus,Breakfast,1,3.7,954.1
+Columbus,Burger,1,3.8,2385.25
+Columbus,Cajun,1,4.6,2385.25
+Columbus,Diner,1,3.7,954.1
+Columbus,Mediterranean,1,4.0,3816.4
+Columbus,Tapas,1,4.1,3816.4
+Columbus,Thai,1,3.7,3816.4
+Columbus,Vegetarian,1,4.2,3816.4
+Columbus,Vietnamese,1,3.3,954.1
+Consort,Canadian,1,3.0,2385.25
+Consort,Chinese,1,3.0,2385.25
+Dalton,American,6,4.116666666666666,1669.675
+Dalton,BBQ,5,4.26,1526.56
+Dalton,Southern,4,4.275,1311.8875
+Dalton,Japanese,3,4.233333333333333,2385.25
+Dalton,Mexican,3,3.933333333333333,954.1
+Dalton,Desserts,2,4.050000000000001,954.1
+Dalton,Italian,2,3.9,1669.675
+Dalton,Sandwich,2,4.050000000000001,954.1
+Dalton,Sushi,2,4.199999999999999,3100.825
+Dalton,Breakfast,1,4.9,954.1
+Dalton,Burger,1,4.1,954.1
+Dalton,Diner,1,4.3,954.1
+Dalton,Fast Food,1,4.1,954.1
+Dalton,Pizza,1,4.1,954.1
+Dalton,Tex-Mex,1,3.9,954.1
+Dalton,Thai,1,4.2,2385.25
+Davenport,American,8,3.4625,2564.14375
+Davenport,Mexican,3,2.7999999999999994,1908.2
+Davenport,BBQ,2,2.1,2385.25
+Davenport,Breakfast,2,3.7,1669.675
+Davenport,Sushi,2,4.35,3816.4
+Davenport,Asian,1,4.9,2385.25
+Davenport,Bar Food,1,0.0,2385.25
+Davenport,Burger,1,3.9,2385.25
+Davenport,Chinese,1,4.0,2385.25
+Davenport,Fast Food,1,3.9,954.1
+Davenport,French,1,3.7,6678.7
+Davenport,Greek,1,4.0,954.1
+Davenport,Indian,1,4.6,2385.25
+Davenport,Italian,1,4.1,2385.25
+Davenport,Japanese,1,4.2,3816.4
+Davenport,Mediterranean,1,4.6,2385.25
+Davenport,Middle Eastern,1,4.6,2385.25
+Davenport,Pizza,1,3.9,2385.25
+Davenport,Steak,1,4.2,2385.25
+Davenport,Teriyaki,1,4.5,3816.4
+Davenport,Thai,1,4.1,2385.25
+Dehradun,Chinese,11,3.9909090909090907,777.2727272727273
+Dehradun,North Indian,11,4.045454545454546,904.5454545454545
+Dehradun,Cafe,6,4.05,533.3333333333334
+Dehradun,Fast Food,3,4.1000000000000005,483.3333333333333
+Dehradun,Desserts,2,3.9,625.0
+Dehradun,Mughlai,2,3.95,925.0
+Dehradun,South Indian,2,3.8499999999999996,575.0
+Dehradun,Asian,1,4.4,1600.0
+Dehradun,Bakery,1,4.1,350.0
+Dehradun,Burger,1,3.9,600.0
+Dehradun,Continental,1,3.9,1000.0
+Dehradun,Mediterranean,1,4.4,1600.0
+Dehradun,Mexican,1,4.2,500.0
+Dehradun,Street Food,1,3.9,650.0
+Dehradun,Thai,1,4.2,750.0
+Dehradun,Tibetan,1,4.2,750.0
+Des Moines,American,5,4.26,3530.1699999999996
+Des Moines,Asian,3,4.166666666666667,1908.2
+Des Moines,BBQ,3,4.433333333333334,2862.2999999999997
+Des Moines,Chinese,3,4.233333333333333,1908.2
+Des Moines,Pizza,3,4.433333333333334,3339.35
+Des Moines,Sushi,3,4.366666666666666,2862.2999999999997
+Des Moines,Breakfast,2,3.9,1669.675
+Des Moines,Burger,2,4.35,1669.675
+Des Moines,Desserts,2,4.35,1669.675
+Des Moines,Italian,2,4.3,5247.55
+Des Moines,Latin American,2,3.6,2385.25
+Des Moines,Mexican,2,3.6,1669.675
+Des Moines,Vegetarian,2,4.300000000000001,954.1
+Des Moines,Bar Food,1,4.2,3816.4
+Des Moines,Bubble Tea,1,4.4,954.1
+Des Moines,Cajun,1,4.5,3816.4
+Des Moines,Caribbean,1,4.5,3816.4
+Des Moines,Coffee and Tea,1,4.9,2385.25
+Des Moines,French,1,4.3,3816.4
+Des Moines,Japanese,1,4.8,2385.25
+Des Moines,Seafood,1,4.2,3816.4
+Des Moines,Southwestern,1,4.0,954.1
+Des Moines,Thai,1,4.1,2385.25
+Des Moines,Vietnamese,1,4.4,954.1
+Dicky Beach,Coffee and Tea,1,3.6,667.87
+Dicky Beach,Modern Australian,1,3.6,667.87
+Dicky Beach,Tea,1,3.6,667.87
+Doha,Indian,7,4.042857142857143,3928.5
+Doha,American,3,3.9333333333333336,5412.599999999999
+Doha,Chinese,3,4.233333333333333,3579.2999999999997
+Doha,Bakery,2,3.95,3404.7
+Doha,International,2,4.050000000000001,13749.75
+Doha,Pakistani,2,4.0,3273.75
+Doha,Steak,2,3.8,4714.2
+Doha,Arabian,1,3.9,5238.0
+Doha,Desserts,1,3.9,5238.0
+Doha,European,1,3.9,5238.0
+Doha,Italian,1,4.5,10476.0
+Doha,Japanese,1,3.9,5238.0
+Doha,Kerala,1,4.0,1571.4
+Doha,North Indian,1,3.8,2619.0
+Doha,Seafood,1,4.0,3928.5
+Doha,Street Food,1,3.4,3928.5
+Doha,Tex-Mex,1,3.8,5761.8
+Doha,Thai,1,4.3,11654.55
+Doha,Turkish,1,3.8,2619.0
+Dubai,Indian,11,4.545454545454546,5403.599999999999
+Dubai,American,4,4.025,7201.8375
+Dubai,Burger,4,4.2,5344.35
+Dubai,North Indian,3,4.3999999999999995,3736.7000000000003
+Dubai,Asian,2,4.35,4040.85
+Dubai,Cafe,2,4.4,4040.85
+Dubai,Chinese,2,4.3,3780.1499999999996
+Dubai,Continental,2,4.85,4171.2
+Dubai,Desserts,1,4.7,7038.9
+Dubai,European,1,3.9,7299.6
+Dubai,Fast Food,1,4.3,2607.0
+Dubai,Goan,1,4.3,3389.1
+Dubai,International,1,4.5,5214.0
+Dubai,Italian,1,3.9,7299.6
+Dubai,Mediterranean,1,3.9,7299.6
+Dubai,Mexican,1,3.7,6517.5
+Dubai,Rajasthani,1,4.1,2346.3
+Dubai,Seafood,1,3.2,7429.95
+Dubai,Street Food,1,4.4,3910.5
+Dubai,Thai,1,3.9,7299.6
+Dubuque,American,9,3.5555555555555554,2862.3
+Dubuque,Burger,5,3.5799999999999996,2099.02
+Dubuque,Pizza,5,3.62,2099.02
+Dubuque,Breakfast,3,3.466666666666667,954.1
+Dubuque,Italian,3,3.533333333333333,2385.25
+Dubuque,Mexican,3,3.5,954.1
+Dubuque,Seafood,3,3.4,3816.4
+Dubuque,Steak,2,3.6500000000000004,5247.55
+Dubuque,BBQ,1,3.3,2385.25
+Dubuque,Cafe,1,3.7,2385.25
+Dubuque,Desserts,1,3.5,954.1
+Dubuque,Ice Cream,1,3.5,954.1
+Dubuque,International,1,3.8,3816.4
+Dubuque,Japanese,1,3.7,3816.4
+Dubuque,Sandwich,1,3.5,2385.25
+Dubuque,Sushi,1,3.7,3816.4
+East Ballina,Cafe,1,4.1,1908.2
+Edinburgh,Cafe,6,4.166666666666667,3726.0416666666665
+Edinburgh,Bakery,3,4.2,3406.6666666666665
+Edinburgh,British,3,4.233333333333333,10432.916666666666
+Edinburgh,Indian,3,4.066666666666666,2767.9166666666665
+Edinburgh,Scottish,3,4.333333333333333,8516.666666666666
+Edinburgh,American,2,3.75,4790.625
+Edinburgh,Italian,2,4.1,4151.875
+Edinburgh,Thai,2,4.199999999999999,4471.25
+Edinburgh,Asian,1,4.1,2555.0
+Edinburgh,Burger,1,4.0,5110.0
+Edinburgh,Cantonese,1,3.8,3193.75
+Edinburgh,Desserts,1,4.6,4471.25
+Edinburgh,French,1,4.4,11497.5
+Edinburgh,Grill,1,4.0,5110.0
+Edinburgh,Japanese,1,3.8,3193.75
+Edinburgh,Mexican,1,3.8,3832.5
+Edinburgh,Pizza,1,3.7,4471.25
+Edinburgh,Seafood,1,4.1,12775.0
+Edinburgh,Steak,1,4.2,7026.25
+Edinburgh,Street Food,1,4.0,2555.0
+Edinburgh,Sushi,1,3.8,3193.75
+Faridabad,North Indian,122,1.8663934426229507,515.983606557377
+Faridabad,Chinese,96,2.03125,525.0
+Faridabad,Fast Food,69,2.110144927536232,363.04347826086956
+Faridabad,Mughlai,30,1.82,593.3333333333334
+Faridabad,Bakery,27,2.6,318.51851851851853
+Faridabad,Mithai,19,1.5473684210526315,200.0
+Faridabad,South Indian,17,1.9235294117647062,426.47058823529414
+Faridabad,Cafe,15,2.1733333333333333,630.0
+Faridabad,Desserts,15,1.9066666666666667,456.6666666666667
+Faridabad,Street Food,15,1.3533333333333333,183.33333333333334
+Faridabad,Italian,11,2.4727272727272727,700.0
+Faridabad,Raw Meats,9,2.5,372.22222222222223
+Faridabad,Beverages,8,1.975,400.0
+Faridabad,Continental,8,2.4125,893.75
+Faridabad,Ice Cream,7,2.157142857142857,442.85714285714283
+Faridabad,Burger,5,2.52,440.0
+Faridabad,Pizza,5,2.32,560.0
+Faridabad,American,4,2.35,600.0
+Faridabad,Salad,3,2.033333333333333,550.0
+Faridabad,Healthy Food,2,1.75,500.0
+Faridabad,Mexican,2,3.9499999999999997,775.0
+Faridabad,Thai,2,3.8,1000.0
+Faridabad,Asian,1,0.0,500.0
+Faridabad,Biryani,1,0.0,200.0
+Faridabad,Finger Food,1,3.1,1400.0
+Faridabad,Gujarati,1,3.4,700.0
+Faridabad,Juices,1,3.5,150.0
+Faridabad,Mediterranean,1,0.0,500.0
+Faridabad,Rajasthani,1,3.4,700.0
+Faridabad,Seafood,1,0.0,700.0
+Fernley,Mexican,1,3.7,954.1
+Flaxton,Modern Australian,1,3.5,2862.3
+Flaxton,Tea,1,3.5,2862.3
+Forrest,Australian,1,3.7,1908.2
+Forrest,Cafe,1,3.7,1908.2
+Gainesville,Sandwich,6,3.966666666666667,1908.2
+Gainesville,American,5,4.18,2671.48
+Gainesville,Seafood,5,4.26,2099.02
+Gainesville,BBQ,4,3.9749999999999996,1311.8875
+Gainesville,Burger,3,3.3666666666666667,1908.2
+Gainesville,German,3,3.3000000000000003,2385.25
+Gainesville,Southern,3,4.266666666666667,2385.25
+Gainesville,Cajun,2,4.35,2385.25
+Gainesville,Thai,2,4.5,954.1
+Gainesville,Bar Food,1,4.1,2385.25
+Gainesville,Chinese,1,4.4,954.1
+Gainesville,European,1,4.2,2385.25
+Gainesville,Ice Cream,1,3.9,954.1
+Gainesville,Italian,1,4.0,954.1
+Gainesville,Japanese,1,4.4,954.1
+Gainesville,Pizza,1,4.0,954.1
+Gainesville,Unknown,1,3.9,3816.4
+Gainesville,Vegetarian,1,4.1,2385.25
+Ghaziabad,North Indian,10,2.6100000000000003,795.0
+Ghaziabad,Fast Food,8,3.425,487.5
+Ghaziabad,Chinese,6,2.9,1075.0
+Ghaziabad,Cafe,4,3.45,550.0
+Ghaziabad,Burger,3,3.4333333333333336,533.3333333333334
+Ghaziabad,Desserts,3,3.6999999999999997,566.6666666666666
+Ghaziabad,South Indian,3,3.266666666666667,550.0
+Ghaziabad,Bakery,2,3.45,325.0
+Ghaziabad,Ice Cream,2,1.65,275.0
+Ghaziabad,Mughlai,2,2.25,800.0
+Ghaziabad,Continental,1,2.6,1500.0
+Ghaziabad,Mithai,1,3.6,600.0
+Ghaziabad,Pizza,1,3.2,700.0
+Ghaziabad,Street Food,1,3.6,600.0
+Goa,Goan,11,4.127272727272727,1054.5454545454545
+Goa,Seafood,11,4.290909090909091,1227.2727272727273
+Goa,North Indian,10,4.18,1140.0
+Goa,Continental,9,4.166666666666667,1200.0
+Goa,Chinese,5,4.1,1120.0
+Goa,Italian,3,3.9,1033.3333333333333
+Goa,Cafe,2,4.4,800.0
+Goa,Finger Food,2,4.050000000000001,1750.0
+Goa,French,2,4.55,800.0
+Goa,European,1,4.7,1500.0
+Goa,Fast Food,1,4.8,1100.0
+Goa,German,1,4.7,1500.0
+Gurgaon,North Indian,508,2.4891732283464565,743.4448818897638
+Gurgaon,Chinese,324,2.568827160493827,765.4938271604939
+Gurgaon,Fast Food,220,2.7100000000000004,466.8181818181818
+Gurgaon,Mughlai,117,2.818803418803419,814.1025641025641
+Gurgaon,Bakery,110,2.7100000000000004,445.45454545454544
+Gurgaon,Continental,103,3.60873786407767,1334.9514563106795
+Gurgaon,Italian,84,3.592857142857143,1341.0714285714287
+Gurgaon,Cafe,78,2.967948717948718,682.0512820512821
+Gurgaon,Desserts,77,3.0077922077922077,418.83116883116884
+Gurgaon,Street Food,72,2.397222222222222,347.9166666666667
+Gurgaon,South Indian,70,2.2285714285714286,507.42857142857144
+Gurgaon,Mithai,44,2.1295454545454544,325.0
+Gurgaon,American,43,3.5372093023255813,1090.6976744186047
+Gurgaon,Pizza,43,3.0488372093023255,903.4883720930233
+Gurgaon,Asian,42,3.8976190476190475,1452.3809523809523
+Gurgaon,Thai,39,3.6076923076923073,1188.4615384615386
+Gurgaon,Healthy Food,38,3.205263157894737,515.0
+Gurgaon,Burger,36,3.2055555555555557,600.0
+Gurgaon,Biryani,34,2.635294117647059,579.4117647058823
+Gurgaon,Beverages,31,3.0999999999999996,424.19354838709677
+Gurgaon,Japanese,25,3.548,1690.0
+Gurgaon,Salad,24,3.4125,518.75
+Gurgaon,Finger Food,21,3.2714285714285714,2028.5714285714287
+Gurgaon,Ice Cream,21,2.3142857142857145,269.04761904761904
+Gurgaon,European,18,3.7222222222222223,2019.4444444444443
+Gurgaon,Lebanese,14,3.65,810.7142857142857
+Gurgaon,Mexican,14,3.557142857142857,1003.5714285714286
+Gurgaon,Mediterranean,12,3.775,1616.6666666666667
+Gurgaon,Tea,12,2.3,300.0
+Gurgaon,Raw Meats,10,1.7399999999999998,370.0
+Gurgaon,Seafood,10,3.28,1590.0
+Gurgaon,Bengali,7,2.9857142857142853,650.0
+Gurgaon,Juices,6,3.25,450.0
+Gurgaon,Korean,5,3.56,1700.0
+Gurgaon,Lucknowi,5,3.46,1440.0
+Gurgaon,Rajasthani,5,2.1,750.0
+Gurgaon,Sushi,5,4.0,1800.0
+Gurgaon,Awadhi,4,2.5,1450.0
+Gurgaon,Hyderabadi,4,3.875,925.0
+Gurgaon,Kashmiri,4,3.675,937.5
+Gurgaon,Malaysian,4,3.65,1412.5
+Gurgaon,Tibetan,4,3.275,687.5
+Gurgaon,Afghani,3,0.0,700.0
+Gurgaon,Arabian,3,3.8666666666666667,1133.3333333333333
+Gurgaon,Burmese,3,3.9666666666666663,1433.3333333333333
+Gurgaon,Kerala,3,3.9333333333333336,1266.6666666666667
+Gurgaon,Portuguese,3,3.9333333333333336,1066.6666666666667
+Gurgaon,Vietnamese,3,3.733333333333333,1233.3333333333333
+Gurgaon,African,2,4.0,1300.0
+Gurgaon,Goan,2,3.9,1300.0
+Gurgaon,Greek,2,3.4000000000000004,750.0
+Gurgaon,Modern Indian,2,4.55,1850.0
+Gurgaon,Parsi,2,4.2,1250.0
+Gurgaon,Assamese,1,3.3,700.0
+Gurgaon,Belgian,1,3.9,1700.0
+Gurgaon,Bihari,1,4.0,1200.0
+Gurgaon,Charcoal Grill,1,3.8,2500.0
+Gurgaon,Chettinad,1,3.6,1500.0
+Gurgaon,Drinks Only,1,0.0,2100.0
+Gurgaon,Gujarati,1,2.9,750.0
+Gurgaon,Indonesian,1,3.3,650.0
+Gurgaon,Iranian,1,4.0,1300.0
+Gurgaon,Middle Eastern,1,3.9,1600.0
+Gurgaon,Nepalese,1,3.6,850.0
+Gurgaon,North Eastern,1,3.5,1500.0
+Gurgaon,Oriya,1,3.4,600.0
+Gurgaon,Pakistani,1,3.8,1600.0
+Gurgaon,Persian,1,4.6,1200.0
+Gurgaon,South American,1,3.7,5000.0
+Gurgaon,Steak,1,3.6,1800.0
+Gurgaon,Tex-Mex,1,3.7,2500.0
+Guwahati,Chinese,11,4.054545454545455,777.2727272727273
+Guwahati,Continental,10,4.15,910.0
+Guwahati,Cafe,8,4.2375,581.25
+Guwahati,North Indian,6,4.2,1008.3333333333334
+Guwahati,Italian,5,4.18,720.0
+Guwahati,Thai,3,4.266666666666667,916.6666666666666
+Guwahati,Asian,2,4.25,900.0
+Guwahati,American,1,4.1,400.0
+Guwahati,Arabian,1,4.3,700.0
+Guwahati,Charcoal Grill,1,4.0,1000.0
+Guwahati,Desserts,1,4.2,500.0
+Guwahati,European,1,4.2,1400.0
+Guwahati,Fast Food,1,4.0,1000.0
+Guwahati,Japanese,1,4.4,1300.0
+Guwahati,Juices,1,4.2,500.0
+Guwahati,Mexican,1,4.0,1000.0
+Guwahati,Salad,1,4.2,500.0
+Guwahati,Tibetan,1,4.1,500.0
+Hepburn Springs,Cafe,2,3.8,1288.035
+Hepburn Springs,Coffee and Tea,1,3.8,1908.2
+Hepburn Springs,Fusion,1,3.8,667.87
+Hepburn Springs,Italian,1,3.8,667.87
+Hepburn Springs,Modern Australian,1,3.8,1908.2
+Huskisson,Breakfast,1,4.1,1908.2
+Huskisson,Modern Australian,1,4.1,1908.2
+Hyderabad,North Indian,9,4.311111111111111,1366.6666666666667
+Hyderabad,Chinese,6,4.1,1233.3333333333333
+Hyderabad,Continental,5,4.1,1420.0
+Hyderabad,Italian,4,4.25,1575.0
+Hyderabad,European,3,4.733333333333333,1666.6666666666667
+Hyderabad,Mediterranean,3,4.733333333333333,1666.6666666666667
+Hyderabad,Mexican,3,4.666666666666667,1366.6666666666667
+Hyderabad,American,2,4.65,1800.0
+Hyderabad,Andhra,2,3.9499999999999997,1300.0
+Hyderabad,Asian,2,4.0,1450.0
+Hyderabad,Burger,2,4.65,1800.0
+Hyderabad,Cafe,2,4.45,1150.0
+Hyderabad,Desserts,2,4.75,550.0
+Hyderabad,Mughlai,2,4.199999999999999,1300.0
+Hyderabad,Tex-Mex,2,4.65,1800.0
+Hyderabad,Awadhi,1,4.1,1400.0
+Hyderabad,Bakery,1,4.8,600.0
+Hyderabad,Bengali,1,4.1,1100.0
+Hyderabad,Chettinad,1,4.1,1100.0
+Hyderabad,Goan,1,3.8,1500.0
+Hyderabad,Hyderabadi,1,4.1,1400.0
+Hyderabad,Japanese,1,4.3,1900.0
+Hyderabad,Seafood,1,3.8,1500.0
+Hyderabad,South Indian,1,4.0,700.0
+Indore,North Indian,9,4.011111111111111,1172.2222222222222
+Indore,Cafe,8,3.9875,631.25
+Indore,Italian,8,3.8625,1137.5
+Indore,Chinese,7,4.014285714285714,1042.857142857143
+Indore,Continental,4,3.9,1512.5
+Indore,Fast Food,4,4.075,562.5
+Indore,Mexican,4,3.675,1012.5
+Indore,Bakery,2,4.1,450.0
+Indore,Lebanese,2,4.0,900.0
+Indore,Mughlai,2,4.05,975.0
+Indore,Asian,1,3.7,1300.0
+Indore,Greek,1,4.2,1000.0
+Indore,Mediterranean,1,3.7,1300.0
+Indore,Seafood,1,4.1,1100.0
+Indore,South Indian,1,4.1,250.0
+Indore,Street Food,1,4.0,800.0
+Inner City,Contemporary,1,4.9,8978.2
+Inner City,European,1,4.9,8978.2
+Inner City,Tapas,1,4.9,4081.0
+Inverloch,Burger,1,3.7,667.87
+Inverloch,Coffee and Tea,1,3.7,667.87
+Inverloch,Modern Australian,1,3.7,667.87
+Istanbul,Cafe,4,4.4,116.4375
+Istanbul,Desserts,4,4.45,126.7875
+Istanbul,Restaurant Cafe,4,4.025,183.7125
+Istanbul,Turkish,2,4.15,160.425
+Istanbul,World Cuisine,2,3.95,284.625
+Istanbul,Bar Food,1,4.9,269.1
+Istanbul,Borek,1,4.7,82.8
+Istanbul,Burger,1,4.3,186.3
+Istanbul,Italian,1,3.7,351.9
+Istanbul,Izgara,1,4.3,186.3
+Istanbul,Patisserie,1,4.2,217.35
+Jaipur,Continental,13,4.1000000000000005,1276.923076923077
+Jaipur,Italian,10,4.130000000000001,1140.0
+Jaipur,North Indian,10,3.91,1330.0
+Jaipur,Mexican,8,3.9375,1156.25
+Jaipur,Cafe,7,4.3,921.4285714285714
+Jaipur,Chinese,7,3.914285714285714,1614.2857142857142
+Jaipur,Fast Food,3,4.266666666666667,866.6666666666666
+Jaipur,Rajasthani,3,4.266666666666667,1900.0
+Jaipur,Asian,2,4.1,2000.0
+Jaipur,Bakery,2,4.65,1650.0
+Jaipur,Desserts,2,3.3,1400.0
+Jaipur,Thai,2,4.0,1200.0
+Jaipur,Beverages,1,4.0,1800.0
+Jaipur,European,1,3.9,1650.0
+Jaipur,Finger Food,1,3.9,1650.0
+Jaipur,Japanese,1,4.2,1000.0
+Jaipur,Lebanese,1,4.0,1000.0
+Jaipur,Modern Indian,1,3.9,1500.0
+Jaipur,Street Food,1,4.7,750.0
+Jakarta,Western,8,4.25,1500.5625
+Jakarta,Indonesian,4,4.75,1808.625
+Jakarta,Cafe,3,4.366666666666666,1263.1666666666667
+Jakarta,Japanese,3,4.5,2031.6666666666667
+Jakarta,Asian,2,4.4,2782.5
+Jakarta,Italian,2,4.35,2557.25
+Jakarta,Seafood,2,3.7,530.0
+Jakarta,Sunda,2,4.9,1060.0
+Jakarta,Sushi,2,4.65,1855.0
+Jakarta,Bakery,1,4.6,1060.0
+Jakarta,Burger,1,4.4,636.0
+Jakarta,Coffee and Tea,1,4.6,874.5
+Jakarta,Continental,1,4.1,4240.0
+Jakarta,Desserts,1,4.6,1060.0
+Jakarta,French,1,4.3,1855.0
+Jakarta,Korean,1,3.9,1060.0
+Jakarta,Ramen,1,4.4,1060.0
+Johannesburg,American,2,4.15,2521.475
+Johannesburg,Burger,2,4.05,2040.5
+Johannesburg,Pizza,2,4.05,2040.5
+Johannesburg,Asian,1,4.3,1749.0
+Johannesburg,Beverages,1,4.5,5567.65
+Johannesburg,Continental,1,4.5,5567.65
+Johannesburg,Desserts,1,4.5,5567.65
+Johannesburg,European,1,4.1,2040.5
+Johannesburg,Finger Food,1,4.0,2040.5
+Johannesburg,Grill,1,4.5,5567.65
+Johannesburg,Ice Cream,1,4.5,5567.65
+Johannesburg,International,1,4.5,5567.65
+Johannesburg,Seafood,1,4.5,5567.65
+Johannesburg,South African,1,4.5,5567.65
+Johannesburg,Sushi,1,4.3,1749.0
+Johannesburg,Tapas,1,4.3,1749.0
+Kanpur,North Indian,10,3.8899999999999997,1245.0
+Kanpur,Chinese,7,3.7142857142857144,1314.2857142857142
+Kanpur,Fast Food,7,3.8,678.5714285714286
+Kanpur,Continental,5,3.6799999999999997,650.0
+Kanpur,Italian,5,3.88,980.0
+Kanpur,Desserts,3,3.966666666666667,433.3333333333333
+Kanpur,Bakery,2,3.65,425.0
+Kanpur,Cafe,2,3.7,450.0
+Kanpur,Mediterranean,2,4.0,1200.0
+Kanpur,Arabian,1,4.0,1400.0
+Kanpur,Asian,1,3.3,800.0
+Kanpur,Beverages,1,3.9,300.0
+Kanpur,Finger Food,1,4.0,1000.0
+Kanpur,Ice Cream,1,3.9,300.0
+Kanpur,Indian,1,3.6,300.0
+Kanpur,Lebanese,1,4.0,1400.0
+Kanpur,Mexican,1,4.3,1500.0
+Kanpur,Mughlai,1,4.0,1400.0
+Kochi,Cafe,7,4.2,692.8571428571429
+Kochi,Kerala,7,3.9285714285714284,628.5714285714286
+Kochi,Chinese,6,3.9333333333333336,791.6666666666666
+Kochi,Continental,6,4.1499999999999995,816.6666666666666
+Kochi,North Indian,5,4.18,1010.0
+Kochi,Seafood,4,4.35,887.5
+Kochi,South Indian,4,3.775,725.0
+Kochi,Biryani,3,3.9,483.3333333333333
+Kochi,Desserts,3,4.266666666666667,783.3333333333334
+Kochi,Italian,3,4.233333333333333,833.3333333333334
+Kochi,Bakery,2,4.25,675.0
+Kochi,European,2,4.35,1050.0
+Kochi,Fast Food,2,3.85,475.0
+Kochi,Mediterranean,2,4.4,1250.0
+Kochi,American,1,4.5,1500.0
+Kochi,Thai,1,3.7,1000.0
+Kolkata,North Indian,12,4.208333333333333,1262.5
+Kolkata,Chinese,10,4.39,1170.0
+Kolkata,Continental,6,4.016666666666667,1208.3333333333333
+Kolkata,American,3,4.2,1633.3333333333333
+Kolkata,Asian,3,4.333333333333333,1366.6666666666667
+Kolkata,Italian,3,4.033333333333334,1216.6666666666667
+Kolkata,Cafe,2,3.95,1000.0
+Kolkata,Mexican,2,4.300000000000001,1300.0
+Kolkata,Seafood,2,3.9000000000000004,1150.0
+Kolkata,Bengali,1,4.4,1000.0
+Kolkata,Biryani,1,4.6,800.0
+Kolkata,Desserts,1,3.9,1000.0
+Kolkata,European,1,4.4,1900.0
+Kolkata,Mediterranean,1,4.2,1200.0
+Kolkata,Middle Eastern,1,4.8,1200.0
+Kolkata,Mughlai,1,4.6,800.0
+Kolkata,Street Food,1,4.2,1200.0
+Kolkata,Tex-Mex,1,4.0,1800.0
+Lakes Entrance,Breakfast,1,3.8,667.87
+Lakes Entrance,Coffee and Tea,1,3.8,667.87
+Lakeview,Burger,1,3.6,954.1
+Lakeview,Desserts,1,3.6,954.1
+Lakeview,Sandwich,1,3.6,954.1
+Lincoln,Thai,1,4.5,2385.25
+London,Indian,5,4.5,6259.75
+London,Curry,4,4.5,6387.5
+London,American,3,4.133333333333333,4258.333333333333
+London,Burger,3,4.133333333333333,4258.333333333333
+London,Japanese,3,4.533333333333333,8516.666666666666
+London,British,2,4.7,9900.625
+London,Cafe,2,4.6,5748.75
+London,Chinese,2,4.75,13413.75
+London,Dim Sum,2,4.75,13413.75
+London,Italian,2,4.4,6068.125
+London,Street Food,2,4.7,4151.875
+London,Sushi,2,4.5,10220.0
+London,Contemporary,1,4.5,12775.0
+London,French,1,4.7,29382.5
+London,North Indian,1,4.7,4471.25
+London,Pakistani,1,4.7,10220.0
+London,Ramen,1,4.6,5110.0
+London,Steak,1,4.9,4471.25
+London,Taiwanese,1,4.9,2555.0
+Lorn,Breakfast,1,3.6,1908.2
+Lorn,Coffee and Tea,1,3.6,1908.2
+Lucknow,Cafe,8,4.0625,606.25
+Lucknow,North Indian,8,4.1375,1250.0
+Lucknow,Continental,7,4.014285714285714,1092.857142857143
+Lucknow,Chinese,6,4.05,1158.3333333333333
+Lucknow,Italian,5,4.319999999999999,790.0
+Lucknow,Mughlai,5,4.380000000000001,800.0
+Lucknow,American,2,4.3,1150.0
+Lucknow,Asian,2,3.95,1500.0
+Lucknow,Desserts,2,4.3,300.0
+Lucknow,Fast Food,2,3.95,575.0
+Lucknow,Thai,2,4.1,1500.0
+Lucknow,Bakery,1,4.1,400.0
+Lucknow,European,1,4.1,1000.0
+Lucknow,Ice Cream,1,4.5,200.0
+Lucknow,Lebanese,1,4.3,1000.0
+Lucknow,Lucknowi,1,4.9,300.0
+Lucknow,Mediterranean,1,4.3,1300.0
+Lucknow,South Indian,1,4.2,2000.0
+Ludhiana,North Indian,11,3.9545454545454546,1154.5454545454545
+Ludhiana,Chinese,10,3.9199999999999995,1210.0
+Ludhiana,Continental,9,4.0,1355.5555555555557
+Ludhiana,Cafe,4,4.125,1025.0
+Ludhiana,Italian,4,4.225,1200.0
+Ludhiana,Bakery,3,4.266666666666667,900.0
+Ludhiana,Fast Food,3,3.6999999999999997,633.3333333333334
+Ludhiana,Mughlai,3,4.3,1100.0
+Ludhiana,African,1,3.8,1200.0
+Ludhiana,Desserts,1,4.2,800.0
+Ludhiana,European,1,3.8,1600.0
+Ludhiana,Lebanese,1,4.1,1500.0
+Ludhiana,Mediterranean,1,4.3,2000.0
+Ludhiana,Mexican,1,4.1,1500.0
+Ludhiana,Pizza,1,3.6,700.0
+Ludhiana,Portuguese,1,3.8,1200.0
+Ludhiana,South Indian,1,3.9,400.0
+Macedon,Cafe,1,3.5,1908.2
+Macon,Sushi,4,3.875,2027.4625
+Macon,American,3,3.9333333333333336,2862.2999999999997
+Macon,Greek,3,4.166666666666667,1431.1499999999999
+Macon,Japanese,3,3.9333333333333336,1908.2
+Macon,Sandwich,3,4.333333333333333,1431.1499999999999
+Macon,Seafood,3,4.233333333333333,2862.2999999999997
+Macon,Thai,3,4.066666666666666,1431.1499999999999
+Macon,Chinese,2,4.1,2385.25
+Macon,Desserts,2,4.4,1669.675
+Macon,Italian,2,3.95,4531.975
+Macon,Mediterranean,2,4.2,3816.4
+Macon,Pizza,2,4.35,1669.675
+Macon,Steak,2,4.05,5247.55
+Macon,Vegetarian,2,4.0,1669.675
+Macon,BBQ,1,4.2,2385.25
+Macon,Bar Food,1,4.5,2385.25
+Macon,Burger,1,4.5,2385.25
+Macon,Coffee and Tea,1,3.9,2385.25
+Macon,Cuban,1,3.9,2385.25
+Macon,European,1,4.2,6678.7
+Macon,Latin American,1,3.9,2385.25
+Macon,Mexican,1,4.1,954.1
+Macon,Unknown,1,3.8,3816.4
+Makati City,Japanese,2,4.65,8096.0
+Makati City,Desserts,1,4.8,7744.0
+Makati City,French,1,4.8,7744.0
+Manchester,American,5,4.0200000000000005,5493.25
+Manchester,Indian,5,3.9799999999999995,4471.25
+Manchester,British,3,4.066666666666666,6813.333333333333
+Manchester,Burger,3,4.333333333333333,5110.0
+Manchester,Fast Food,3,3.3333333333333335,2767.9166666666665
+Manchester,Grill,3,4.333333333333333,5535.833333333333
+Manchester,Contemporary,2,4.15,6387.5
+Manchester,Curry,2,4.2,4471.25
+Manchester,Italian,2,4.1,4790.625
+Manchester,Seafood,2,4.0,6706.875
+Manchester,Steak,2,3.85,5429.375
+Manchester,Afghani,1,3.9,4471.25
+Manchester,Argentine,1,4.5,10220.0
+Manchester,Cafe,1,4.1,3832.5
+Manchester,Desserts,1,3.3,3832.5
+Manchester,European,1,4.2,7026.25
+Manchester,French,1,4.3,20440.0
+Manchester,Mediterranean,1,4.2,7026.25
+Manchester,Pakistani,1,3.9,4471.25
+Manchester,Pizza,1,3.3,2555.0
+Manchester,Thai,1,4.3,8942.5
+Mandaluyong City,Japanese,2,4.85,10560.0
+Mandaluyong City,Asian,1,4.4,28160.0
+Mandaluyong City,Chinese,1,4.4,7040.0
+Mandaluyong City,Filipino,1,4.4,28160.0
+Mandaluyong City,Indian,1,4.4,28160.0
+Mandaluyong City,Korean,1,4.8,10560.0
+Mandaluyong City,Seafood,1,4.4,28160.0
+Mandaluyong City,Sushi,1,4.9,10560.0
+Mangalore,North Indian,9,3.7222222222222223,950.0
+Mangalore,Chinese,6,3.6666666666666665,900.0
+Mangalore,Continental,5,3.72,800.0
+Mangalore,Italian,3,3.733333333333333,733.3333333333334
+Mangalore,Mughlai,3,3.6333333333333333,1166.6666666666667
+Mangalore,Seafood,3,4.066666666666666,683.3333333333334
+Mangalore,American,2,3.75,950.0
+Mangalore,Cafe,2,3.6,550.0
+Mangalore,Finger Food,2,3.8499999999999996,750.0
+Mangalore,Mangalorean,2,3.7,850.0
+Mangalore,South Indian,2,3.6500000000000004,600.0
+Mangalore,Bakery,1,3.9,200.0
+Mangalore,Desserts,1,3.9,200.0
+Mangalore,Pizza,1,3.5,600.0
+Mayfield,Asian,1,2.9,1908.2
+Mc Millan,Breakfast,1,2.4,954.1
+Mc Millan,Burger,1,2.4,954.1
+Middleton Beach,Bar Food,1,3.8,2862.3
+Middleton Beach,Modern Australian,1,3.8,2862.3
+Miller,Unknown,1,3.4,954.1
+Mohali,Continental,1,4.3,550.0
+Mohali,North Indian,1,4.3,550.0
+Monroe,Italian,1,3.6,2385.25
+Monroe,Pizza,1,3.6,2385.25
+Montville,Coffee and Tea,1,2.4,2862.3
+Montville,Modern Australian,1,2.4,2862.3
+Mumbai,Italian,9,3.988888888888889,1088.888888888889
+Mumbai,Desserts,8,3.9499999999999997,1050.0
+Mumbai,Chinese,7,4.0,1000.0
+Mumbai,Cafe,6,3.9,950.0
+Mumbai,Fast Food,6,4.083333333333333,1000.0
+Mumbai,North Indian,6,4.233333333333333,1200.0
+Mumbai,Tea,4,3.925,1000.0
+Mumbai,American,3,3.966666666666667,950.0
+Mumbai,Burger,3,4.0,850.0
+Mumbai,Continental,3,3.8333333333333335,1200.0
+Mumbai,Pizza,3,4.166666666666667,933.3333333333334
+Mumbai,Bakery,2,3.8499999999999996,850.0
+Mumbai,Finger Food,2,3.9,1100.0
+Mumbai,Mexican,2,4.3,1250.0
+Mumbai,Asian,1,4.0,1000.0
+Mumbai,Beverages,1,4.2,1500.0
+Mumbai,British,1,3.9,1500.0
+Mumbai,European,1,4.0,1200.0
+Mumbai,Healthy Food,1,3.4,850.0
+Mumbai,Japanese,1,3.9,1500.0
+Mumbai,Modern Indian,1,4.3,1500.0
+Mumbai,Mughlai,1,4.9,1500.0
+Mumbai,Salad,1,3.4,850.0
+Mumbai,South Indian,1,4.9,1500.0
+Mumbai,Street Food,1,4.0,1200.0
+Mumbai,Thai,1,3.8,1000.0
+Mysore,North Indian,12,3.6333333333333333,925.0
+Mysore,Chinese,7,3.5714285714285716,785.7142857142857
+Mysore,Continental,6,3.6333333333333333,1091.6666666666667
+Mysore,South Indian,6,3.766666666666667,725.0
+Mysore,Italian,4,3.825,762.5
+Mysore,Andhra,2,3.55,395.0
+Mysore,European,2,3.8,1150.0
+Mysore,Asian,1,3.6,1000.0
+Mysore,Beverages,1,3.6,700.0
+Mysore,Cafe,1,3.6,700.0
+Mysore,Finger Food,1,3.7,1200.0
+Mysore,Mediterranean,1,4.0,1600.0
+Mysore,Mughlai,1,3.7,500.0
+Mysore,Pizza,1,4.0,700.0
+Mysore,Thai,1,3.7,550.0
+Nagpur,Chinese,8,4.0,856.25
+Nagpur,Cafe,7,4.0,457.14285714285717
+Nagpur,North Indian,7,4.3,1035.7142857142858
+Nagpur,Continental,6,4.133333333333334,933.3333333333334
+Nagpur,Fast Food,6,3.5,416.6666666666667
+Nagpur,Italian,2,4.050000000000001,800.0
+Nagpur,Thai,2,4.15,1050.0
+Nagpur,American,1,2.2,550.0
+Nagpur,European,1,4.9,1600.0
+Nagpur,Mediterranean,1,4.9,1600.0
+Nagpur,Mughlai,1,4.3,550.0
+Nagpur,Seafood,1,4.0,1000.0
+Nagpur,Tea,1,3.9,250.0
+Nashik,North Indian,11,3.527272727272727,836.3636363636364
+Nashik,Chinese,5,3.44,620.0
+Nashik,Cafe,3,3.4333333333333336,383.3333333333333
+Nashik,Maharashtrian,3,3.766666666666667,500.0
+Nashik,Fast Food,2,3.45,500.0
+Nashik,Asian,1,3.8,1500.0
+Nashik,Continental,1,3.4,900.0
+Nashik,Desserts,1,3.6,400.0
+Nashik,European,1,3.8,1500.0
+Nashik,Italian,1,3.0,800.0
+Nashik,Malwani,1,3.5,400.0
+Nashik,Mediterranean,1,3.8,1500.0
+Nashik,Mughlai,1,3.7,500.0
+Nashik,Seafood,1,3.5,400.0
+New Delhi,North Indian,2425,2.4350927835051546,663.2907216494846
+New Delhi,Chinese,1638,2.5479853479853483,678.021978021978
+New Delhi,Fast Food,1304,2.510659509202454,425.4217791411043
+New Delhi,Mughlai,628,2.5436305732484077,693.2643312101911
+New Delhi,Bakery,465,2.330537634408602,383.48387096774195
+New Delhi,South Indian,411,2.375912408759124,452.0681265206813
+New Delhi,Street Food,411,2.3228710462287108,236.90997566909977
+New Delhi,Desserts,383,2.77467362924282,397.5718015665796
+New Delhi,Italian,376,3.458776595744681,1297.6063829787233
+New Delhi,Continental,373,3.4,1376.1394101876676
+New Delhi,Cafe,325,3.183384615384615,734.9230769230769
+New Delhi,Mithai,282,2.097517730496454,240.0709219858156
+New Delhi,Pizza,197,2.4766497461928934,649.4923857868021
+New Delhi,Ice Cream,148,2.819594594594595,298.1081081081081
+New Delhi,Beverages,123,2.669918699186992,326.4227642276423
+New Delhi,American,116,3.4465517241379313,1018.1034482758621
+New Delhi,Thai,112,3.588392857142857,1451.7857142857142
+New Delhi,Biryani,99,2.214141414141414,459.09090909090907
+New Delhi,Asian,94,3.6340425531914895,1552.659574468085
+New Delhi,Burger,90,3.352222222222222,517.7777777777778
+New Delhi,Healthy Food,82,2.975609756097561,510.9756097560976
+New Delhi,Raw Meats,79,2.2164556962025315,341.7721518987342
+New Delhi,European,67,3.72089552238806,2202.2388059701493
+New Delhi,Finger Food,67,3.1044776119402986,2023.8805970149253
+New Delhi,Mexican,51,3.5627450980392155,1076.4705882352941
+New Delhi,Salad,49,3.1653061224489796,591.8367346938776
+New Delhi,Japanese,47,3.557446808510638,1998.936170212766
+New Delhi,Lebanese,39,3.2487179487179487,989.7435897435897
+New Delhi,Mediterranean,38,3.823684210526316,1664.4736842105262
+New Delhi,Seafood,38,3.478947368421052,1626.3157894736842
+New Delhi,Tibetan,35,2.08,518.5714285714286
+New Delhi,Tea,18,2.638888888888889,550.0
+New Delhi,Bengali,17,3.047058823529412,682.3529411764706
+New Delhi,Hyderabadi,16,3.36875,812.5
+New Delhi,Sushi,14,3.8285714285714287,2421.4285714285716
+New Delhi,Kashmiri,13,2.9153846153846152,1173.076923076923
+New Delhi,Juices,12,2.341666666666667,429.1666666666667
+New Delhi,Kerala,12,3.0583333333333336,1025.0
+New Delhi,Arabian,11,2.3181818181818183,736.3636363636364
+New Delhi,Malaysian,11,3.7363636363636363,2309.090909090909
+New Delhi,Korean,9,3.3111111111111113,2072.222222222222
+New Delhi,Middle Eastern,9,3.7333333333333334,1983.3333333333333
+New Delhi,Vietnamese,9,3.8000000000000003,2011.111111111111
+New Delhi,Afghani,8,1.95,587.5
+New Delhi,Naga,8,3.475,706.25
+New Delhi,Nepalese,8,1.4125,612.5
+New Delhi,Turkish,8,3.1875,825.0
+New Delhi,Modern Indian,7,4.4,2442.8571428571427
+New Delhi,Chettinad,6,3.5,1216.6666666666667
+New Delhi,French,6,3.1166666666666667,2775.0
+New Delhi,Gujarati,6,3.1833333333333336,725.0
+New Delhi,Maharashtrian,6,3.5,441.6666666666667
+New Delhi,North Eastern,6,1.1166666666666667,508.3333333333333
+New Delhi,Tex-Mex,6,3.6333333333333333,1875.0
+New Delhi,Awadhi,5,0.64,450.0
+New Delhi,Bihari,5,3.5799999999999996,620.0
+New Delhi,Moroccan,5,1.6199999999999999,1090.0
+New Delhi,Rajasthani,5,2.9799999999999995,770.0
+New Delhi,Goan,4,3.6500000000000004,1150.0
+New Delhi,Indian,4,1.9,687.5
+New Delhi,Lucknowi,4,1.3250000000000002,525.0
+New Delhi,Parsi,4,4.05,1000.0
+New Delhi,Spanish,4,4.05,2375.0
+New Delhi,Andhra,3,4.2,966.6666666666666
+New Delhi,Assamese,3,2.1,433.3333333333333
+New Delhi,Burmese,3,3.8333333333333335,1666.6666666666667
+New Delhi,Indonesian,3,4.166666666666667,1600.0
+New Delhi,African,2,1.85,1200.0
+New Delhi,Armenian,2,0.0,275.0
+New Delhi,British,2,3.9,1700.0
+New Delhi,Portuguese,2,1.85,1200.0
+New Delhi,Cuisine Varies,1,0.0,500.0
+New Delhi,Deli,1,3.8,1000.0
+New Delhi,Drinks Only,1,3.5,3500.0
+New Delhi,Iranian,1,4.2,1300.0
+New Delhi,Mangalorean,1,4.0,1350.0
+New Delhi,Oriya,1,3.1,450.0
+New Delhi,Pakistani,1,0.0,500.0
+New Delhi,Sandwich,1,3.8,1000.0
+New Delhi,South American,1,3.3,2500.0
+New Delhi,Sri Lankan,1,4.0,6000.0
+Noida,North Indian,532,2.085526315789474,619.078947368421
+Noida,Chinese,384,2.1963541666666666,639.7135416666666
+Noida,Fast Food,265,2.2339622641509433,435.8490566037736
+Noida,Mughlai,156,2.3602564102564103,715.0641025641025
+Noida,Bakery,93,1.7473118279569892,355.9139784946237
+Noida,Cafe,69,2.449275362318841,558.695652173913
+Noida,South Indian,68,2.051470588235294,457.3529411764706
+Noida,Desserts,64,2.3234375,406.25
+Noida,Italian,64,2.5953125,907.8125
+Noida,Continental,62,2.824193548387097,1099.1935483870968
+Noida,Beverages,42,2.0047619047619047,329.76190476190476
+Noida,Street Food,39,1.9153846153846155,306.4102564102564
+Noida,Pizza,36,2.3666666666666667,734.7222222222222
+Noida,Mithai,33,1.990909090909091,345.45454545454544
+Noida,Ice Cream,32,1.03125,296.875
+Noida,American,30,2.52,841.6666666666666
+Noida,Biryani,26,2.0384615384615383,492.3076923076923
+Noida,Thai,23,3.1,1021.7391304347826
+Noida,Healthy Food,21,3.0285714285714285,554.7619047619048
+Noida,Burger,18,2.4222222222222225,494.44444444444446
+Noida,Raw Meats,16,1.9,371.875
+Noida,Asian,14,3.5714285714285716,1310.7142857142858
+Noida,Mexican,13,2.630769230769231,865.3846153846154
+Noida,Salad,13,2.7384615384615385,507.6923076923077
+Noida,Mediterranean,9,3.5999999999999996,1555.5555555555557
+Noida,Tea,8,2.6,350.0
+Noida,Juices,4,2.625,425.0
+Noida,Lebanese,4,2.65,1050.0
+Noida,Seafood,4,3.675,1275.0
+Noida,Bengali,3,2.0,550.0
+Noida,Finger Food,3,2.1999999999999997,1733.3333333333333
+Noida,Hyderabadi,3,3.533333333333333,733.3333333333334
+Noida,Japanese,3,3.8000000000000003,1116.6666666666667
+Noida,Kashmiri,3,2.033333333333333,466.6666666666667
+Noida,Lucknowi,3,1.1666666666666667,383.3333333333333
+Noida,Rajasthani,3,3.1333333333333333,666.6666666666666
+Noida,European,2,2.8,2000.0
+Noida,Sushi,2,3.5999999999999996,1350.0
+Noida,Tex-Mex,2,2.95,2250.0
+Noida,Tibetan,2,1.35,225.0
+Noida,Arabian,1,3.8,1600.0
+Noida,Awadhi,1,0.0,300.0
+Noida,Chettinad,1,3.6,1500.0
+Noida,Indian,1,0.0,500.0
+Noida,Iranian,1,4.0,1300.0
+Noida,Korean,1,3.9,1400.0
+Noida,Middle Eastern,1,3.8,1600.0
+Noida,Parsi,1,4.0,1300.0
+Noida,Spanish,1,3.4,1800.0
+Ojo Caliente,American,1,3.6,3816.4
+Ojo Caliente,International,1,3.6,3816.4
+Ojo Caliente,Southwestern,1,3.6,3816.4
+Orlando,American,5,4.66,3434.7599999999998
+Orlando,Sandwich,3,4.833333333333333,3021.316666666667
+Orlando,Asian,2,4.5,2146.725
+Orlando,Cajun,2,4.15,2385.25
+Orlando,Tapas,2,4.5,3816.4
+Orlando,Vegetarian,2,4.4,1669.675
+Orlando,BBQ,1,4.9,3339.35
+Orlando,Brazilian,1,4.6,9541.0
+Orlando,Breakfast,1,4.4,2385.25
+Orlando,Caribbean,1,4.3,4293.45
+Orlando,German,1,4.8,3816.4
+Orlando,Hawaiian,1,4.5,4293.45
+Orlando,Irish,1,4.3,4770.5
+Orlando,Italian,1,4.4,4770.5
+Orlando,Latin American,1,4.4,954.1
+Orlando,Mediterranean,1,4.2,3816.4
+Orlando,New American,1,4.6,3816.4
+Orlando,Pub Food,1,4.4,3816.4
+Orlando,Salad,1,4.7,3339.35
+Orlando,Soul Food,1,3.6,2385.25
+Orlando,Southern,1,3.6,2385.25
+Orlando,Spanish,1,4.4,3816.4
+Orlando,Steak,1,4.6,9541.0
+Orlando,Tea,1,4.9,2385.25
+Orlando,Thai,1,4.6,3339.35
+Orlando,Turkish,1,4.2,3816.4
+Orlando,Unknown,1,4.4,3816.4
+Palm Cove,Mediterranean,1,4.4,2862.3
+Palm Cove,Seafood,1,4.4,2862.3
+Panchkula,Middle Eastern,1,4.2,2000.0
+Panchkula,North Indian,1,4.2,2000.0
+Panchkula,Pizza,1,4.2,2000.0
+Pasay City,Asian,3,4.366666666666667,23466.666666666668
+Pasay City,European,3,4.366666666666667,23466.666666666668
+Pasay City,Filipino,1,4.2,14080.0
+Pasay City,Indian,1,4.9,42240.0
+Pasay City,Seafood,1,4.2,14080.0
+Pasig City,Filipino,2,4.85,6688.0
+Pasig City,American,1,4.2,6336.0
+Pasig City,Desserts,1,4.2,6336.0
+Pasig City,Ice Cream,1,4.2,6336.0
+Pasig City,Mexican,1,4.9,5632.0
+Patna,North Indian,15,3.46,850.0
+Patna,Chinese,14,3.4642857142857144,925.0
+Patna,Fast Food,5,3.4,500.0
+Patna,Continental,4,3.525,1100.0
+Patna,Mughlai,4,3.5,587.5
+Patna,South Indian,4,3.375,750.0
+Patna,Italian,3,3.466666666666667,766.6666666666666
+Patna,American,1,3.5,500.0
+Patna,Bakery,1,3.4,600.0
+Patna,Biryani,1,3.6,500.0
+Patna,Cafe,1,3.4,600.0
+Patna,Finger Food,1,3.6,1000.0
+Patna,Pizza,1,3.4,600.0
+Paynesville,Modern Australian,1,2.6,11449.2
+Penola,Cafe,1,3.4,1908.2
+Penola,Coffee and Tea,1,3.4,1908.2
+Penola,Sandwich,1,3.4,1908.2
+Pensacola,Seafood,8,4.0375,3816.4
+Pensacola,Burger,4,4.300000000000001,3100.825
+Pensacola,Italian,3,4.133333333333333,2385.25
+Pensacola,Pizza,3,4.133333333333333,2385.25
+Pensacola,Sandwich,3,4.466666666666667,2862.2999999999997
+Pensacola,Sushi,3,4.133333333333333,3339.35
+Pensacola,Bar Food,2,4.300000000000001,3100.825
+Pensacola,Caribbean,2,3.9,3816.4
+Pensacola,Mexican,2,4.2,2385.25
+Pensacola,Southwestern,2,4.2,2385.25
+Pensacola,Steak,2,4.2,3816.4
+Pensacola,Tapas,2,4.15,3100.825
+Pensacola,American,1,4.0,3816.4
+Pensacola,Asian,1,4.5,954.1
+Pensacola,Breakfast,1,4.2,2385.25
+Pensacola,Cajun,1,4.4,3816.4
+Pensacola,European,1,4.4,3816.4
+Pensacola,Greek,1,4.7,954.1
+Pensacola,International,1,4.4,3816.4
+Pensacola,Japanese,1,4.3,2385.25
+Pensacola,Latin American,1,4.2,2385.25
+Pensacola,Mediterranean,1,4.1,2385.25
+Pensacola,Tex-Mex,1,4.2,2385.25
+Pensacola,Vietnamese,1,4.5,954.1
+Phillip Island,Breakfast,1,3.7,1908.2
+Phillip Island,Coffee and Tea,1,3.7,1908.2
+Phillip Island,Modern Australian,1,3.7,1908.2
+Pocatello,American,5,3.62,3148.5299999999997
+Pocatello,Pizza,5,3.66,1812.7900000000002
+Pocatello,Sandwich,4,3.7,1669.675
+Pocatello,Asian,2,3.6,1669.675
+Pocatello,Burger,2,3.6,954.1
+Pocatello,Indian,2,1.9,2385.25
+Pocatello,Mexican,2,3.8499999999999996,954.1
+Pocatello,Steak,2,3.55,4054.925
+Pocatello,Thai,2,3.6500000000000004,1669.675
+Pocatello,Vegetarian,2,3.7,2385.25
+Pocatello,BBQ,1,3.5,4293.45
+Pocatello,Bar Food,1,3.6,954.1
+Pocatello,Breakfast,1,3.6,2862.3
+Pocatello,Chinese,1,3.5,954.1
+Pocatello,Coffee and Tea,1,3.8,954.1
+Pocatello,Desserts,1,3.7,2385.25
+Pocatello,Fast Food,1,3.7,954.1
+Pocatello,Greek,1,3.7,2385.25
+Pocatello,International,1,3.8,2385.25
+Pocatello,Italian,1,3.7,3816.4
+Pocatello,New American,1,3.6,3816.4
+Pocatello,Persian,1,0.0,2385.25
+Pocatello,Seafood,1,3.6,3816.4
+Pocatello,Sushi,1,3.6,2385.25
+Potrero,American,1,3.3,2385.25
+Potrero,BBQ,1,3.3,2385.25
+Potrero,Burger,1,3.3,2385.25
+Pretoria,Burger,7,4.0285714285714285,1665.7142857142858
+Pretoria,Grill,6,3.883333333333333,1700.4166666666667
+Pretoria,Cafe,4,4.075,2164.3875
+Pretoria,Desserts,4,4.275,2193.5375
+Pretoria,South African,4,4.225,2004.0625
+Pretoria,Beverages,3,4.166666666666667,2108.516666666667
+Pretoria,Continental,3,4.1000000000000005,2137.6666666666665
+Pretoria,European,3,4.1000000000000005,2409.733333333333
+Pretoria,Finger Food,3,4.2,1846.1666666666667
+Pretoria,Italian,3,3.7999999999999994,1943.3333333333333
+Pretoria,Seafood,3,4.1000000000000005,2157.1
+Pretoria,Steak,3,4.0,1962.7666666666667
+Pretoria,American,2,4.1,1457.5
+Pretoria,Contemporary,2,3.8,2040.5
+Pretoria,Healthy Food,2,4.35,2288.275
+Pretoria,Indian,2,4.35,1865.6
+Pretoria,International,2,4.25,2390.3
+Pretoria,Street Food,2,4.15,1311.75
+Pretoria,Sushi,2,3.75,1749.0
+Pretoria,Tapas,2,4.2,1967.625
+Pretoria,African,1,4.7,2623.5
+Pretoria,Asian,1,4.3,1865.6
+Pretoria,Bakery,1,3.9,2332.0
+Pretoria,Belgian,1,4.2,2915.0
+Pretoria,Deli,1,3.9,2332.0
+Pretoria,Durban,1,4.3,1865.6
+Pretoria,French,1,4.9,18714.3
+Pretoria,German,1,4.4,1166.0
+Pretoria,Mediterranean,1,4.1,2332.0
+Pretoria,Mexican,1,4.3,1749.0
+Pretoria,Pizza,1,3.9,2332.0
+Pretoria,Spanish,1,4.5,1661.55
+Princeton,Seafood,1,4.0,6678.7
+Puducherry,Continental,6,3.65,1250.0
+Puducherry,North Indian,5,3.6399999999999997,1280.0
+Puducherry,Cafe,4,3.55,625.0
+Puducherry,French,4,3.7249999999999996,1125.0
+Puducherry,Italian,4,3.7,1000.0
+Puducherry,Desserts,3,4.033333333333334,233.33333333333334
+Puducherry,Bakery,2,3.9499999999999997,275.0
+Puducherry,Pizza,2,3.7,800.0
+Puducherry,Asian,1,3.8,1500.0
+Puducherry,Beverages,1,3.7,250.0
+Puducherry,Chinese,1,3.8,1500.0
+Puducherry,Finger Food,1,3.4,1200.0
+Puducherry,Goan,1,3.5,1200.0
+Puducherry,Indonesian,1,3.8,1500.0
+Puducherry,Juices,1,3.7,250.0
+Puducherry,Korean,1,3.8,1500.0
+Puducherry,Malaysian,1,3.8,1500.0
+Puducherry,Mangalorean,1,3.5,1200.0
+Puducherry,Seafood,1,3.8,1500.0
+Puducherry,South Indian,1,3.8,1500.0
+Puducherry,Thai,1,3.8,1500.0
+Puducherry,Vietnamese,1,3.8,1500.0
+Pune,North Indian,11,4.2,1481.8181818181818
+Pune,Continental,9,4.122222222222223,1305.5555555555557
+Pune,Italian,6,4.166666666666667,958.3333333333334
+Pune,Finger Food,4,3.9749999999999996,1175.0
+Pune,European,3,4.433333333333334,1133.3333333333333
+Pune,Mughlai,3,4.366666666666666,1833.3333333333333
+Pune,Asian,2,4.3,1500.0
+Pune,Burmese,2,4.3,1900.0
+Pune,Cafe,2,4.15,825.0
+Pune,Chinese,2,3.9000000000000004,1800.0
+Pune,Desserts,2,4.449999999999999,1250.0
+Pune,Mediterranean,2,3.8499999999999996,1800.0
+Pune,Modern Indian,2,4.199999999999999,1500.0
+Pune,American,1,4.5,1800.0
+Pune,Charcoal Grill,1,4.4,900.0
+Pune,German,1,4.0,1000.0
+Pune,Greek,1,4.1,1000.0
+Pune,Indonesian,1,4.4,900.0
+Pune,Mexican,1,4.5,1800.0
+Pune,North Eastern,1,4.2,1400.0
+Pune,Spanish,1,4.1,1000.0
+Pune,Tex-Mex,1,4.5,1800.0
+Pune,Thai,1,4.4,900.0
+Quezon City,Filipino,1,4.8,5632.0
+Quezon City,Mexican,1,4.8,5632.0
+Ranchi,North Indian,16,3.46875,790.625
+Ranchi,Chinese,14,3.4714285714285715,628.5714285714286
+Ranchi,South Indian,6,3.516666666666667,616.6666666666666
+Ranchi,Continental,4,3.5,1100.0
+Ranchi,Fast Food,3,3.3666666666666667,633.3333333333334
+Ranchi,Cafe,2,3.45,750.0
+Ranchi,European,2,3.7,1000.0
+Ranchi,Italian,2,3.5,750.0
+Ranchi,Mexican,1,3.3,500.0
+Ranchi,Pizza,1,3.5,700.0
+Ranchi,Street Food,1,3.5,200.0
+Randburg,Cafe,1,4.3,1166.0
+Rest of Hawaii,Seafood,8,4.4125,4591.60625
+Rest of Hawaii,Hawaiian,7,4.4,3611.9500000000003
+Rest of Hawaii,American,5,4.38,2576.07
+Rest of Hawaii,Asian,4,4.4,3100.825
+Rest of Hawaii,Breakfast,4,4.2,1669.675
+Rest of Hawaii,Burger,3,4.3999999999999995,3339.35
+Rest of Hawaii,Steak,3,4.333333333333333,4770.5
+Rest of Hawaii,Japanese,2,4.550000000000001,2385.25
+Rest of Hawaii,Bar Food,1,4.7,3339.35
+Rest of Hawaii,European,1,4.2,6678.7
+Rest of Hawaii,Pizza,1,4.7,3339.35
+Rest of Hawaii,Sushi,1,4.2,3816.4
+Rest of Hawaii,Unknown,1,4.7,954.1
+Rio de Janeiro,Brazilian,13,4.130769230769231,2367.923076923077
+Rio de Janeiro,Bar Food,7,3.8857142857142857,1820.142857142857
+Rio de Janeiro,Healthy Food,2,4.65,1395.0
+Rio de Janeiro,Juices,2,4.65,1395.0
+Rio de Janeiro,Seafood,2,4.1,3627.0
+Rio de Janeiro,Bakery,1,4.4,2232.0
+Rio de Janeiro,Beverages,1,4.5,1674.0000000000002
+Rio de Janeiro,Burger,1,4.8,1116.0
+Rio de Janeiro,Cafe,1,4.8,1860.0
+Rio de Janeiro,Desserts,1,4.8,1860.0
+Rio de Janeiro,Fast Food,1,4.5,1674.0000000000002
+Rio de Janeiro,Italian,1,4.0,2790.0
+Rio de Janeiro,Japanese,1,4.6,4650.0
+Rio de Janeiro,Lebanese,1,4.2,3162.0000000000005
+Rio de Janeiro,Pizza,1,4.6,1674.0000000000002
+Rio de Janeiro,Sandwich,1,4.4,2232.0
+San Juan City,Filipino,1,4.2,7040.0
+San Juan City,Korean,1,4.3,4928.0
+Sandton,Italian,4,4.275,2346.575
+Sandton,Burger,2,4.15,1894.75
+Sandton,Contemporary,2,4.4,2040.5
+Sandton,European,2,4.3,2317.425
+Sandton,Grill,2,4.35,2332.0
+Sandton,Mexican,2,4.25,1690.7
+Sandton,Pizza,2,4.1,2215.4
+Sandton,Steak,2,4.35,2040.5
+Sandton,Beverages,1,4.4,2332.0
+Sandton,Desserts,1,4.4,2332.0
+Sandton,Mediterranean,1,4.4,2623.5
+Sandton,Seafood,1,4.4,2332.0
+Sandton,South African,1,4.6,3177.35
+Sandton,Sushi,1,4.3,2332.0
+Sandton,Tapas,1,4.3,2332.0
+Santa Rosa,Italian,2,3.8,5808.0
+Santa Rosa,American,1,3.6,5632.0
+Santa Rosa,Cafe,1,3.6,5632.0
+Santa Rosa,Filipino,1,3.6,5632.0
+Santa Rosa,Pizza,1,4.0,5984.0
+Sao Paulo,Brazilian,10,3.02,2018.1
+Sao Paulo,Beverages,3,4.666666666666667,3038.0
+Sao Paulo,Italian,3,4.3999999999999995,4960.0
+Sao Paulo,BBQ,2,4.35,5115.0
+Sao Paulo,French,2,4.0,2976.0000000000005
+Sao Paulo,Grill,2,4.1,3487.5
+Sao Paulo,Sushi,2,3.7,3255.0
+Sao Paulo,Arabian,1,4.1,2232.0
+Sao Paulo,Bar Food,1,4.6,1302.0
+Sao Paulo,Burger,1,4.3,2232.0
+Sao Paulo,Gourmet Fast Food,1,4.3,2232.0
+Sao Paulo,Indian,1,3.1,1302.0
+Sao Paulo,International,1,4.8,5580.0
+Sao Paulo,Japanese,1,3.5,2232.0
+Sao Paulo,Lebanese,1,4.1,2232.0
+Sao Paulo,Mineira,1,0.0,1209.0
+Sao Paulo,North Eastern,1,4.4,1860.0
+Sao Paulo,Pizza,1,4.5,4650.0
+Sao Paulo,Steak,1,4.4,4650.0
+Savannah,American,8,4.1375,3637.50625
+Savannah,Breakfast,5,4.159999999999999,2099.02
+Savannah,Sandwich,5,4.279999999999999,2099.02
+Savannah,Seafood,4,4.0,5247.55
+Savannah,Southern,4,4.125,4174.1875
+Savannah,Bar Food,2,4.050000000000001,2385.25
+Savannah,Desserts,2,4.449999999999999,954.1
+Savannah,Steak,2,3.9,5247.55
+Savannah,Burger,1,4.7,3816.4
+Savannah,Cafe,1,4.3,2385.25
+Savannah,Cajun,1,4.1,3816.4
+Savannah,Coffee and Tea,1,4.3,954.1
+Savannah,Diner,1,4.3,2385.25
+Savannah,Ice Cream,1,4.6,954.1
+Savannah,International,1,4.5,2385.25
+Savannah,Mediterranean,1,4.5,2385.25
+Savannah,Pizza,1,4.0,6678.7
+Savannah,Unknown,1,3.9,954.1
+Savannah,Vegetarian,1,4.2,954.1
+Secunderabad,Cafe,1,4.6,800.0
+Secunderabad,Chinese,1,4.4,850.0
+Secunderabad,Continental,1,4.6,800.0
+Secunderabad,North Indian,1,4.4,850.0
+Sharjah,Indian,7,4.214285714285714,2234.5714285714284
+Sharjah,Chinese,4,4.025,2411.475
+Sharjah,American,3,4.033333333333333,4692.599999999999
+Sharjah,Fast Food,3,3.433333333333333,1477.3
+Sharjah,North Indian,3,4.333333333333333,1824.8999999999999
+Sharjah,Pakistani,3,4.133333333333333,2346.2999999999997
+Sharjah,South Indian,3,3.933333333333333,2389.75
+Sharjah,Arabian,2,4.2,1433.85
+Sharjah,Bakery,2,4.35,2607.0
+Sharjah,Burger,2,3.9499999999999997,3910.5
+Sharjah,Cafe,2,4.35,3389.1
+Sharjah,Mexican,2,4.0,6517.5
+Sharjah,Middle Eastern,2,4.2,1433.85
+Sharjah,Mughlai,2,4.15,2607.0
+Sharjah,Afghani,1,4.1,2346.3
+Sharjah,African,1,4.2,4171.2
+Sharjah,Biryani,1,4.1,3128.4
+Sharjah,Desserts,1,4.5,3910.5
+Sharjah,Lebanese,1,3.9,2867.7
+Sharjah,Pizza,1,2.4,2085.6
+Sharjah,Portuguese,1,4.2,4171.2
+Sharjah,Thai,1,3.8,3389.1
+Singapore,American,5,3.46,10972.15
+Singapore,French,4,3.675,30888.987500000003
+Singapore,Singaporean,4,3.175,11210.675
+Singapore,Bakery,3,3.733333333333333,3816.4
+Singapore,Cafe,3,3.366666666666667,5247.55
+Singapore,Chinese,3,3.4333333333333336,20036.100000000002
+Singapore,Seafood,3,3.5666666666666664,17491.833333333332
+Singapore,Continental,2,3.5999999999999996,24806.6
+Singapore,European,2,3.8,26237.75
+Singapore,Fusion,2,3.5,5247.549999999999
+Singapore,Italian,2,3.65,7155.75
+Singapore,Asian,1,3.8,20990.2
+Singapore,Australian,1,3.1,5724.599999999999
+Singapore,Burger,1,3.8,4770.5
+Singapore,Cantonese,1,3.9,28623.0
+Singapore,Dim Sum,1,3.9,28623.0
+Singapore,Fast Food,1,3.2,5724.599999999999
+Singapore,Finger Food,1,3.9,3816.4
+Singapore,German,1,3.1,5724.599999999999
+Singapore,Greek,1,3.2,7155.75
+Singapore,Indian,1,3.0,2862.3
+Singapore,Japanese,1,3.2,7632.799999999999
+Singapore,Malay,1,3.0,2862.3
+Singapore,Mediterranean,1,3.8,47705.0
+Singapore,Mexican,1,3.2,9063.95
+Singapore,Spanish,1,3.2,7155.75
+Singapore,Steak,1,4.0,25760.7
+Singapore,Turkish,1,3.2,7155.75
+Singapore,Western,1,3.2,5724.599999999999
+Sioux City,American,6,3.6999999999999997,2385.25
+Sioux City,Steak,4,3.7,4531.975
+Sioux City,Asian,3,3.8000000000000003,1431.1499999999999
+Sioux City,Pizza,3,3.8000000000000003,2385.25
+Sioux City,Seafood,3,3.6333333333333333,4770.5
+Sioux City,Burger,2,3.7,2385.25
+Sioux City,Chinese,2,3.7,2385.25
+Sioux City,Japanese,2,3.8,3816.4
+Sioux City,Mexican,2,3.75,1669.675
+Sioux City,Sushi,2,3.8,3816.4
+Sioux City,Vegetarian,2,3.9,954.1
+Sioux City,BBQ,1,3.6,954.1
+Sioux City,Bar Food,1,3.6,954.1
+Sioux City,Cajun,1,3.8,2385.25
+Sioux City,Caribbean,1,3.8,2385.25
+Sioux City,Desserts,1,3.9,954.1
+Sioux City,Diner,1,3.9,954.1
+Sioux City,Fast Food,1,3.8,954.1
+Sioux City,Italian,1,4.0,2385.25
+Sioux City,Thai,1,4.0,954.1
+Sioux City,Vietnamese,1,3.8,954.1
+Surat,Italian,9,3.988888888888889,983.3333333333334
+Surat,Chinese,6,3.9333333333333336,933.3333333333334
+Surat,Mexican,6,3.9,1050.0
+Surat,North Indian,5,3.94,880.0
+Surat,Asian,3,3.8000000000000003,800.0
+Surat,Continental,3,4.066666666666666,1016.6666666666666
+Surat,Desserts,3,3.8666666666666667,550.0
+Surat,Thai,3,3.8333333333333335,800.0
+Surat,Cafe,2,3.95,575.0
+Surat,Lebanese,2,3.95,775.0
+Surat,South Indian,2,4.05,375.0
+Surat,Gujarati,1,3.9,550.0
+Surat,Ice Cream,1,3.6,250.0
+Surat,Mediterranean,1,4.2,1400.0
+Surat,Modern Indian,1,3.4,1500.0
+Surat,Pizza,1,4.1,800.0
+Tagaytay City,Filipino,1,4.5,8448.0
+Taguig City,American,3,4.533333333333334,14784.0
+Taguig City,Cafe,2,4.45,7392.0
+Taguig City,Italian,2,4.45,11616.0
+Taguig City,Seafood,2,4.6,16896.0
+Taguig City,Asian,1,4.5,12672.0
+Taguig City,Bakery,1,4.4,10560.0
+Taguig City,Desserts,1,4.5,4224.0
+Taguig City,Japanese,1,4.7,21120.0
+Taguig City,Korean,1,4.5,4224.0
+Taguig City,Mediterranean,1,4.7,21120.0
+Tampa Bay,Seafood,5,4.279999999999999,3243.94
+Tampa Bay,American,4,4.35,3816.4
+Tampa Bay,Steak,4,4.35,4531.975
+Tampa Bay,Breakfast,3,4.266666666666667,3339.35
+Tampa Bay,Italian,3,4.6000000000000005,2385.25
+Tampa Bay,Mexican,3,4.533333333333333,2385.25
+Tampa Bay,Spanish,3,4.3,2862.2999999999997
+Tampa Bay,Bar Food,2,4.4,3100.825
+Tampa Bay,Desserts,2,4.7,5247.55
+Tampa Bay,International,2,4.35,5247.55
+Tampa Bay,Sandwich,2,4.3,3100.825
+Tampa Bay,Tapas,2,4.25,2385.25
+Tampa Bay,BBQ,1,4.6,2385.25
+Tampa Bay,British,1,4.1,2385.25
+Tampa Bay,Burger,1,4.4,2385.25
+Tampa Bay,Caribbean,1,4.6,2385.25
+Tampa Bay,Cuban,1,4.4,3816.4
+Tampa Bay,Deli,1,4.9,954.1
+Tampa Bay,European,1,4.9,3816.4
+Tampa Bay,German,1,4.9,3816.4
+Tampa Bay,Latin American,1,4.6,2385.25
+Tampa Bay,Southern,1,4.8,3816.4
+Tampa Bay,Southwestern,1,4.6,2385.25
+Tampa Bay,Vegetarian,1,4.5,954.1
+Tangerang,Indonesian,2,4.300000000000001,1325.0
+Tangerang,Sunda,1,4.9,1060.0
+Tanunda,Australian,1,4.4,2862.3
+Tanunda,Modern Australian,1,4.4,2862.3
+Trentham East,Australian,1,4.1,1908.2
+Vadodara,North Indian,8,3.8625,962.5
+Vadodara,Italian,7,4.071428571428571,985.7142857142857
+Vadodara,Mexican,5,3.9200000000000004,920.0
+Vadodara,Cafe,4,4.05,550.0
+Vadodara,Chinese,4,3.7249999999999996,750.0
+Vadodara,Continental,3,4.066666666666666,1166.6666666666667
+Vadodara,Fast Food,3,3.8666666666666667,400.0
+Vadodara,Mughlai,3,4.1,1100.0
+Vadodara,Thai,3,3.7999999999999994,866.6666666666666
+Vadodara,Asian,2,3.9,1000.0
+Vadodara,Gujarati,1,4.0,600.0
+Vadodara,Mediterranean,1,4.6,1300.0
+Vadodara,Pizza,1,4.1,600.0
+Vadodara,South Indian,1,4.5,400.0
+Valdosta,Mexican,4,3.525,1669.675
+Valdosta,Seafood,3,3.766666666666667,3816.4
+Valdosta,Southern,3,3.8666666666666667,3339.35
+Valdosta,American,2,3.8,2385.25
+Valdosta,Bar Food,2,3.5999999999999996,1669.675
+Valdosta,Burger,2,3.75,2385.25
+Valdosta,Italian,2,3.75,3100.825
+Valdosta,Japanese,2,3.7,4531.975
+Valdosta,Steak,2,3.6,5247.55
+Valdosta,Sushi,2,3.7,4531.975
+Valdosta,Asian,1,3.8,3339.35
+Valdosta,BBQ,1,4.1,2385.25
+Valdosta,Chinese,1,3.8,3339.35
+Valdosta,Fast Food,1,3.7,3816.4
+Valdosta,Greek,1,3.8,3816.4
+Valdosta,Indian,1,3.8,2385.25
+Valdosta,Middle Eastern,1,3.8,2385.25
+Valdosta,Pizza,1,3.7,2385.25
+Valdosta,Sandwich,1,3.7,2385.25
+Valdosta,Thai,1,3.8,3339.35
+Valdosta,Vegetarian,1,3.8,954.1
+Varanasi,North Indian,12,3.408333333333333,608.3333333333334
+Varanasi,Chinese,6,3.4333333333333336,550.0
+Varanasi,Cafe,4,3.325,487.5
+Varanasi,Fast Food,2,3.45,675.0
+Varanasi,Mughlai,2,3.45,850.0
+Varanasi,South Indian,2,3.55,375.0
+Varanasi,Street Food,2,3.9499999999999997,150.0
+Varanasi,American,1,3.5,1000.0
+Varanasi,Beverages,1,3.7,300.0
+Varanasi,Continental,1,3.3,600.0
+Varanasi,Japanese,1,3.5,1000.0
+Varanasi,Pizza,1,3.7,700.0
+Vernonia,Coffee and Tea,1,4.3,954.1
+Vernonia,Mediterranean,1,4.3,954.1
+Victor Harbor,Australian,1,3.6,1908.2
+Victor Harbor,Coffee and Tea,1,3.6,1908.2
+Victor Harbor,Tapas,1,3.6,1908.2
+Vineland Station,Italian,1,4.3,6678.7
+Vineland Station,Mediterranean,1,4.3,6678.7
+Vineland Station,Pizza,1,4.3,6678.7
+Vizag,North Indian,10,3.9200000000000004,820.0
+Vizag,Chinese,8,3.9250000000000003,775.0
+Vizag,Biryani,5,3.84,510.0
+Vizag,Fast Food,5,4.04,630.0
+Vizag,Continental,4,3.9,1100.0
+Vizag,Andhra,3,3.6999999999999997,550.0
+Vizag,Cafe,3,3.6999999999999997,633.3333333333334
+Vizag,Pizza,3,4.3999999999999995,600.0
+Vizag,American,2,3.8,1250.0
+Vizag,Italian,2,4.25,1000.0
+Vizag,Seafood,2,3.6,600.0
+Vizag,South Indian,2,4.15,450.0
+Vizag,Thai,2,4.1,1400.0
+Vizag,BBQ,1,3.6,500.0
+Vizag,Burger,1,4.3,600.0
+Vizag,Burmese,1,4.4,1300.0
+Vizag,Cajun,1,3.6,500.0
+Vizag,Japanese,1,4.4,1300.0
+Vizag,Mediterranean,1,4.9,1600.0
+Vizag,Mughlai,1,3.6,500.0
+Vizag,Tibetan,1,4.4,1300.0
+Vizag,Vietnamese,1,4.4,1300.0
+Waterloo,American,5,3.62,2385.25
+Waterloo,Chinese,3,3.733333333333333,1431.1499999999999
+Waterloo,Pizza,3,3.6333333333333333,2385.25
+Waterloo,Sandwich,3,3.6,2385.25
+Waterloo,Sushi,3,3.766666666666667,2862.2999999999997
+Waterloo,Desserts,2,3.8,954.1
+Waterloo,Italian,2,3.6500000000000004,3100.825
+Waterloo,Japanese,2,3.8499999999999996,3100.825
+Waterloo,Mexican,2,3.6,2385.25
+Waterloo,Steak,2,3.75,2385.25
+Waterloo,Asian,1,3.7,2385.25
+Waterloo,BBQ,1,3.6,2385.25
+Waterloo,Bar Food,1,3.7,954.1
+Waterloo,Beverages,1,3.7,954.1
+Waterloo,Breakfast,1,3.6,954.1
+Waterloo,Burger,1,3.6,2385.25
+Waterloo,Coffee and Tea,1,3.7,954.1
+Waterloo,Indian,1,3.2,954.1
+Waterloo,Middle Eastern,1,3.2,954.1
+Waterloo,Seafood,1,3.6,3816.4
+Waterloo,Tapas,1,3.6,2385.25
+Waterloo,Thai,1,3.5,954.1
+Waterloo,Vegetarian,1,3.7,2385.25
+Weirton,Burger,1,3.9,2385.25
+Weirton,Greek,1,3.9,2385.25
+Weirton,Sandwich,1,3.9,2385.25
+Wellington City,Cafe,9,4.2555555555555555,3430.516666666667
+Wellington City,European,4,4.275,4450.400000000001
+Wellington City,Kiwi,4,4.2,5423.925
+Wellington City,American,2,4.1,3198.7250000000004
+Wellington City,Asian,2,4.0,4728.55
+Wellington City,Italian,2,4.35,4867.625
+Wellington City,Desserts,1,4.0,2781.5
+Wellington City,Fast Food,1,4.5,1390.75
+Wellington City,Fish and Chips,1,4.3,2225.2000000000003
+Wellington City,French,1,4.4,11126.0
+Wellington City,Ice Cream,1,4.0,2781.5
+Wellington City,Japanese,1,3.7,3894.1
+Wellington City,Malaysian,1,4.4,2781.5
+Wellington City,Mediterranean,1,4.2,4450.400000000001
+Wellington City,Mexican,1,4.4,2781.5
+Wellington City,Seafood,1,4.1,5006.7
+Wellington City,Vietnamese,1,4.3,2225.2000000000003
+Winchester Bay,Burger,1,3.2,2385.25
+Winchester Bay,Seafood,1,3.2,2385.25
+Winchester Bay,Steak,1,3.2,2385.25
+Yorkton,Asian,1,3.3,2385.25
