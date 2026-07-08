@@ -5,13 +5,17 @@ import hmac
 import json
 import os
 import secrets
+import shutil
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi import Depends, FastAPI, File, Form, Header, HTTPException, Query, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from sqlalchemy import (
     Boolean,
@@ -36,6 +40,14 @@ DATABASE_URL = os.getenv(
 )
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATASET_PATH = os.getenv("DATASET_PATH", str(PROJECT_ROOT / "Dataset" / "cleaned_dataset.csv"))
+FRONTEND_DIR = PROJECT_ROOT / "frontend"
+FRONTEND_DIST_DIR = FRONTEND_DIR / "dist"
+FRONTEND_ASSETS_DIR = FRONTEND_DIR / "assets"
+FRONTEND_DIST_ASSETS_DIR = FRONTEND_DIST_DIR / "assets"
+ML_DIR = PROJECT_ROOT / "ml"
+ANALYSIS_DIR = PROJECT_ROOT / "analysis"
+UPLOADS_DIR = PROJECT_ROOT / "uploads"
+MENU_UPLOADS_DIR = UPLOADS_DIR / "menu_items"
 
 engine = create_engine(DATABASE_URL, pool_pre_ping=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
@@ -146,6 +158,22 @@ class RecommendationHistory(Base):
     created_at = Column(DateTime(timezone=True), default=utc_now, nullable=False)
 
 
+class MenuItem(Base):
+    __tablename__ = "menu_items"
+
+    menu_item_id = Column(Integer, primary_key=True, index=True)
+    restaurant_id = Column(Integer, ForeignKey("restaurants.restaurant_id", ondelete="CASCADE"), nullable=False, index=True)
+    item_name = Column(String(255), nullable=False)
+    description = Column(Text)
+    category = Column(String(100))
+    price_inr = Column(Float)
+    is_available = Column(Boolean, default=True)
+    photo_url = Column(Text)
+    created_by_user_id = Column(Integer, ForeignKey("users.user_id", ondelete="SET NULL"))
+    created_at = Column(DateTime(timezone=True), default=utc_now, nullable=False)
+    updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False)
+
+
 class UserCreate(BaseModel):
     name: str
     email: str
@@ -201,6 +229,18 @@ class RestaurantResponse(BaseModel):
     restaurant_name: str
     city: str | None = None
     cuisines: list[str] = Field(default_factory=list)
+    message: str
+
+
+class MenuItemResponse(BaseModel):
+    menu_item_id: int
+    restaurant_id: int
+    item_name: str
+    description: str | None = None
+    category: str | None = None
+    price_inr: float | None = None
+    is_available: bool
+    photo_url: str | None = None
     message: str
 
 
@@ -795,6 +835,18 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+if FRONTEND_DIST_ASSETS_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIST_ASSETS_DIR)), name="assets")
+elif FRONTEND_ASSETS_DIR.exists():
+    app.mount("/assets", StaticFiles(directory=str(FRONTEND_ASSETS_DIR)), name="assets")
+if ML_DIR.exists():
+    app.mount("/ml", StaticFiles(directory=str(ML_DIR)), name="ml")
+if ANALYSIS_DIR.exists():
+    app.mount("/analysis", StaticFiles(directory=str(ANALYSIS_DIR)), name="analysis")
+UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
+MENU_UPLOADS_DIR.mkdir(parents=True, exist_ok=True)
+app.mount("/uploads", StaticFiles(directory=str(UPLOADS_DIR)), name="uploads")
+
 
 @app.on_event("startup")
 def on_startup() -> None:
@@ -804,6 +856,18 @@ def on_startup() -> None:
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+@app.get("/", include_in_schema=False)
+def frontend_index() -> FileResponse:
+    index_path = FRONTEND_DIST_DIR / "index.html"
+    if not index_path.exists():
+        index_path = FRONTEND_DIR / "index.html"
+    if not index_path.exists():
+        raise HTTPException(status_code=404, detail="Frontend index.html not found")
+    response = FileResponse(index_path)
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+    return response
 
 
 def to_user_response(user: User) -> UserResponse:
@@ -957,6 +1021,63 @@ def update_assigned_restaurant(
         city=restaurant.city,
         cuisines=[cuisine.cuisine_name for cuisine in restaurant.cuisines],
         message="Restaurant updated",
+    )
+
+
+def save_menu_photo(photo: UploadFile | None) -> str | None:
+    if photo is None or not photo.filename:
+        return None
+    content_type = (photo.content_type or "").lower()
+    if not content_type.startswith("image/"):
+        raise HTTPException(status_code=400, detail="Menu photo must be an image")
+    suffix = Path(photo.filename).suffix.lower() or ".jpg"
+    filename = f"{uuid.uuid4().hex}{suffix}"
+    destination = MENU_UPLOADS_DIR / filename
+    with destination.open("wb") as buffer:
+        shutil.copyfileobj(photo.file, buffer)
+    return f"/uploads/menu_items/{filename}"
+
+
+@app.post("/manager/restaurants/{restaurant_id}/menu-items", response_model=MenuItemResponse)
+def create_menu_item(
+    restaurant_id: int,
+    item_name: str = Form(...),
+    description: str | None = Form(default=None),
+    category: str | None = Form(default=None),
+    price_inr: float | None = Form(default=None),
+    is_available: bool = Form(default=True),
+    photo: UploadFile | None = File(default=None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin_or_assigned_manager),
+) -> MenuItemResponse:
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        raise HTTPException(status_code=404, detail="Restaurant not found")
+
+    menu_item = MenuItem(
+        restaurant_id=restaurant_id,
+        item_name=item_name.strip(),
+        description=description,
+        category=category,
+        price_inr=price_inr,
+        is_available=is_available,
+        photo_url=save_menu_photo(photo),
+        created_by_user_id=current_user.user_id,
+    )
+    db.add(menu_item)
+    db.commit()
+    db.refresh(menu_item)
+
+    return MenuItemResponse(
+        menu_item_id=menu_item.menu_item_id,
+        restaurant_id=menu_item.restaurant_id,
+        item_name=menu_item.item_name,
+        description=menu_item.description,
+        category=menu_item.category,
+        price_inr=menu_item.price_inr,
+        is_available=menu_item.is_available,
+        photo_url=menu_item.photo_url,
+        message="Menu item created",
     )
 
 

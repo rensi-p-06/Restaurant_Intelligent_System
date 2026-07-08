@@ -10,6 +10,7 @@ const views = {
 
 const apiBaseInput = document.querySelector("#apiBase");
 const authApiBaseInput = document.querySelector("#authApiBase");
+const authApiBaseRegInput = document.querySelector("#authApiBaseReg");
 const currentUserIdInput = document.querySelector("#currentUserId");
 const apiStatus = document.querySelector("#apiStatus");
 const pageTitle = document.querySelector("#pageTitle");
@@ -30,7 +31,12 @@ function apiBase() {
 }
 
 function syncApiBaseFromAuth() {
-  apiBaseInput.value = authApiBaseInput.value;
+  const activeApiInput = document.querySelector("[data-auth-panel]:not(.hidden) input[id^='authApiBase']");
+  apiBaseInput.value = (activeApiInput || authApiBaseInput).value;
+  authApiBaseInput.value = apiBaseInput.value;
+  if (authApiBaseRegInput) {
+    authApiBaseRegInput.value = apiBaseInput.value;
+  }
 }
 
 function showApp(user) {
@@ -91,6 +97,12 @@ function closeMenu() {
 
 document.querySelectorAll("[data-auth-tab]").forEach((button) => {
   button.addEventListener("click", () => setAuthMode(button.dataset.authTab));
+});
+
+[authApiBaseInput, authApiBaseRegInput].filter(Boolean).forEach((input) => {
+  input.addEventListener("input", () => {
+    apiBaseInput.value = input.value;
+  });
 });
 
 function setAuthMode(mode) {
