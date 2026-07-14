@@ -1,5 +1,6 @@
 import argparse
 import base64
+import csv
 import hashlib
 import hmac
 import json
@@ -7,8 +8,10 @@ import os
 import secrets
 import shutil
 import uuid
+import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 import numpy as np
 import pandas as pd
@@ -40,6 +43,12 @@ DATABASE_URL = os.getenv(
 )
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATASET_PATH = os.getenv("DATASET_PATH", str(PROJECT_ROOT / "Dataset" / "cleaned_dataset.csv"))
+ADMIN_ADDED_RESTAURANTS_PATH = Path(
+    os.getenv("ADMIN_ADDED_RESTAURANTS_PATH", str(PROJECT_ROOT / "Dataset" / "admin_added_restaurants.csv"))
+)
+ADMIN_ADDED_RESTAURANTS_XLSX_PATH = Path(
+    os.getenv("ADMIN_ADDED_RESTAURANTS_XLSX_PATH", str(PROJECT_ROOT / "Dataset" / "admin_added_restaurants.xlsx"))
+)
 FIGMA_FRONTEND_DIR = PROJECT_ROOT / "Frontend"
 DEFAULT_FRONTEND_DIR = FIGMA_FRONTEND_DIR
 FRONTEND_DIR = Path(os.getenv("FRONTEND_DIR", str(DEFAULT_FRONTEND_DIR)))
@@ -250,9 +259,11 @@ class RecommendationRequest(BaseModel):
     user_id: int | None = None
     cuisines: list[str] = Field(default_factory=list)
     city: str | None = None
+    cities: list[str] = Field(default_factory=list)
     price_range: int | None = Field(default=None, ge=1, le=4)
     min_rating: float | None = Field(default=None, ge=0, le=5)
     max_cost: float | None = Field(default=None, ge=0)
+    min_votes: int | None = Field(default=None, ge=0)
     cost_category: str | None = None
     rating_category: str | None = None
     popularity_category: str | None = None
@@ -292,6 +303,16 @@ class RecommendationItem(BaseModel):
 class RecommendationResponse(BaseModel):
     count: int
     recommendations: list[RecommendationItem]
+
+
+class RecommendationMetadataResponse(BaseModel):
+    cuisines: list[str]
+    cities: list[str]
+    cost_categories: list[str]
+    restaurant_count: int
+    cuisine_count: int
+    city_count: int
+    admin_added_count: int
 
 
 class ImportResponse(BaseModel):
@@ -588,6 +609,101 @@ def apply_restaurant_payload(db: Session, restaurant: Restaurant, payload: Resta
     return restaurant
 
 
+def append_admin_added_restaurant_export(restaurant: Restaurant) -> None:
+    ADMIN_ADDED_RESTAURANTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    file_exists = ADMIN_ADDED_RESTAURANTS_PATH.exists()
+    fieldnames = [
+        "Restaurant ID",
+        "Restaurant Name",
+        "City",
+        "Locality",
+        "Address",
+        "Cuisines",
+        "Average Cost INR",
+        "Price range",
+        "Aggregate rating",
+        "Votes",
+        "Has Online delivery",
+        "Has Table booking",
+        "Created At",
+    ]
+    row = {
+        "Restaurant ID": restaurant.restaurant_id,
+        "Restaurant Name": restaurant.restaurant_name,
+        "City": restaurant.city or "",
+        "Locality": restaurant.locality or "",
+        "Address": restaurant.address or "",
+        "Cuisines": ", ".join(cuisine.cuisine_name for cuisine in restaurant.cuisines),
+        "Average Cost INR": restaurant.average_cost_inr if restaurant.average_cost_inr is not None else "",
+        "Price range": restaurant.price_range if restaurant.price_range is not None else "",
+        "Aggregate rating": restaurant.aggregate_rating if restaurant.aggregate_rating is not None else "",
+        "Votes": restaurant.votes if restaurant.votes is not None else "",
+        "Has Online delivery": restaurant.has_online_delivery or "",
+        "Has Table booking": restaurant.has_table_booking or "",
+        "Created At": restaurant.created_at.isoformat() if restaurant.created_at else utc_now().isoformat(),
+    }
+    with ADMIN_ADDED_RESTAURANTS_PATH.open("a", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        if not file_exists:
+            writer.writeheader()
+        writer.writerow(row)
+    write_admin_added_restaurants_workbook(fieldnames)
+
+
+def write_admin_added_restaurants_workbook(fieldnames: list[str]) -> None:
+    if not ADMIN_ADDED_RESTAURANTS_PATH.exists():
+        return
+    with ADMIN_ADDED_RESTAURANTS_PATH.open("r", newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+
+    def cell(value: object) -> str:
+        return f'<c t="inlineStr"><is><t>{escape(str(value or ""))}</t></is></c>'
+
+    sheet_rows = [
+        f'<row r="1">{"".join(cell(name) for name in fieldnames)}</row>'
+    ]
+    for row_index, row in enumerate(rows, start=2):
+        sheet_rows.append(f'<row r="{row_index}">{"".join(cell(row.get(name, "")) for name in fieldnames)}</row>')
+
+    worksheet = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">'
+        f'<sheetData>{"".join(sheet_rows)}</sheetData>'
+        '</worksheet>'
+    )
+    ADMIN_ADDED_RESTAURANTS_XLSX_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(ADMIN_ADDED_RESTAURANTS_XLSX_PATH, "w", zipfile.ZIP_DEFLATED) as workbook:
+        workbook.writestr("[Content_Types].xml", (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">'
+            '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
+            '<Default Extension="xml" ContentType="application/xml"/>'
+            '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>'
+            '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>'
+            '</Types>'
+        ))
+        workbook.writestr("_rels/.rels", (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>'
+            '</Relationships>'
+        ))
+        workbook.writestr("xl/workbook.xml", (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" '
+            'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+            '<sheets><sheet name="Admin Added Restaurants" sheetId="1" r:id="rId1"/></sheets>'
+            '</workbook>'
+        ))
+        workbook.writestr("xl/_rels/workbook.xml.rels", (
+            '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+            '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>'
+            '</Relationships>'
+        ))
+        workbook.writestr("xl/worksheets/sheet1.xml", worksheet)
+
+
 def import_restaurants_from_csv(db: Session, csv_path: str | None = None) -> tuple[int, int]:
     data = load_dataset(csv_path)
     cuisine_names = set()
@@ -670,25 +786,42 @@ def score_recommendations(data: pd.DataFrame, request: RecommendationRequest) ->
     scored["match_reasons"] = ""
 
     preferred_cuisines = [c.lower() for c in request.cuisines]
+    cuisine_sets = scored["cuisines"].fillna("").apply(
+        lambda value: {c.strip().lower() for c in str(value).split(",") if c.strip()}
+    )
+
     if preferred_cuisines:
-        cuisine_sets = scored["cuisines"].fillna("").apply(
-            lambda value: {c.strip().lower() for c in str(value).split(",") if c.strip()}
-        )
+        cuisine_match = cuisine_sets.apply(lambda cuisines: bool(cuisines.intersection(preferred_cuisines)))
+        scored = scored.loc[cuisine_match].copy()
+        cuisine_sets = cuisine_sets.loc[scored.index]
+        if scored.empty:
+            return scored
+
         cuisine_ratio = cuisine_sets.apply(
             lambda cuisines: len(cuisines.intersection(preferred_cuisines)) / len(preferred_cuisines)
         )
         scored["score"] += cuisine_ratio * 40
         scored.loc[cuisine_ratio > 0, "match_reasons"] += "cuisine match; "
 
-    if request.city:
-        match = scored["city"].fillna("").str.lower() == request.city.lower()
-        scored["score"] += match.astype(float) * 20
-        scored.loc[match, "match_reasons"] += "city match; "
+    preferred_cities = [city.lower() for city in request.cities if city.strip()]
+    if request.city and not preferred_cities:
+        preferred_cities = [request.city.lower()]
+
+    if preferred_cities:
+        match = scored["city"].fillna("").str.lower().isin(preferred_cities)
+        scored = scored.loc[match].copy()
+        if scored.empty:
+            return scored
+        scored["score"] += 20
+        scored["match_reasons"] += "city match; "
 
     if request.price_range is not None:
         distance = (scored["price_range"].fillna(request.price_range) - request.price_range).abs()
-        scored["score"] += (1 - (distance / 3).clip(0, 1)) * 12
-        scored.loc[distance == 0, "match_reasons"] += "price match; "
+        scored = scored.loc[distance == 0].copy()
+        if scored.empty:
+            return scored
+        scored["score"] += 12
+        scored["match_reasons"] += "price match; "
 
     if request.min_rating is not None:
         scored = scored.loc[scored["aggregate_rating"].fillna(0) >= request.min_rating].copy()
@@ -701,8 +834,18 @@ def score_recommendations(data: pd.DataFrame, request: RecommendationRequest) ->
 
     if request.max_cost is not None:
         cost = scored["average_cost_inr"].fillna(request.max_cost)
+        scored = scored.loc[cost <= request.max_cost].copy()
+        if scored.empty:
+            return scored
+        cost = scored["average_cost_inr"].fillna(request.max_cost)
         scored["score"] += (1 - ((cost - request.max_cost).clip(lower=0) / max(request.max_cost, 1)).clip(0, 1)) * 8
-        scored.loc[cost <= request.max_cost, "match_reasons"] += "within budget; "
+        scored["match_reasons"] += "within budget; "
+
+    if request.min_votes is not None:
+        scored = scored.loc[scored["votes"].fillna(0) >= request.min_votes].copy()
+        if scored.empty:
+            return scored
+        scored["match_reasons"] += f"votes >= {request.min_votes}; "
 
     category_matches = [
         ("restaurant_cost_category", request.cost_category, 8, "cost category match; "),
@@ -713,18 +856,27 @@ def score_recommendations(data: pd.DataFrame, request: RecommendationRequest) ->
     for column, value, weight, reason in category_matches:
         if value:
             match = scored[column].fillna("").str.lower() == value.lower()
-            scored["score"] += match.astype(float) * weight
-            scored.loc[match, "match_reasons"] += reason
+            scored = scored.loc[match].copy()
+            if scored.empty:
+                return scored
+            scored["score"] += weight
+            scored["match_reasons"] += reason
 
     if request.is_expensive is not None:
         match = scored["is_expensive"].fillna(False).astype(bool) == request.is_expensive
-        scored["score"] += match.astype(float) * 4
-        scored.loc[match, "match_reasons"] += "expensive preference match; "
+        scored = scored.loc[match].copy()
+        if scored.empty:
+            return scored
+        scored["score"] += 4
+        scored["match_reasons"] += "expensive preference match; "
 
     if request.location_cluster is not None:
         match = scored["location_cluster"].fillna(-1).astype(int) == request.location_cluster
-        scored["score"] += match.astype(float) * 8
-        scored.loc[match, "match_reasons"] += "location cluster match; "
+        scored = scored.loc[match].copy()
+        if scored.empty:
+            return scored
+        scored["score"] += 8
+        scored["match_reasons"] += "location cluster match; "
 
     yes_no_matches = [
         ("has_online_delivery", request.online_delivery, 5, "delivery match; "),
@@ -734,8 +886,11 @@ def score_recommendations(data: pd.DataFrame, request: RecommendationRequest) ->
     for column, value, weight, reason in yes_no_matches:
         if value:
             match = scored[column].fillna("").str.lower() == value.lower()
-            scored["score"] += match.astype(float) * weight
-            scored.loc[match, "match_reasons"] += reason
+            scored = scored.loc[match].copy()
+            if scored.empty:
+                return scored
+            scored["score"] += weight
+            scored["match_reasons"] += reason
 
     if scored["log_votes"].fillna(0).max() > 0:
         scored["score"] += (scored["log_votes"].fillna(0) / scored["log_votes"].fillna(0).max()) * 6
@@ -761,7 +916,7 @@ def save_request_data(db: Session, request: RecommendationRequest, items: list[R
             UserPreference(
                 user_id=request.user_id,
                 preferred_cuisines=", ".join(request.cuisines),
-                preferred_city=request.city,
+                preferred_city=", ".join(request.cities) if request.cities else request.city,
                 preferred_price_range=request.price_range,
                 max_average_cost_inr=request.max_cost,
                 min_rating=request.min_rating,
@@ -941,6 +1096,51 @@ def get_me(current_user: User = Depends(get_current_user)) -> UserResponse:
     return to_user_response(current_user)
 
 
+@app.get("/metadata/recommendations", response_model=RecommendationMetadataResponse)
+def recommendation_metadata(db: Session = Depends(get_db)) -> RecommendationMetadataResponse:
+    cuisines = [
+        row[0]
+        for row in db.query(Cuisine.cuisine_name)
+        .order_by(Cuisine.cuisine_name.asc())
+        .all()
+        if row[0] and row[0].strip()
+    ]
+    cities = [
+        row[0]
+        for row in db.query(Restaurant.city)
+        .filter(Restaurant.city.isnot(None))
+        .distinct()
+        .order_by(Restaurant.city.asc())
+        .all()
+        if row[0] and row[0].strip()
+    ]
+    cost_categories = [
+        row[0]
+        for row in db.query(Restaurant.restaurant_cost_category)
+        .filter(Restaurant.restaurant_cost_category.isnot(None))
+        .distinct()
+        .order_by(Restaurant.restaurant_cost_category.asc())
+        .all()
+        if row[0] and row[0].strip() and row[0].strip().lower() != "unknown"
+    ]
+    admin_added_count = 0
+    if ADMIN_ADDED_RESTAURANTS_PATH.exists():
+        try:
+            with ADMIN_ADDED_RESTAURANTS_PATH.open("r", newline="", encoding="utf-8") as handle:
+                admin_added_count = max(sum(1 for _ in handle) - 1, 0)
+        except OSError:
+            admin_added_count = 0
+    return RecommendationMetadataResponse(
+        cuisines=cuisines,
+        cities=cities,
+        cost_categories=cost_categories,
+        restaurant_count=db.query(Restaurant).count(),
+        cuisine_count=len(cuisines),
+        city_count=len(cities),
+        admin_added_count=admin_added_count,
+    )
+
+
 @app.post("/restaurants/import", response_model=ImportResponse)
 def import_restaurants(
     csv_path: str | None = Query(default=None),
@@ -992,6 +1192,10 @@ def create_restaurant(
     db.add(restaurant)
     db.commit()
     db.refresh(restaurant)
+    try:
+        append_admin_added_restaurant_export(restaurant)
+    except OSError as exc:
+        print(f"Admin restaurant export failed for restaurant {restaurant.restaurant_id}: {exc}")
 
     return RestaurantResponse(
         restaurant_id=restaurant.restaurant_id,

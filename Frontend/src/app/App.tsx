@@ -15,6 +15,9 @@ type Role = "user" | "manager" | "admin";
 interface UserT { id: number; name: string; email: string; role: Role; managed_restaurant_id?: number | null; }
 interface AuthState { user: UserT; token: string | null; apiBaseUrl: string; }
 interface Restaurant { id: number; name: string; city: string; locality: string; cuisine: string; avg_cost: number; price_range: number; rating: number; votes: number; online_delivery: boolean; table_booking: boolean; image: string; match_score?: number; }
+interface AppMetadata { restaurant_count: number; cuisine_count: number; city_count: number; admin_added_count: number; cuisines?: string[]; cities?: string[]; cost_categories?: string[]; }
+
+const formatCount = (value: number) => Number(value || 0).toLocaleString("en-IN");
 
 function toAppUser(data: any): UserT {
   return {
@@ -53,7 +56,15 @@ function createApi(baseUrl: string, userId: string | null) {
       ...(isFormData ? {} : { "Content-Type": "application/json" }),
       ...(userId ? { "X-User-Id": String(userId) } : {}),
     };
-    const res = await fetch(`${baseUrl}${path}`, { method, headers, ...(body ? { body: isFormData ? body as BodyInit : JSON.stringify(body) } : {}) });
+    const cleanBaseUrl = (baseUrl || "http://127.0.0.1:8000").trim().replace(/\/+$/, "");
+    const requestInit = { method, headers, ...(body ? { body: isFormData ? body as BodyInit : JSON.stringify(body) } : {}) };
+    let res: Response;
+    try {
+      res = await fetch(`${cleanBaseUrl}${path}`, requestInit);
+    } catch (error) {
+      if (!cleanBaseUrl.includes("localhost")) throw error;
+      res = await fetch(`${cleanBaseUrl.replace("localhost", "127.0.0.1")}${path}`, requestInit);
+    }
     const text = await res.text();
     let data: any = {};
     try { data = text ? JSON.parse(text) : {}; } catch { data = { raw: text }; }
@@ -75,7 +86,14 @@ const MOCK_RESTAURANTS: Restaurant[] = [
   { id: 3, name: "La Maison", city: "Bangalore", locality: "Koramangala", cuisine: "French", avg_cost: 2500, price_range: 4, rating: 4.8, votes: 987, online_delivery: false, table_booking: true, image: "1414235077428-338989a2e8c0" },
   { id: 4, name: "Taco Fiesta", city: "Pune", locality: "Kalyani Nagar", cuisine: "Mexican", avg_cost: 600, price_range: 2, rating: 4.1, votes: 3214, online_delivery: true, table_booking: false, image: "1565299585323-38d6b0865b47" },
 ];
+const FALLBACK_CUISINES = ["Italian", "Japanese", "French", "Mexican", "Indian", "Thai", "Chinese", "American", "Mediterranean", "Korean"];
 const CITIES = ["Mumbai", "Delhi", "Bangalore", "Pune", "Chennai", "Hyderabad", "Kolkata", "Ahmedabad"];
+const PRICE_LEVELS = [
+  { value: 1, label: "Affordable" },
+  { value: 2, label: "Casual" },
+  { value: 3, label: "Premium" },
+  { value: 4, label: "Luxury" },
+];
 
 const BG_BLOBS = [
   { top: "-8%", right: "-4%", size: 500, img: "1414235077428-338989a2e8c0", delay: 0 },
@@ -265,6 +283,17 @@ function HorizontalNav({ page, setPage, user, onLogout }: { page: string; setPag
 }
 
 function DashboardPage({ auth, setPage }: { auth: AuthState; setPage: (p: string) => void }) {
+  const [meta, setMeta] = useState<AppMetadata | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    const api = createApi(auth.apiBaseUrl, auth.token);
+    api.get("/metadata/recommendations")
+      .then(data => { if (active) setMeta(data); })
+      .catch(() => { if (active) setMeta(null); });
+    return () => { active = false; };
+  }, [auth.apiBaseUrl, auth.token]);
+
   const ratingDistData = [
     { rating: "0.0\n(Unrated)", count: 2187, unrated: true },
     { rating: "1.0–1.9", count: 124 },
@@ -293,9 +322,9 @@ function DashboardPage({ auth, setPage }: { auth: AuthState; setPage: (p: string
   ];
 
   const STATS = [
-    { label: "Total Restaurants", value: "9,551", sub: "Restaurants in dataset", icon: Utensils, color: "from-orange-400 to-amber-500" },
+    { label: "Total Restaurants", value: formatCount(meta?.restaurant_count ?? 9551), sub: meta?.admin_added_count ? `${meta.admin_added_count} added by admin` : "Restaurants in database", icon: Utensils, color: "from-orange-400 to-amber-500" },
     { label: "Avg. Rating Score", value: "3.75 / 5", sub: "Excluding 0.0 ratings", icon: Star, color: "from-[#C4621D] to-[#E8943A]" },
-    { label: "Cuisine Types", value: "120+", sub: "Available cuisine categories", icon: ChefHat, color: "from-[#2D5016] to-[#4A7A25]" },
+    { label: "Cuisine Types", value: formatCount(meta?.cuisine_count ?? 120), sub: "Available cuisine categories", icon: ChefHat, color: "from-[#2D5016] to-[#4A7A25]" },
     { label: "Active Modules", value: "4", sub: "Recommend · Rating · Location · Reports", icon: BarChart2, color: "from-purple-500 to-violet-600" },
   ];
 
@@ -609,11 +638,31 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Restaurant[]>([]);
   const [searched, setSearched] = useState(false);
-  const [pref, setPref] = useState({ cuisines: [] as string[], city: "", cost_category: "", price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 100, top_k: 10, online_delivery: false, table_booking: false });
+  const [pref, setPref] = useState({ cuisines: [] as string[], cities: [] as string[], price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 100, top_k: 10, online_delivery: false, table_booking: false });
+  const [options, setOptions] = useState({ cuisines: [] as string[], cities: [] as string[], cost_categories: [] as string[] });
 
-  const CUISINES = ["Italian", "Japanese", "French", "Mexican", "Indian", "Thai", "Chinese", "American", "Mediterranean", "Korean"];
-  const PRICE = ["₹", "₹₹", "₹₹₹", "₹₹₹₹"];
+  useEffect(() => {
+    let active = true;
+    const api = createApi(auth.apiBaseUrl, auth.token);
+    api.get("/metadata/recommendations")
+      .then(data => {
+        if (!active) return;
+        setOptions({
+          cuisines: Array.isArray(data.cuisines) ? data.cuisines : [],
+          cities: Array.isArray(data.cities) ? data.cities : [],
+          cost_categories: Array.isArray(data.cost_categories) ? data.cost_categories : [],
+        });
+      })
+      .catch(() => {
+        if (active) setOptions({ cuisines: [], cities: [], cost_categories: [] });
+      });
+    return () => { active = false; };
+  }, [auth.apiBaseUrl, auth.token]);
+
+  const cuisineOptions = options.cuisines.length ? options.cuisines : FALLBACK_CUISINES;
+  const cityOptions = options.cities.length ? options.cities : CITIES;
   const toggle = (c: string) => setPref(p => ({ ...p, cuisines: p.cuisines.includes(c) ? p.cuisines.filter(x => x !== c) : [...p.cuisines, c] }));
+  const toggleCity = (city: string) => setPref(p => ({ ...p, cities: p.cities.includes(city) ? p.cities.filter(x => x !== city) : [...p.cities, city] }));
 
   const handleSearch = async () => {
     setLoading(true);
@@ -622,12 +671,13 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
       const data = await api.post("/recommendations", {
         user_id: auth.user.id,
         cuisines: pref.cuisines,
-        city: pref.city || null,
-        cost_category: pref.cost_category || null,
+        cities: pref.cities,
+        city: pref.cities[0] || null,
         price_range: pref.price_range || null,
         min_rating: pref.min_rating,
         max_cost: pref.max_cost,
-        popularity_category: pref.min_popularity > 0 ? "High" : null,
+        min_votes: pref.min_popularity,
+        popularity_category: null,
         top_n: pref.top_k,
         online_delivery: pref.online_delivery ? "Yes" : null,
         table_booking: pref.table_booking ? "Yes" : null,
@@ -649,9 +699,12 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
         <GlassCard className="p-6" hover={false}>
           <h2 className="text-lg font-semibold text-[#1C1612] mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>Your Preferences</h2>
           <div className="mb-5">
-            <p className="text-sm font-medium text-[#1C1612] mb-2.5">Cuisine Type</p>
-            <div className="flex flex-wrap gap-2">
-              {CUISINES.map(c => (
+            <div className="flex items-center justify-between mb-2.5">
+              <p className="text-sm font-medium text-[#1C1612]">Cuisine Type</p>
+              <span className="text-xs text-[#7A6E64]">{cuisineOptions.length} available</span>
+            </div>
+            <div className="flex max-h-40 flex-wrap gap-2 overflow-y-auto pr-1">
+              {cuisineOptions.map(c => (
                 <motion.button key={c} onClick={() => toggle(c)} whileTap={{ scale: 0.92 }}
                   className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-all ${pref.cuisines.includes(c) ? "bg-[#C4621D] text-white border-[#C4621D] shadow-md shadow-orange-200" : "bg-white/50 text-[#7A6E64] border-white/60 hover:border-[#C4621D]/40 hover:text-[#C4621D]"}`}>
                   {c}
@@ -660,29 +713,32 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-5">
+          <div className="mb-5">
             <div>
-              <label className="block text-sm font-medium text-[#1C1612] mb-1.5">City</label>
-              <select value={pref.city} onChange={e => setPref({ ...pref, city: e.target.value })} className="w-full px-3 py-2.5 rounded-xl border border-white/50 bg-white/50 text-[#1C1612] text-sm focus:outline-none focus:border-[#C4621D]/50">
-                <option value="">Any city</option>{CITIES.map(c => <option key={c} value={c}>{c}</option>)}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-[#1C1612] mb-1.5">Cost Category</label>
-              <select value={pref.cost_category} onChange={e => setPref({ ...pref, cost_category: e.target.value })} className="w-full px-3 py-2.5 rounded-xl border border-white/50 bg-white/50 text-[#1C1612] text-sm focus:outline-none focus:border-[#C4621D]/50">
-                <option value="">Any</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="premium">Premium</option><option value="luxury">Luxury</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-[#1C1612] mb-1.5">Price Range</label>
-              <div className="flex gap-1.5">
-                {PRICE.map((s, i) => (
-                  <motion.button key={i} whileTap={{ scale: 0.9 }} onClick={() => setPref({ ...pref, price_range: pref.price_range === i + 1 ? 0 : i + 1 })}
-                    className={`flex-1 py-2 rounded-xl text-sm font-medium border transition-all ${pref.price_range === i + 1 ? "bg-[#C4621D] text-white border-[#C4621D] shadow-md" : "bg-white/50 text-[#7A6E64] border-white/50 hover:border-[#C4621D]/40"}`}>
-                    {s}
+              <div className="mb-1.5 flex items-center justify-between">
+                <label className="block text-sm font-medium text-[#1C1612]">Cities</label>
+                <span className="text-xs text-[#7A6E64]">{pref.cities.length ? `${pref.cities.length} selected` : "Any city"}</span>
+              </div>
+              <div className="flex max-h-28 flex-wrap gap-2 overflow-y-auto rounded-xl border border-white/50 bg-white/40 p-2">
+                {cityOptions.map(city => (
+                  <motion.button key={city} type="button" whileTap={{ scale: 0.92 }} onClick={() => toggleCity(city)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium border transition-all ${pref.cities.includes(city) ? "bg-[#C4621D] text-white border-[#C4621D] shadow-sm" : "bg-white/60 text-[#7A6E64] border-white/70 hover:border-[#C4621D]/40 hover:text-[#C4621D]"}`}>
+                    {city}
                   </motion.button>
                 ))}
               </div>
+            </div>
+          </div>
+
+          <div className="mb-5">
+            <label className="block text-sm font-medium text-[#1C1612] mb-1.5">Price Range</label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {PRICE_LEVELS.map(level => (
+                <motion.button key={level.value} whileTap={{ scale: 0.9 }} onClick={() => setPref({ ...pref, price_range: pref.price_range === level.value ? 0 : level.value })}
+                  className={`py-2 rounded-xl text-sm font-medium border transition-all ${pref.price_range === level.value ? "bg-[#C4621D] text-white border-[#C4621D] shadow-md" : "bg-white/50 text-[#7A6E64] border-white/50 hover:border-[#C4621D]/40"}`}>
+                  {level.label}
+                </motion.button>
+              ))}
             </div>
           </div>
 
@@ -691,7 +747,7 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
               { key: "min_rating" as const, label: "Minimum Rating", min: 1, max: 5, step: 0.1, fmt: (v: number) => v.toFixed(1) },
               { key: "max_cost" as const, label: "Max Cost for Two (₹)", min: 200, max: 5000, step: 100, fmt: (v: number) => `₹${v}` },
               { key: "min_popularity" as const, label: "Min Popularity (votes)", min: 0, max: 2000, step: 50, fmt: (v: number) => `${v}` },
-              { key: "top_k" as const, label: "Top K Results", min: 5, max: 50, step: 5, fmt: (v: number) => `${v}` },
+              { key: "top_k" as const, label: "Maximum Results", min: 5, max: 50, step: 5, fmt: (v: number) => `${v}` },
             ].map(s => (
               <div key={s.key}>
                 <label className="block text-sm font-medium text-[#1C1612] mb-1.5">{s.label}: <span className="text-[#C4621D] font-semibold">{s.fmt(pref[s.key] as number)}</span></label>
@@ -715,7 +771,7 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
               className="flex-1 py-3 bg-gradient-to-r from-[#C4621D] to-[#E8943A] text-white rounded-xl font-medium shadow-lg shadow-orange-200 hover:shadow-xl hover:shadow-orange-200 transition-all disabled:opacity-60">
               {loading ? "Finding restaurants…" : "Show My Recommendations"}
             </motion.button>
-            <button onClick={() => { setPref({ cuisines: [], city: "", cost_category: "", price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 100, top_k: 10, online_delivery: false, table_booking: false }); setResults([]); setSearched(false); }}
+            <button onClick={() => { setPref({ cuisines: [], cities: [], price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 100, top_k: 10, online_delivery: false, table_booking: false }); setResults([]); setSearched(false); }}
               className="px-5 py-3 bg-white/50 text-[#7A6E64] rounded-xl font-medium hover:bg-white/70 border border-white/60 transition-all">
               Reset
             </button>
@@ -747,7 +803,6 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
                       <span className="hidden sm:block text-[#7A6E64] text-xs">₹{r.avg_cost}</span>
                       <StarRating rating={r.rating} />
                       {r.match_score != null && <span className="hidden md:block px-2.5 py-1 rounded-full bg-green-100 text-green-700 text-xs font-semibold flex-shrink-0">{r.match_score}% match</span>}
-                      <button className="px-3 py-1.5 rounded-lg bg-[#C4621D]/10 text-[#C4621D] text-xs font-medium hover:bg-[#C4621D]/20 transition-colors flex-shrink-0">View</button>
                     </motion.div>
                   ))}
               </div>
@@ -760,6 +815,17 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
 }
 
 function LocationPage({ auth }: { auth: AuthState }) {
+  const [meta, setMeta] = useState<AppMetadata | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    const api = createApi(auth.apiBaseUrl, auth.token);
+    api.get("/metadata/recommendations")
+      .then(data => { if (active) setMeta(data); })
+      .catch(() => { if (active) setMeta(null); });
+    return () => { active = false; };
+  }, [auth.apiBaseUrl, auth.token]);
+
   const cityData = [
     { city: "Mumbai", restaurants: 2341, avg_rating: 4.2, avg_cost: 1200 },
     { city: "Delhi", restaurants: 1876, avg_rating: 4.0, avg_cost: 950 },
@@ -795,7 +861,7 @@ function LocationPage({ auth }: { auth: AuthState }) {
           <div className="absolute bottom-5 left-6">
             <p className="text-[#C4621D] text-xs font-semibold tracking-widest uppercase mb-1.5">Geographical Intelligence</p>
             <h2 className="text-2xl text-white font-semibold" style={{ fontFamily: "'Playfair Display', serif" }}>Restaurant Density Analysis</h2>
-            <p className="text-white/55 text-sm mt-1">9,551 restaurants across 8 major Indian cities</p>
+            <p className="text-white/55 text-sm mt-1">{formatCount(meta?.restaurant_count ?? 9551)} restaurants across {formatCount(meta?.city_count ?? 8)} cities</p>
           </div>
           <div className="absolute top-4 right-4 flex gap-2">
             {[["High", "bg-red-400"], ["Medium", "bg-yellow-400"], ["Low", "bg-green-400"]].map(([l, c]) => (
@@ -868,8 +934,28 @@ function LocationPage({ auth }: { auth: AuthState }) {
 }
 
 function RatingPage({ auth }: { auth: AuthState }) {
-  const features = [{ feature: "Votes", importance: 0.34 }, { feature: "Avg Cost", importance: 0.22 }, { feature: "Price Range", importance: 0.18 }, { feature: "City", importance: 0.12 }, { feature: "Online Delivery", importance: 0.08 }, { feature: "Table Booking", importance: 0.06 }];
-  const models = [{ model: "Random Forest", mae: 0.312, rmse: 0.421, r2: 0.847, best: true }, { model: "XGBoost", mae: 0.334, rmse: 0.445, r2: 0.831, best: false }, { model: "Linear Regression", mae: 0.489, rmse: 0.612, r2: 0.712, best: false }, { model: "Decision Tree", mae: 0.421, rmse: 0.534, r2: 0.788, best: false }];
+  const features = [
+    { feature: "Popularity Category", importance: 0.3769 },
+    { feature: "Cuisines", importance: 0.2021 },
+    { feature: "Log Votes", importance: 0.1203 },
+    { feature: "City Location Cluster", importance: 0.1019 },
+    { feature: "City", importance: 0.0690 },
+    { feature: "City Restaurant Count", importance: 0.0377 },
+    { feature: "Country Code", importance: 0.0355 },
+    { feature: "Location Cluster", importance: 0.0154 },
+  ];
+  const models = [
+    { model: "XGBoost Engineered", mae: "0.1977", rmse: "0.2954", r2: "0.9620", within50: "90.30%", best: true, note: "Best test performance" },
+    { model: "CatBoost Engineered", mae: "0.2032", rmse: "0.2991", r2: "0.9610", within50: "89.81%", best: false, note: "Strong tuned baseline" },
+    { model: "CatBoost Base", mae: "0.2032", rmse: "0.2997", r2: "0.9608", within50: "89.18%", best: false, note: "Base feature set" },
+    { model: "CatBoost Without Votes", mae: "0.8028", rmse: "1.0664", r2: "0.5045", within50: "44.66%", best: false, note: "Votes removed" },
+  ];
+  const tuningSummary = [
+    { label: "Algorithm", value: "XGBoost Regressor" },
+    { label: "Tuning Setup", value: "8 candidates, 3-fold CV" },
+    { label: "Best CV Result", value: "RMSE 0.3023, MAE 0.1990, R2 0.9606" },
+    { label: "Best Hyperparameters", value: "max_depth=6, learning_rate=0.03, n_estimators=1200, subsample=0.9, colsample_bytree=0.9, reg_lambda=7" },
+  ];
   const TS = { borderRadius: 12, border: "1px solid rgba(196,98,29,0.15)", background: "rgba(255,255,255,0.9)", backdropFilter: "blur(12px)", fontSize: 12 };
   return (
     <div className="space-y-6">
@@ -877,15 +963,16 @@ function RatingPage({ auth }: { auth: AuthState }) {
         <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#C4621D]/10 blur-3xl pointer-events-none" />
         <p className="text-[#C4621D] text-xs font-semibold tracking-widest uppercase mb-2">ML Model Overview</p>
         <h2 className="text-2xl font-semibold mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Rating Prediction Engine</h2>
-        <p className="text-white/55 text-sm max-w-xl">Multi-model ensemble trained on 9,551 records. Predicts Zomato ratings using restaurant attributes and customer signals.</p>
+        <p className="text-white/55 text-sm max-w-xl">Rating prediction model trained on 9,551 restaurant records using engineered restaurant, cuisine, location, cost and popularity features.</p>
         <div className="flex flex-wrap gap-3 mt-4">
-          <span className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-medium">Best Model: Random Forest</span>
-          <span className="px-3 py-1.5 rounded-full bg-[#C4621D]/20 border border-[#C4621D]/40 text-[#C4621D] text-xs font-medium">84.7% Accuracy (R²)</span>
+          <span className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-medium">Best Model: XGBoost Engineered</span>
+          <span className="px-3 py-1.5 rounded-full bg-[#C4621D]/20 border border-[#C4621D]/40 text-[#C4621D] text-xs font-medium">Test R2: 0.9620</span>
+          <span className="px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-white text-xs font-medium">Within 0.50 Rating: 90.30%</span>
         </div>
       </motion.div>
 
-      <div className="grid grid-cols-3 gap-4">
-        {[{ l: "MAE", v: "0.312", d: "Mean Absolute Error" }, { l: "RMSE", v: "0.421", d: "Root Mean Squared Error" }, { l: "R² Score", v: "0.847", d: "Coefficient of Determination" }].map((m, i) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[{ l: "MAE", v: "0.1977", d: "Mean Absolute Error" }, { l: "RMSE", v: "0.2954", d: "Root Mean Squared Error" }, { l: "R2 Score", v: "0.9620", d: "Coefficient of determination" }, { l: "Within 0.50", v: "90.30%", d: "Test predictions within half rating" }].map((m, i) => (
           <motion.div key={m.l} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
             <GlassCard className="p-5 text-center">
               <div className="text-3xl font-bold text-[#C4621D] mb-1" style={{ fontFamily: "'Playfair Display', serif" }}>{m.v}</div>
@@ -896,13 +983,29 @@ function RatingPage({ auth }: { auth: AuthState }) {
         ))}
       </div>
 
+      <GlassCard className="p-5" hover={false}>
+        <div className="flex items-center justify-between gap-4 mb-4">
+          <h3 className="font-semibold text-[#1C1612]" style={{ fontFamily: "'Playfair Display', serif" }}>Hyperparameter Tuning Summary</h3>
+          <span className="text-xs text-[#7A6E64]">XGBoost engineered rating model</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {tuningSummary.map(item => (
+            <div key={item.label} className="rounded-xl bg-white/45 border border-white/60 p-3">
+              <p className="text-xs font-semibold text-[#C4621D] uppercase tracking-wide">{item.label}</p>
+              <p className="text-sm text-[#1C1612] mt-1 leading-relaxed">{item.value}</p>
+            </div>
+          ))}
+        </div>
+      </GlassCard>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         <GlassCard className="p-5" hover={false}>
-          <h3 className="font-semibold text-[#1C1612] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Feature Importance</h3>
+          <h3 className="font-semibold text-[#1C1612] mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>Feature Importance</h3>
+          <p className="text-xs text-[#7A6E64] mb-4">From the best XGBoost engineered model. Popularity, cuisine and vote signals dominate the rating prediction.</p>
           <div className="space-y-3">
             {features.map((f, i) => (
               <div key={f.feature} className="flex items-center gap-3">
-                <span className="text-sm text-[#7A6E64] w-28 flex-shrink-0">{f.feature}</span>
+                <span className="text-sm text-[#7A6E64] w-40 flex-shrink-0">{f.feature}</span>
                 <div className="flex-1 bg-black/8 rounded-full h-2 overflow-hidden">
                   <motion.div className="h-full rounded-full bg-gradient-to-r from-[#C4621D] to-[#E8943A]" initial={{ width: 0 }} animate={{ width: `${f.importance * 100}%` }} transition={{ delay: 0.3 + i * 0.08, duration: 0.7 }} />
                 </div>
@@ -914,16 +1017,16 @@ function RatingPage({ auth }: { auth: AuthState }) {
         <GlassCard className="p-5" hover={false}>
           <h3 className="font-semibold text-[#1C1612] mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>Feature Importance Chart</h3>
           <ResponsiveContainer width="100%" height={210}>
-            <BarChart data={features} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(196,98,29,0.08)" horizontal={false} /><XAxis type="number" tick={{ fontSize: 10, fill: "#7A6E64" }} axisLine={false} tickLine={false} tickFormatter={v => `${(v * 100).toFixed(0)}%`} /><YAxis type="category" dataKey="feature" tick={{ fontSize: 10, fill: "#7A6E64" }} width={85} axisLine={false} tickLine={false} /><Tooltip contentStyle={TS} formatter={(v: number) => [`${(v * 100).toFixed(1)}%`, "Importance"]} /><Bar dataKey="importance" fill="#C4621D" radius={[0, 6, 6, 0]} /></BarChart>
+            <BarChart data={features} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke="rgba(196,98,29,0.08)" horizontal={false} /><XAxis type="number" tick={{ fontSize: 10, fill: "#7A6E64" }} axisLine={false} tickLine={false} tickFormatter={v => `${(v * 100).toFixed(0)}%`} /><YAxis type="category" dataKey="feature" tick={{ fontSize: 10, fill: "#7A6E64" }} width={130} axisLine={false} tickLine={false} /><Tooltip contentStyle={TS} formatter={(v: number) => [`${(v * 100).toFixed(1)}%`, "Importance"]} /><Bar dataKey="importance" fill="#C4621D" radius={[0, 6, 6, 0]} /></BarChart>
           </ResponsiveContainer>
         </GlassCard>
       </div>
 
       <GlassCard hover={false}>
-        <div className="p-5 border-b border-white/50 flex items-center justify-between"><h3 className="font-semibold text-[#1C1612]" style={{ fontFamily: "'Playfair Display', serif" }}>Model Comparison</h3><span className="text-xs text-[#7A6E64]">Lower MAE/RMSE · Higher R² = Better</span></div>
+        <div className="p-5 border-b border-white/50 flex items-center justify-between"><h3 className="font-semibold text-[#1C1612]" style={{ fontFamily: "'Playfair Display', serif" }}>Rating Model Analysis</h3><span className="text-xs text-[#7A6E64]">Lower MAE/RMSE and higher R2 indicate better test performance</span></div>
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead><tr className="bg-white/30">{["Model", "MAE ↓", "RMSE ↓", "R² Score ↑", "Status"].map(h => <th key={h} className="px-5 py-3 text-left text-xs font-semibold text-[#7A6E64] uppercase tracking-wider">{h}</th>)}</tr></thead>
+            <thead><tr className="bg-white/30">{["Model", "MAE", "RMSE", "R2", "Within 0.50", "Analysis"].map(h => <th key={h} className="px-5 py-3 text-left text-xs font-semibold text-[#7A6E64] uppercase tracking-wider">{h}</th>)}</tr></thead>
             <tbody className="divide-y divide-white/40">
               {models.map(m => (
                 <tr key={m.model} className={`hover:bg-white/40 transition-colors ${m.best ? "bg-orange-50/40" : ""}`}>
@@ -931,7 +1034,8 @@ function RatingPage({ auth }: { auth: AuthState }) {
                   <td className="px-5 py-3 text-sm text-[#7A6E64]" style={{ fontFamily: "'DM Mono', monospace" }}>{m.mae}</td>
                   <td className="px-5 py-3 text-sm text-[#7A6E64]" style={{ fontFamily: "'DM Mono', monospace" }}>{m.rmse}</td>
                   <td className="px-5 py-3 text-sm font-semibold text-[#2D5016]" style={{ fontFamily: "'DM Mono', monospace" }}>{m.r2}</td>
-                  <td className="px-5 py-3">{m.best ? <span className="flex items-center gap-1 text-[#2D5016] text-xs font-medium"><CheckCircle size={12} /> Selected</span> : <span className="text-[#7A6E64] text-xs">Evaluated</span>}</td>
+                  <td className="px-5 py-3 text-sm text-[#7A6E64]" style={{ fontFamily: "'DM Mono', monospace" }}>{m.within50}</td>
+                  <td className="px-5 py-3">{m.best ? <span className="flex items-center gap-1 text-[#2D5016] text-xs font-medium"><CheckCircle size={12} /> {m.note}</span> : <span className="text-[#7A6E64] text-xs">{m.note}</span>}</td>
                 </tr>
               ))}
             </tbody>
@@ -982,12 +1086,12 @@ function AdminPanel({ auth }: { auth: AuthState }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GlassCard className="p-6" hover={false}>
             <h3 className="font-semibold text-[#1C1612] mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>Create User</h3>
-            <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); const d = await api.post("/users", { name: uForm.name, email: uForm.email, password: uForm.password, role: uForm.role, managed_restaurant_id: uForm.managed_restaurant_id ? parseInt(uForm.managed_restaurant_id) : null }); setUsers(p => [...p, toAppUser(d)]); showToast("User created!", "success"); setUForm({ name: "", email: "", password: "", role: "user", managed_restaurant_id: "" }); } catch (err: any) { showToast(err.message || "Unable to create user", "error"); } }} className="space-y-4">
+            <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); const d = await api.post("/users", { name: uForm.name, email: uForm.email, password: uForm.password, role: uForm.role, managed_restaurant_id: null }); setUsers(p => [...p, toAppUser(d)]); showToast(`User #${d.user_id} created as ${d.role}`, "success"); setUForm({ name: "", email: "", password: "", role: "user", managed_restaurant_id: "" }); } catch (err: any) { showToast(err.message || "Unable to create user", "error"); } }} className="space-y-4">
               <FormInput label="Full Name" value={uForm.name} onChange={v => setUForm({ ...uForm, name: v })} placeholder="Jane Smith" />
               <FormInput label="Email" value={uForm.email} onChange={v => setUForm({ ...uForm, email: v })} type="email" placeholder="jane@example.com" />
               <FormInput label="Password" value={uForm.password} onChange={v => setUForm({ ...uForm, password: v })} type="password" placeholder="••••••••" />
-              <div><label className="block text-sm font-medium text-[#1C1612] mb-1.5">Role</label><select value={uForm.role} onChange={e => setUForm({ ...uForm, role: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-white/50 bg-white/50 text-[#1C1612] text-sm focus:outline-none"><option value="user">User</option><option value="manager">Restaurant Manager</option><option value="admin">Admin</option></select></div>
-              {uForm.role === "manager" && <FormInput label="Managed Restaurant ID" value={uForm.managed_restaurant_id} onChange={v => setUForm({ ...uForm, managed_restaurant_id: v })} type="number" placeholder="1" />}
+              <div><label className="block text-sm font-medium text-[#1C1612] mb-1.5">Role</label><select value={uForm.role} onChange={e => setUForm({ ...uForm, role: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-white/50 bg-white/50 text-[#1C1612] text-sm focus:outline-none"><option value="user">User</option><option value="manager">Restaurant Manager</option></select></div>
+              {uForm.role === "manager" && <p className="rounded-xl bg-amber-50 border border-amber-100 px-3 py-2 text-xs text-amber-700">Create the manager account here, then assign a restaurant from the Assign Manager tab.</p>}
               <button type="submit" className={btnCls}>Create User</button>
             </form>
           </GlassCard>
@@ -997,7 +1101,7 @@ function AdminPanel({ auth }: { auth: AuthState }) {
               {users.map(u => (
                 <div key={u.id} className="flex items-center gap-3 px-5 py-3 hover:bg-white/30 transition-colors">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#C4621D] to-[#E8943A] flex items-center justify-center text-white text-xs font-bold flex-shrink-0">{u.name.charAt(0)}</div>
-                  <div className="flex-1 min-w-0"><p className="text-sm font-medium text-[#1C1612]">{u.name}</p><p className="text-xs text-[#7A6E64] truncate">{u.email}</p></div>
+                  <div className="flex-1 min-w-0"><p className="text-sm font-medium text-[#1C1612]">#{u.id} · {u.name}</p><p className="text-xs text-[#7A6E64] truncate">{u.email}{u.managed_restaurant_id ? ` · Restaurant #${u.managed_restaurant_id}` : ""}</p></div>
                   <span className={`px-2 py-0.5 rounded-full text-xs font-medium capitalize ${ROLE_COLORS[u.role]}`}>{u.role}</span>
                 </div>
               ))}
@@ -1009,7 +1113,7 @@ function AdminPanel({ auth }: { auth: AuthState }) {
       {tab === "restaurants" && (
         <GlassCard className="p-6 max-w-2xl" hover={false}>
           <h3 className="font-semibold text-[#1C1612] mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>Add Restaurant</h3>
-          <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); await api.post("/admin/restaurants", { restaurant_name: rForm.name, city: rForm.city || null, locality: rForm.locality || null, address: rForm.address || null, cuisines: rForm.cuisines.split(",").map(s => s.trim()).filter(Boolean), average_cost_inr: rForm.avg_cost ? Number(rForm.avg_cost) : null, price_range: rForm.price_range ? Number(rForm.price_range) : null, aggregate_rating: rForm.rating ? Number(rForm.rating) : null, votes: rForm.votes ? Number(rForm.votes) : null, has_online_delivery: rForm.online_delivery ? "Yes" : "No", has_table_booking: rForm.table_booking ? "Yes" : "No" }); showToast("Restaurant added!", "success"); setRForm({ name: "", city: "", locality: "", address: "", cuisines: "", avg_cost: "", price_range: "1", rating: "", votes: "", online_delivery: false, table_booking: false }); } catch (err: any) { showToast(err.message || "Unable to add restaurant", "error"); } }} className="space-y-4">
+          <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); const d = await api.post("/admin/restaurants", { restaurant_name: rForm.name, city: rForm.city || null, locality: rForm.locality || null, address: rForm.address || null, cuisines: rForm.cuisines.split(",").map(s => s.trim()).filter(Boolean), average_cost_inr: rForm.avg_cost ? Number(rForm.avg_cost) : null, price_range: rForm.price_range ? Number(rForm.price_range) : null, aggregate_rating: rForm.rating ? Number(rForm.rating) : null, votes: rForm.votes ? Number(rForm.votes) : null, has_online_delivery: rForm.online_delivery ? "Yes" : "No", has_table_booking: rForm.table_booking ? "Yes" : "No" }); showToast(`Restaurant #${d.restaurant_id} added`, "success"); setRForm({ name: "", city: "", locality: "", address: "", cuisines: "", avg_cost: "", price_range: "1", rating: "", votes: "", online_delivery: false, table_booking: false }); } catch (err: any) { showToast(err.message || "Unable to add restaurant", "error"); } }} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <FormInput label="Restaurant Name" value={rForm.name} onChange={v => setRForm({ ...rForm, name: v })} placeholder="Spice Garden" />
               <FormInput label="City" value={rForm.city} onChange={v => setRForm({ ...rForm, city: v })} placeholder="Mumbai" />
@@ -1029,8 +1133,8 @@ function AdminPanel({ auth }: { auth: AuthState }) {
       {tab === "assign" && (
         <GlassCard className="p-6 max-w-md" hover={false}>
           <h3 className="font-semibold text-[#1C1612] mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>Assign Manager to Restaurant</h3>
-          <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); await api.post("/admin/assign-manager", { manager_user_id: Number(aForm.manager_id), restaurant_id: Number(aForm.restaurant_id) }); showToast("Manager assigned!", "success"); setAForm({ manager_id: "", restaurant_id: "" }); loadUsers(); } catch (err: any) { showToast(err.message || "Unable to assign manager", "error"); } }} className="space-y-4">
-            <FormInput label="Manager User ID" value={aForm.manager_id} onChange={v => setAForm({ ...aForm, manager_id: v })} type="number" placeholder="2" />
+          <form onSubmit={async e => { e.preventDefault(); if (!aForm.manager_id || !aForm.restaurant_id) { showToast("Select a manager and enter a restaurant ID", "error"); return; } try { const api = createApi(auth.apiBaseUrl, auth.token); const d = await api.post("/admin/assign-manager", { manager_user_id: Number(aForm.manager_id), restaurant_id: Number(aForm.restaurant_id) }); showToast(`Manager #${d.user_id} assigned to restaurant #${d.managed_restaurant_id}`, "success"); setAForm({ manager_id: "", restaurant_id: "" }); loadUsers(); } catch (err: any) { showToast(err.message || "Unable to assign manager", "error"); } }} className="space-y-4">
+            <div><label className="block text-sm font-medium text-[#1C1612] mb-1.5">Manager Account</label><select value={aForm.manager_id} onChange={e => setAForm({ ...aForm, manager_id: e.target.value })} className="w-full px-4 py-2.5 rounded-xl border border-white/50 bg-white/50 text-[#1C1612] text-sm focus:outline-none"><option value="">Select manager/user</option>{users.filter(u => u.role !== "admin").map(u => <option key={u.id} value={u.id}>#{u.id} · {u.name} ({u.role})</option>)}</select></div>
             <FormInput label="Restaurant ID" value={aForm.restaurant_id} onChange={v => setAForm({ ...aForm, restaurant_id: v })} type="number" placeholder="1" />
             <button type="submit" className={btnCls}>Assign Manager</button>
           </form>
@@ -1058,7 +1162,7 @@ function ManagerPanel({ auth }: { auth: AuthState }) {
   const [tab, setTab] = useState<Tab>("restaurant");
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
   const showToast = (msg: string, type: "success" | "error" | "info" = "success") => setToast({ message: msg, type });
-  const rid = auth.user.managed_restaurant_id || 1;
+  const rid = auth.user.managed_restaurant_id;
   const [rForm, setRForm] = useState({ name: "Spice Garden", city: "Mumbai", locality: "Bandra", address: "42 Hill Road, Bandra West", cuisines: "Indian, Chinese, Mughlai", avg_cost: "800", price_range: "2", rating: "4.3", votes: "2341", online_delivery: true, table_booking: true });
   const [mForm, setMForm] = useState({ name: "", category: "", price: "", description: "", available: true });
   const [menuPhoto, setMenuPhoto] = useState<File | null>(null);
@@ -1068,6 +1172,15 @@ function ManagerPanel({ auth }: { auth: AuthState }) {
     { id: 3, name: "Paneer Tikka", category: "Starter", price: 320, description: "Grilled cottage cheese", available: false, image: "1631452180519-a31ea5a9b98b" },
   ]);
   const btnCls = "w-full py-2.5 bg-gradient-to-r from-[#C4621D] to-[#E8943A] text-white rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all";
+
+  if (!rid) {
+    return (
+      <GlassCard className="p-8 max-w-2xl" hover={false}>
+        <h3 className="font-semibold text-[#1C1612] mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>No Restaurant Assigned</h3>
+        <p className="text-sm text-[#7A6E64] leading-relaxed">This manager account is active, but an admin has not assigned a restaurant yet. Ask the admin to use the Assign Manager tab with this user ID: <span className="font-semibold text-[#C4621D]">#{auth.user.id}</span>.</p>
+      </GlassCard>
+    );
+  }
 
   return (
     <div className="space-y-6">
@@ -1185,9 +1298,19 @@ function LoginPage({ onAuth }: { onAuth: (a: AuthState) => void }) {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState<{ text: string; ok: boolean } | null>(null);
-  const [apiUrl, setApiUrl] = useState("http://localhost:8000");
+  const [apiUrl, setApiUrl] = useState("http://127.0.0.1:8000");
+  const [meta, setMeta] = useState<AppMetadata | null>(null);
   const [login, setLogin] = useState({ email: "", password: "" });
   const [reg, setReg] = useState({ name: "", email: "", password: "", role: "user" as Role, managed_restaurant_id: "" });
+
+  useEffect(() => {
+    let active = true;
+    const api = createApi(apiUrl, null);
+    api.get("/metadata/recommendations")
+      .then(data => { if (active) setMeta(data); })
+      .catch(() => { if (active) setMeta(null); });
+    return () => { active = false; };
+  }, [apiUrl]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault(); setLoading(true); setMsg(null);
@@ -1250,7 +1373,7 @@ function LoginPage({ onAuth }: { onAuth: (a: AuthState) => void }) {
           </motion.h2>
           <motion.p className="text-white/60 text-lg max-w-md leading-relaxed" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>AI-powered recommendations, location analytics, and rating predictions.</motion.p>
           <motion.div className="flex flex-wrap gap-3 mt-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
-            {["9,551 Restaurants", "FastAPI + PostgreSQL", "ML-Powered", "3 Roles"].map(tag => <span key={tag} className="px-3 py-1.5 rounded-full bg-white/15 border border-white/25 text-white/80 text-xs font-medium backdrop-blur-sm">{tag}</span>)}
+            {[`${formatCount(meta?.restaurant_count ?? 9551)} Restaurants`, "FastAPI + PostgreSQL", "ML-Powered", "3 Roles"].map(tag => <span key={tag} className="px-3 py-1.5 rounded-full bg-white/15 border border-white/25 text-white/80 text-xs font-medium backdrop-blur-sm">{tag}</span>)}
           </motion.div>
         </div>
       </div>
