@@ -275,6 +275,64 @@ def save_csv_outputs(
     cuisine_by_city.to_csv(output_dir / "city_cuisine_statistics.csv", index=False)
 
 
+def add_heatmap_legend(folium_map) -> None:
+    from branca.element import Element
+
+    legend_html = """
+    <div style="
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        z-index: 9999;
+        background: white;
+        padding: 12px 14px;
+        border: 1px solid #9ca3af;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        color: #111827;
+        max-width: 250px;
+    ">
+        <div style="font-weight:700;font-size:13px;margin-bottom:8px;">Restaurant Density Heatmap</div>
+        <div style="height:12px;width:200px;background:linear-gradient(to right,#2563eb,#22c55e,#facc15,#ef4444);border:1px solid #111827;"></div>
+        <div style="display:flex;justify-content:space-between;width:200px;margin-top:4px;">
+            <span>Low density</span><span>High density</span>
+        </div>
+        <div style="font-size:11px;color:#4b5563;margin-top:6px;">
+            Red/yellow areas show higher restaurant concentration. Blue/green areas show lower concentration.
+        </div>
+    </div>
+    """
+    folium_map.get_root().html.add_child(Element(legend_html))
+
+
+def add_heatmap_title(folium_map, total_restaurants: int) -> None:
+    from branca.element import Element
+
+    title_html = f"""
+    <div style="
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: rgba(255,255,255,0.94);
+        padding: 10px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 999px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        font-family: Arial, sans-serif;
+        color: #111827;
+        text-align: center;
+    ">
+        <div style="font-weight:700;font-size:14px;">Restaurant Density Heatmap</div>
+        <div style="font-size:11px;color:#4b5563;">Based on {total_restaurants:,} restaurants with valid coordinates</div>
+    </div>
+    """
+    folium_map.get_root().html.add_child(Element(title_html))
+
+
 def create_folium_maps(df: pd.DataFrame, output_dir: Path, max_map_points: int) -> None:
     try:
         import folium
@@ -322,6 +380,8 @@ def create_folium_maps(df: pd.DataFrame, output_dir: Path, max_map_points: int) 
     heat_map = folium.Map(location=[center_lat, center_lon], zoom_start=3, tiles="CartoDB positron")
     heat_points = map_df[["Latitude", "Longitude"]].dropna().values.tolist()
     HeatMap(heat_points, radius=10, blur=15, min_opacity=0.25).add_to(heat_map)
+    add_heatmap_title(heat_map, total_restaurants=len(heat_points))
+    add_heatmap_legend(heat_map)
     heat_map.save(output_dir / "restaurant_density_heatmap.html")
 
     print("Saved Folium maps.")
