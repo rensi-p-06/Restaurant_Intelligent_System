@@ -15,7 +15,7 @@ type Role = "user" | "manager" | "admin";
 interface UserT { id: number; name: string; email: string; role: Role; managed_restaurant_id?: number | null; }
 interface AuthState { user: UserT; token: string | null; apiBaseUrl: string; }
 interface Restaurant { id: number; name: string; city: string; locality: string; cuisine: string; avg_cost: number; price_range: number; rating: number; votes: number; online_delivery: boolean; table_booking: boolean; image: string; match_score?: number; }
-interface AppMetadata { restaurant_count: number; cuisine_count: number; city_count: number; admin_added_count: number; cuisines?: string[]; cities?: string[]; cost_categories?: string[]; }
+interface AppMetadata { restaurant_count: number; cuisine_count: number; city_count: number; admin_added_count: number; average_rating: number; cuisines?: string[]; cities?: string[]; cost_categories?: string[]; }
 
 const formatCount = (value: number) => Number(value || 0).toLocaleString("en-IN");
 
@@ -323,7 +323,7 @@ function DashboardPage({ auth, setPage }: { auth: AuthState; setPage: (p: string
 
   const STATS = [
     { label: "Total Restaurants", value: formatCount(meta?.restaurant_count ?? 9551), sub: meta?.admin_added_count ? `${meta.admin_added_count} added by admin` : "Restaurants in database", icon: Utensils, color: "from-orange-400 to-amber-500" },
-    { label: "Avg. Rating Score", value: "3.75 / 5", sub: "Excluding 0.0 ratings", icon: Star, color: "from-[#C4621D] to-[#E8943A]" },
+    { label: "Avg. Rating Score", value: `${(meta?.average_rating ?? 3.75).toFixed(2)} / 5`, sub: "Excluding 0.0 ratings", icon: Star, color: "from-[#C4621D] to-[#E8943A]" },
     { label: "Cuisine Types", value: formatCount(meta?.cuisine_count ?? 120), sub: "Available cuisine categories", icon: ChefHat, color: "from-[#2D5016] to-[#4A7A25]" },
     { label: "Active Modules", value: "4", sub: "Recommend · Rating · Location · Reports", icon: BarChart2, color: "from-purple-500 to-violet-600" },
   ];
@@ -638,7 +638,7 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Restaurant[]>([]);
   const [searched, setSearched] = useState(false);
-  const [pref, setPref] = useState({ cuisines: [] as string[], cities: [] as string[], price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 100, top_k: 10, online_delivery: false, table_booking: false });
+  const [pref, setPref] = useState({ cuisines: [] as string[], cities: [] as string[], price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 0, top_k: 10, online_delivery: false, table_booking: false });
   const [options, setOptions] = useState({ cuisines: [] as string[], cities: [] as string[], cost_categories: [] as string[] });
 
   useEffect(() => {
@@ -771,7 +771,7 @@ function RecommendationsPage({ auth }: { auth: AuthState }) {
               className="flex-1 py-3 bg-gradient-to-r from-[#C4621D] to-[#E8943A] text-white rounded-xl font-medium shadow-lg shadow-orange-200 hover:shadow-xl hover:shadow-orange-200 transition-all disabled:opacity-60">
               {loading ? "Finding restaurants…" : "Show My Recommendations"}
             </motion.button>
-            <button onClick={() => { setPref({ cuisines: [], cities: [], price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 100, top_k: 10, online_delivery: false, table_booking: false }); setResults([]); setSearched(false); }}
+            <button onClick={() => { setPref({ cuisines: [], cities: [], price_range: 0, min_rating: 3.5, max_cost: 2000, min_popularity: 0, top_k: 10, online_delivery: false, table_booking: false }); setResults([]); setSearched(false); }}
               className="px-5 py-3 bg-white/50 text-[#7A6E64] rounded-xl font-medium hover:bg-white/70 border border-white/60 transition-all">
               Reset
             </button>
@@ -1163,15 +1163,63 @@ function ManagerPanel({ auth }: { auth: AuthState }) {
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" | "info" } | null>(null);
   const showToast = (msg: string, type: "success" | "error" | "info" = "success") => setToast({ message: msg, type });
   const rid = auth.user.managed_restaurant_id;
-  const [rForm, setRForm] = useState({ name: "Spice Garden", city: "Mumbai", locality: "Bandra", address: "42 Hill Road, Bandra West", cuisines: "Indian, Chinese, Mughlai", avg_cost: "800", price_range: "2", rating: "4.3", votes: "2341", online_delivery: true, table_booking: true });
+  const emptyRestaurantForm = { name: "", city: "", locality: "", address: "", cuisines: "", avg_cost: "", price_range: "", rating: "", votes: "", online_delivery: false, table_booking: false };
+  const [rForm, setRForm] = useState(emptyRestaurantForm);
+  const [loadingRestaurant, setLoadingRestaurant] = useState(false);
   const [mForm, setMForm] = useState({ name: "", category: "", price: "", description: "", available: true });
   const [menuPhoto, setMenuPhoto] = useState<File | null>(null);
-  const [menu, setMenu] = useState([
-    { id: 1, name: "Butter Chicken", category: "Main Course", price: 340, description: "Classic creamy tomato curry", available: true, image: "1565557600756-bd529a40fe02" },
-    { id: 2, name: "Dal Makhani", category: "Main Course", price: 280, description: "Slow-cooked black lentils", available: true, image: "1567620905732-5e91f4cd42c5" },
-    { id: 3, name: "Paneer Tikka", category: "Starter", price: 320, description: "Grilled cottage cheese", available: false, image: "1631452180519-a31ea5a9b98b" },
-  ]);
+  const [menu, setMenu] = useState<{ id: number; name: string; category: string; price: number; description: string; available: boolean; image: string }[]>([]);
   const btnCls = "w-full py-2.5 bg-gradient-to-r from-[#C4621D] to-[#E8943A] text-white rounded-xl text-sm font-medium shadow-md hover:shadow-lg transition-all";
+
+  useEffect(() => {
+    if (!rid) {
+      setRForm(emptyRestaurantForm);
+      setMenu([]);
+      return;
+    }
+
+    let active = true;
+    const api = createApi(auth.apiBaseUrl, auth.token);
+    const loadAssignedRestaurant = async () => {
+      setLoadingRestaurant(true);
+      try {
+        const restaurant = await api.get(`/restaurants/${rid}`);
+        if (!active) return;
+        setRForm({
+          name: restaurant.restaurant_name || "",
+          city: restaurant.city || "",
+          locality: restaurant.locality || "",
+          address: restaurant.address || "",
+          cuisines: Array.isArray(restaurant.cuisines) ? restaurant.cuisines.join(", ") : "",
+          avg_cost: restaurant.average_cost_inr != null ? String(restaurant.average_cost_inr) : "",
+          price_range: restaurant.price_range != null ? String(restaurant.price_range) : "",
+          rating: restaurant.aggregate_rating != null ? String(restaurant.aggregate_rating) : "",
+          votes: restaurant.votes != null ? String(restaurant.votes) : "",
+          online_delivery: String(restaurant.has_online_delivery || "").toLowerCase() === "yes",
+          table_booking: String(restaurant.has_table_booking || "").toLowerCase() === "yes",
+        });
+
+        const items = await api.get(`/manager/restaurants/${rid}/menu-items`);
+        if (!active) return;
+        setMenu((Array.isArray(items) ? items : []).map((item: any) => ({
+          id: Number(item.menu_item_id),
+          name: item.item_name || "Menu Item",
+          category: item.category || "Uncategorized",
+          price: Number(item.price_inr || 0),
+          description: item.description || "",
+          available: item.is_available !== false,
+          image: item.photo_url || "1567620905732-5e91f4cd42c5",
+        })));
+      } catch (err: any) {
+        if (active) showToast(err.message || "Unable to load assigned restaurant", "error");
+      } finally {
+        if (active) setLoadingRestaurant(false);
+      }
+    };
+
+    loadAssignedRestaurant();
+    return () => { active = false; };
+  }, [rid, auth.apiBaseUrl, auth.token]);
 
   if (!rid) {
     return (
@@ -1192,6 +1240,7 @@ function ManagerPanel({ auth }: { auth: AuthState }) {
       {tab === "restaurant" && (
         <GlassCard className="p-6 max-w-2xl" hover={false}>
           <h3 className="font-semibold text-[#1C1612] mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>Edit Restaurant #{rid}</h3>
+          {loadingRestaurant && <p className="mb-4 text-sm text-[#7A6E64]">Loading assigned restaurant details...</p>}
           <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); await api.patch(`/manager/restaurants/${rid}`, { restaurant_name: rForm.name, city: rForm.city || null, locality: rForm.locality || null, address: rForm.address || null, cuisines: rForm.cuisines.split(",").map(s => s.trim()).filter(Boolean), average_cost_inr: rForm.avg_cost ? Number(rForm.avg_cost) : null, price_range: rForm.price_range ? Number(rForm.price_range) : null, aggregate_rating: rForm.rating ? Number(rForm.rating) : null, votes: rForm.votes ? Number(rForm.votes) : null, has_online_delivery: rForm.online_delivery ? "Yes" : "No", has_table_booking: rForm.table_booking ? "Yes" : "No" }); showToast("Updated!", "success"); } catch (err: any) { showToast(err.message || "Unable to update restaurant", "error"); } }} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <FormInput label="Restaurant Name" value={rForm.name} onChange={v => setRForm({ ...rForm, name: v })} />
@@ -1213,7 +1262,7 @@ function ManagerPanel({ auth }: { auth: AuthState }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <GlassCard className="p-6" hover={false}>
             <h3 className="font-semibold text-[#1C1612] mb-5" style={{ fontFamily: "'Playfair Display', serif" }}>Add Menu Item</h3>
-            <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); const body = new FormData(); body.append("item_name", mForm.name); body.append("category", mForm.category); body.append("price_inr", mForm.price || "0"); body.append("description", mForm.description); body.append("is_available", String(mForm.available)); if (menuPhoto) body.append("photo", menuPhoto); const d = await api.post(`/manager/restaurants/${rid}/menu-items`, body); setMenu(p => [...p, { id: d.menu_item_id || Date.now(), name: d.item_name, category: d.category || mForm.category, price: Number(d.price_inr || mForm.price || 0), description: d.description || mForm.description, available: d.is_available, image: "1567620905732-5e91f4cd42c5" }]); showToast("Item added!", "success"); setMForm({ name: "", category: "", price: "", description: "", available: true }); setMenuPhoto(null); } catch (err: any) { showToast(err.message || "Unable to add menu item", "error"); } }} className="space-y-4">
+            <form onSubmit={async e => { e.preventDefault(); try { const api = createApi(auth.apiBaseUrl, auth.token); const body = new FormData(); body.append("item_name", mForm.name); body.append("category", mForm.category); body.append("price_inr", mForm.price || "0"); body.append("description", mForm.description); body.append("is_available", String(mForm.available)); if (menuPhoto) body.append("photo", menuPhoto); const d = await api.post(`/manager/restaurants/${rid}/menu-items`, body); setMenu(p => [...p, { id: d.menu_item_id || Date.now(), name: d.item_name, category: d.category || mForm.category, price: Number(d.price_inr || mForm.price || 0), description: d.description || mForm.description, available: d.is_available, image: d.photo_url || "1567620905732-5e91f4cd42c5" }]); showToast("Item added!", "success"); setMForm({ name: "", category: "", price: "", description: "", available: true }); setMenuPhoto(null); } catch (err: any) { showToast(err.message || "Unable to add menu item", "error"); } }} className="space-y-4">
               <FormInput label="Item Name" value={mForm.name} onChange={v => setMForm({ ...mForm, name: v })} placeholder="Butter Chicken" />
               <FormInput label="Category" value={mForm.category} onChange={v => setMForm({ ...mForm, category: v })} placeholder="Main Course" />
               <FormInput label="Price (₹)" value={mForm.price} onChange={v => setMForm({ ...mForm, price: v })} type="number" placeholder="340" />
@@ -1228,7 +1277,7 @@ function ManagerPanel({ auth }: { auth: AuthState }) {
             {menu.map((item, i) => (
               <motion.div key={item.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.08 }}>
                 <GlassCard className="flex items-center gap-4 p-4">
-                  <div className="w-14 h-14 rounded-xl overflow-hidden bg-amber-100 flex-shrink-0"><img src={`https://images.unsplash.com/photo-${item.image}?w=100&h=100&fit=crop&auto=format`} alt={item.name} className="w-full h-full object-cover" /></div>
+                  <div className="w-14 h-14 rounded-xl overflow-hidden bg-amber-100 flex-shrink-0"><img src={item.image.startsWith("/") ? `${auth.apiBaseUrl.replace(/\/+$/, "")}${item.image}` : `https://images.unsplash.com/photo-${item.image}?w=100&h=100&fit=crop&auto=format`} alt={item.name} className="w-full h-full object-cover" /></div>
                   <div className="flex-1 min-w-0"><p className="text-sm font-semibold text-[#1C1612]">{item.name}</p><p className="text-xs text-[#7A6E64]">{item.category} · ₹{item.price}</p><p className="text-xs text-[#7A6E64]/70 mt-0.5 truncate">{item.description}</p></div>
                   <div className="flex flex-col items-end gap-2 flex-shrink-0">
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${item.available ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>{item.available ? "Available" : "Unavailable"}</span>

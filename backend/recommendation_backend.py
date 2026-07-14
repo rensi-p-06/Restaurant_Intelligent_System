@@ -31,7 +31,9 @@ from sqlalchemy import (
     Table,
     Text,
     create_engine,
+    func,
     inspect,
+    or_,
     text as sql_text,
 )
 from sqlalchemy.orm import Session, declarative_base, joinedload, relationship, sessionmaker
@@ -120,10 +122,15 @@ class Restaurant(Base):
     has_delivery_or_booking = Column(Boolean, default=False)
     location_cluster = Column(Integer, index=True)
     city_location_cluster = Column(String(255), index=True)
+    added_by_admin = Column(Boolean, default=False)
+    manager_modified = Column(Boolean, default=False)
+    manager_modified_by_user_id = Column(Integer, nullable=True)
+    manager_modified_at = Column(DateTime(timezone=True), nullable=True)
     created_at = Column(DateTime(timezone=True), default=utc_now, nullable=False)
     updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False)
 
     cuisines = relationship("Cuisine", secondary=restaurant_cuisines, back_populates="restaurants")
+    menu_items = relationship("MenuItem", back_populates="restaurant")
 
 
 class Cuisine(Base):
@@ -184,6 +191,8 @@ class MenuItem(Base):
     created_at = Column(DateTime(timezone=True), default=utc_now, nullable=False)
     updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False)
 
+    restaurant = relationship("Restaurant", back_populates="menu_items")
+
 
 class UserCreate(BaseModel):
     name: str
@@ -239,8 +248,16 @@ class RestaurantResponse(BaseModel):
     restaurant_id: int
     restaurant_name: str
     city: str | None = None
+    locality: str | None = None
+    address: str | None = None
     cuisines: list[str] = Field(default_factory=list)
-    message: str
+    average_cost_inr: float | None = None
+    price_range: int | None = None
+    aggregate_rating: float | None = None
+    votes: int | None = None
+    has_online_delivery: str | None = None
+    has_table_booking: str | None = None
+    message: str = ""
 
 
 class MenuItemResponse(BaseModel):
@@ -313,6 +330,7 @@ class RecommendationMetadataResponse(BaseModel):
     cuisine_count: int
     city_count: int
     admin_added_count: int
+    average_rating: float
 
 
 class ImportResponse(BaseModel):
@@ -458,6 +476,7 @@ def create_tables() -> None:
     Base.metadata.create_all(bind=engine)
     inspector = inspect(engine)
     user_columns = {column["name"] for column in inspector.get_columns("users")}
+    restaurant_columns = {column["name"] for column in inspector.get_columns("restaurants")}
     with engine.begin() as conn:
         if "password_hash" not in user_columns:
             conn.execute(sql_text("ALTER TABLE users ADD COLUMN password_hash VARCHAR(500)"))
@@ -465,6 +484,14 @@ def create_tables() -> None:
             conn.execute(sql_text("ALTER TABLE users ADD COLUMN role VARCHAR(30) NOT NULL DEFAULT 'user'"))
         if "managed_restaurant_id" not in user_columns:
             conn.execute(sql_text("ALTER TABLE users ADD COLUMN managed_restaurant_id INTEGER"))
+        if "added_by_admin" not in restaurant_columns:
+            conn.execute(sql_text("ALTER TABLE restaurants ADD COLUMN added_by_admin BOOLEAN DEFAULT FALSE"))
+        if "manager_modified" not in restaurant_columns:
+            conn.execute(sql_text("ALTER TABLE restaurants ADD COLUMN manager_modified BOOLEAN DEFAULT FALSE"))
+        if "manager_modified_by_user_id" not in restaurant_columns:
+            conn.execute(sql_text("ALTER TABLE restaurants ADD COLUMN manager_modified_by_user_id INTEGER"))
+        if "manager_modified_at" not in restaurant_columns:
+            conn.execute(sql_text("ALTER TABLE restaurants ADD COLUMN manager_modified_at TIMESTAMP WITH TIME ZONE"))
 
 
 def delete_all_users() -> int:
@@ -484,6 +511,48 @@ def split_cuisines(value: str) -> list[str]:
 
 def normalize_yes_no(value: object) -> str:
     return "Yes" if str(value).strip().title() == "Yes" else "No"
+
+
+def infer_cost_category(price_range: int | None, average_cost: float | None) -> str:
+    if price_range == 1:
+        return "Affordable"
+    if price_range == 2:
+        return "Casual"
+    if price_range == 3:
+        return "Premium"
+    if price_range == 4:
+        return "Luxury"
+    if average_cost is None:
+        return "Unknown"
+    if average_cost <= 500:
+        return "Affordable"
+    if average_cost <= 1200:
+        return "Casual"
+    if average_cost <= 2500:
+        return "Premium"
+    return "Luxury"
+
+
+def infer_rating_category(rating: float) -> str:
+    if rating >= 4.5:
+        return "Excellent"
+    if rating >= 4.0:
+        return "Very Good"
+    if rating >= 3.0:
+        return "Good"
+    if rating > 0:
+        return "Average"
+    return "Not Rated"
+
+
+def infer_popularity_category(votes: int) -> str:
+    if votes >= 1000:
+        return "Very Popular"
+    if votes >= 250:
+        return "Popular"
+    if votes >= 50:
+        return "Moderate"
+    return "New"
 
 
 def resolve_dataset_path(csv_path: str | None = None) -> Path:
@@ -576,32 +645,38 @@ def get_or_create_cuisine(db: Session, cuisine_name: str) -> Cuisine:
 
 
 def apply_restaurant_payload(db: Session, restaurant: Restaurant, payload: RestaurantMutationRequest) -> Restaurant:
+    average_cost = None if payload.average_cost_inr is None else float(payload.average_cost_inr)
+    price_range = None if payload.price_range is None else int(payload.price_range)
+    aggregate_rating = 0.0 if payload.aggregate_rating is None else float(payload.aggregate_rating)
+    votes = 0 if payload.votes is None else int(payload.votes)
+
     restaurant.restaurant_name = payload.restaurant_name
     restaurant.city = payload.city
     restaurant.address = payload.address
     restaurant.locality = payload.locality
     restaurant.latitude = payload.latitude
     restaurant.longitude = payload.longitude
-    restaurant.average_cost_inr = payload.average_cost_inr
-    restaurant.log_average_cost_inr = np.log1p(payload.average_cost_inr or 0)
-    restaurant.price_range = payload.price_range
-    restaurant.aggregate_rating = payload.aggregate_rating or 0
-    restaurant.votes = payload.votes or 0
-    restaurant.log_votes = np.log1p(payload.votes or 0)
+    restaurant.average_cost_inr = average_cost
+    restaurant.log_average_cost_inr = float(np.log1p(average_cost or 0))
+    restaurant.price_range = price_range
+    restaurant.aggregate_rating = aggregate_rating
+    restaurant.votes = votes
+    restaurant.log_votes = float(np.log1p(votes))
     restaurant.has_table_booking = normalize_yes_no(payload.has_table_booking or "No")
     restaurant.has_online_delivery = normalize_yes_no(payload.has_online_delivery or "No")
     restaurant.is_delivering_now = normalize_yes_no(payload.is_delivering_now or "No")
-    restaurant.restaurant_cost_category = payload.restaurant_cost_category or "Unknown"
-    restaurant.rating_category = payload.rating_category or "Unknown"
-    restaurant.popularity_category = payload.popularity_category or "Unknown"
-    restaurant.restaurant_popularity_score = float(payload.votes or 0)
+    inferred_cost_category = infer_cost_category(price_range, average_cost)
+    restaurant.restaurant_cost_category = payload.restaurant_cost_category or inferred_cost_category
+    restaurant.rating_category = payload.rating_category or infer_rating_category(aggregate_rating)
+    restaurant.popularity_category = payload.popularity_category or infer_popularity_category(votes)
+    restaurant.restaurant_popularity_score = float(votes)
     restaurant.city_restaurant_count = 0
     restaurant.is_expensive = bool(payload.is_expensive)
     restaurant.has_delivery_or_booking = restaurant.has_online_delivery == "Yes" or restaurant.has_table_booking == "Yes"
     restaurant.location_cluster = payload.location_cluster if payload.location_cluster is not None else -1
     restaurant.city_location_cluster = payload.city_location_cluster or "Unknown"
     restaurant.cost_relative_to_city = 1.0
-    restaurant.city_wise_cost_category = payload.restaurant_cost_category or "Unknown"
+    restaurant.city_wise_cost_category = payload.restaurant_cost_category or inferred_cost_category
 
     if payload.cuisines:
         restaurant.cuisines = [get_or_create_cuisine(db, cuisine.strip()) for cuisine in payload.cuisines if cuisine.strip()]
@@ -704,6 +779,178 @@ def write_admin_added_restaurants_workbook(fieldnames: list[str]) -> None:
         workbook.writestr("xl/worksheets/sheet1.xml", worksheet)
 
 
+def original_dataset_max_restaurant_id() -> int:
+    try:
+        data = pd.read_csv(DATASET_PATH, usecols=["Restaurant ID"])
+        max_id = pd.to_numeric(data["Restaurant ID"], errors="coerce").max()
+        return int(max_id) if pd.notna(max_id) else 0
+    except Exception:
+        return 0
+
+
+def admin_added_restaurant_export_fieldnames() -> list[str]:
+    return [
+        "Restaurant ID",
+        "Restaurant Name",
+        "City",
+        "Locality",
+        "Address",
+        "Cuisines",
+        "Average Cost INR",
+        "Price range",
+        "Aggregate rating",
+        "Votes",
+        "Has Online delivery",
+        "Has Table booking",
+        "Created At",
+        "Updated At",
+        "Export Reason",
+        "Manager Modified",
+        "Manager Modified By User ID",
+        "Manager Modified At",
+        "Assigned Manager IDs",
+        "Assigned Manager Names",
+        "Assigned Manager Emails",
+        "Menu Item Count",
+        "Menu Items",
+        "Menu Photos",
+    ]
+
+
+def admin_added_restaurant_export_row(restaurant: Restaurant, assigned_managers: list[User] | None = None) -> dict[str, object]:
+    assigned_managers = assigned_managers or []
+    menu_items = sorted(getattr(restaurant, "menu_items", []) or [], key=lambda item: item.menu_item_id or 0)
+    menu_summary = "; ".join(
+        f"{item.item_name} ({item.category or 'Uncategorized'}, "
+        f"INR {item.price_inr if item.price_inr is not None else 'N/A'}, "
+        f"{'Available' if item.is_available else 'Unavailable'})"
+        for item in menu_items
+    )
+    menu_photos = "; ".join(item.photo_url for item in menu_items if item.photo_url)
+    original_max_id = original_dataset_max_restaurant_id()
+    export_reasons = []
+    if restaurant.added_by_admin or restaurant.restaurant_id > original_max_id:
+        export_reasons.append("Admin added")
+    if restaurant.manager_modified:
+        export_reasons.append("Manager updated restaurant")
+    if assigned_managers:
+        export_reasons.append("Manager assigned")
+    if menu_items:
+        export_reasons.append("Manager menu items")
+    return {
+        "Restaurant ID": restaurant.restaurant_id,
+        "Restaurant Name": restaurant.restaurant_name,
+        "City": restaurant.city or "",
+        "Locality": restaurant.locality or "",
+        "Address": restaurant.address or "",
+        "Cuisines": ", ".join(cuisine.cuisine_name for cuisine in restaurant.cuisines),
+        "Average Cost INR": restaurant.average_cost_inr if restaurant.average_cost_inr is not None else "",
+        "Price range": restaurant.price_range if restaurant.price_range is not None else "",
+        "Aggregate rating": restaurant.aggregate_rating if restaurant.aggregate_rating is not None else "",
+        "Votes": restaurant.votes if restaurant.votes is not None else "",
+        "Has Online delivery": restaurant.has_online_delivery or "",
+        "Has Table booking": restaurant.has_table_booking or "",
+        "Created At": restaurant.created_at.isoformat() if restaurant.created_at else utc_now().isoformat(),
+        "Updated At": restaurant.updated_at.isoformat() if restaurant.updated_at else "",
+        "Export Reason": ", ".join(export_reasons),
+        "Manager Modified": "Yes" if restaurant.manager_modified else "No",
+        "Manager Modified By User ID": restaurant.manager_modified_by_user_id or "",
+        "Manager Modified At": restaurant.manager_modified_at.isoformat() if restaurant.manager_modified_at else "",
+        "Assigned Manager IDs": ", ".join(str(manager.user_id) for manager in assigned_managers),
+        "Assigned Manager Names": ", ".join(manager.name for manager in assigned_managers if manager.name),
+        "Assigned Manager Emails": ", ".join(manager.email or "" for manager in assigned_managers if manager.email),
+        "Menu Item Count": len(menu_items),
+        "Menu Items": menu_summary,
+        "Menu Photos": menu_photos,
+    }
+
+
+def restaurant_change_export_ids(db: Session) -> list[int]:
+    original_max_id = original_dataset_max_restaurant_id()
+    restaurant_ids = {
+        row[0]
+        for row in db.query(Restaurant.restaurant_id)
+        .filter(
+            or_(
+                Restaurant.added_by_admin.is_(True),
+                Restaurant.restaurant_id > original_max_id,
+                Restaurant.manager_modified.is_(True),
+            )
+        )
+        .all()
+    }
+    restaurant_ids.update(row[0] for row in db.query(MenuItem.restaurant_id).distinct().all())
+    restaurant_ids.update(
+        row[0]
+        for row in db.query(User.managed_restaurant_id)
+        .filter(User.role == "manager", User.managed_restaurant_id.isnot(None))
+        .distinct()
+        .all()
+    )
+    return sorted(int(restaurant_id) for restaurant_id in restaurant_ids if restaurant_id is not None)
+
+
+def admin_added_restaurants_query(db: Session):
+    export_ids = restaurant_change_export_ids(db)
+    if not export_ids:
+        return db.query(Restaurant).filter(Restaurant.restaurant_id.in_([]))
+    return (
+        db.query(Restaurant)
+        .options(joinedload(Restaurant.cuisines), joinedload(Restaurant.menu_items))
+        .filter(Restaurant.restaurant_id.in_(export_ids))
+        .order_by(Restaurant.restaurant_id.asc())
+    )
+
+
+def count_admin_added_restaurants(db: Session) -> int:
+    return len(restaurant_change_export_ids(db))
+
+
+def sync_admin_added_restaurant_exports(db: Session) -> int:
+    fieldnames = admin_added_restaurant_export_fieldnames()
+    restaurants = admin_added_restaurants_query(db).all()
+    manager_map: dict[int, list[User]] = {}
+    managers = (
+        db.query(User)
+        .filter(User.role == "manager", User.managed_restaurant_id.isnot(None))
+        .order_by(User.user_id.asc())
+        .all()
+    )
+    for manager in managers:
+        manager_map.setdefault(int(manager.managed_restaurant_id), []).append(manager)
+    rows = [
+        admin_added_restaurant_export_row(restaurant, manager_map.get(restaurant.restaurant_id, []))
+        for restaurant in restaurants
+    ]
+
+    ADMIN_ADDED_RESTAURANTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with ADMIN_ADDED_RESTAURANTS_PATH.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    write_admin_added_restaurants_workbook(fieldnames)
+    return len(rows)
+
+
+def to_restaurant_response(restaurant: Restaurant, message: str = "") -> RestaurantResponse:
+    return RestaurantResponse(
+        restaurant_id=restaurant.restaurant_id,
+        restaurant_name=restaurant.restaurant_name,
+        city=restaurant.city,
+        locality=restaurant.locality,
+        address=restaurant.address,
+        cuisines=[cuisine.cuisine_name for cuisine in restaurant.cuisines],
+        average_cost_inr=restaurant.average_cost_inr,
+        price_range=restaurant.price_range,
+        aggregate_rating=restaurant.aggregate_rating,
+        votes=restaurant.votes,
+        has_online_delivery=restaurant.has_online_delivery,
+        has_table_booking=restaurant.has_table_booking,
+        message=message,
+    )
+
+
 def import_restaurants_from_csv(db: Session, csv_path: str | None = None) -> tuple[int, int]:
     data = load_dataset(csv_path)
     cuisine_names = set()
@@ -752,6 +999,7 @@ def import_restaurants_from_csv(db: Session, csv_path: str | None = None) -> tup
 
 def restaurants_to_frame(restaurants: list[Restaurant]) -> pd.DataFrame:
     rows = []
+    original_max_id = original_dataset_max_restaurant_id()
     for restaurant in restaurants:
         rows.append(
             {
@@ -775,6 +1023,8 @@ def restaurants_to_frame(restaurants: list[Restaurant]) -> pd.DataFrame:
                 "location_cluster": restaurant.location_cluster,
                 "city_location_cluster": restaurant.city_location_cluster,
                 "cost_relative_to_city": restaurant.cost_relative_to_city,
+                "is_admin_added": bool(restaurant.added_by_admin) or restaurant.restaurant_id > original_max_id,
+                "is_manager_maintained": bool(restaurant.manager_modified),
             }
         )
     return pd.DataFrame(rows)
@@ -903,6 +1153,10 @@ def score_recommendations(data: pd.DataFrame, request: RecommendationRequest) ->
 
     cost_relative = scored["cost_relative_to_city"].fillna(1.0)
     scored["score"] += (1 - (cost_relative - 1).abs().clip(0, 1)) * 2
+
+    source_boost = scored["is_admin_added"].fillna(False).astype(bool) | scored["is_manager_maintained"].fillna(False).astype(bool)
+    scored.loc[source_boost, "score"] += 10
+    scored.loc[source_boost, "match_reasons"] += "admin/manager maintained; "
 
     scored = scored.sort_values(["score", "aggregate_rating", "votes"], ascending=[False, False, False])
     scored = scored.reset_index(drop=True)
@@ -1123,13 +1377,13 @@ def recommendation_metadata(db: Session = Depends(get_db)) -> RecommendationMeta
         .all()
         if row[0] and row[0].strip() and row[0].strip().lower() != "unknown"
     ]
-    admin_added_count = 0
-    if ADMIN_ADDED_RESTAURANTS_PATH.exists():
-        try:
-            with ADMIN_ADDED_RESTAURANTS_PATH.open("r", newline="", encoding="utf-8") as handle:
-                admin_added_count = max(sum(1 for _ in handle) - 1, 0)
-        except OSError:
-            admin_added_count = 0
+    admin_added_count = count_admin_added_restaurants(db)
+    average_rating = (
+        db.query(func.avg(Restaurant.aggregate_rating))
+        .filter(Restaurant.aggregate_rating > 0)
+        .scalar()
+        or 0
+    )
     return RecommendationMetadataResponse(
         cuisines=cuisines,
         cities=cities,
@@ -1138,6 +1392,7 @@ def recommendation_metadata(db: Session = Depends(get_db)) -> RecommendationMeta
         cuisine_count=len(cuisines),
         city_count=len(cities),
         admin_added_count=admin_added_count,
+        average_rating=round(float(average_rating), 2),
     )
 
 
@@ -1149,6 +1404,26 @@ def import_restaurants(
 ) -> ImportResponse:
     restaurants_imported, cuisines_imported = import_restaurants_from_csv(db, csv_path)
     return ImportResponse(restaurants_imported=restaurants_imported, cuisines_imported=cuisines_imported)
+
+
+@app.get("/restaurants/{restaurant_id}", response_model=RestaurantResponse)
+def get_restaurant_detail(
+    restaurant_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+) -> RestaurantResponse:
+    if current_user.role == "manager" and current_user.managed_restaurant_id != restaurant_id:
+        raise HTTPException(status_code=403, detail="You can only view your assigned restaurant")
+
+    restaurant = (
+        db.query(Restaurant)
+        .options(joinedload(Restaurant.cuisines))
+        .filter(Restaurant.restaurant_id == restaurant_id)
+        .first()
+    )
+    if restaurant is None:
+        raise HTTPException(status_code=404, detail="Restaurant not found")
+    return to_restaurant_response(restaurant)
 
 
 @app.post("/admin/assign-manager", response_model=UserResponse)
@@ -1169,6 +1444,10 @@ def assign_restaurant_manager(
     manager.managed_restaurant_id = payload.restaurant_id
     db.commit()
     db.refresh(manager)
+    try:
+        sync_admin_added_restaurant_exports(db)
+    except Exception as exc:
+        print(f"Manager assignment export failed for restaurant {payload.restaurant_id}: {exc}")
 
     return to_user_response(manager)
 
@@ -1187,14 +1466,18 @@ def create_restaurant(
     if db.get(Restaurant, restaurant_id) is not None:
         raise HTTPException(status_code=409, detail="Restaurant ID already exists")
 
-    restaurant = Restaurant(restaurant_id=restaurant_id)
+    restaurant = Restaurant(restaurant_id=restaurant_id, added_by_admin=True)
     apply_restaurant_payload(db, restaurant, payload)
     db.add(restaurant)
-    db.commit()
-    db.refresh(restaurant)
     try:
-        append_admin_added_restaurant_export(restaurant)
-    except OSError as exc:
+        db.commit()
+        db.refresh(restaurant)
+    except Exception as exc:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Unable to create restaurant: {exc}") from exc
+    try:
+        sync_admin_added_restaurant_exports(db)
+    except Exception as exc:
         print(f"Admin restaurant export failed for restaurant {restaurant.restaurant_id}: {exc}")
 
     return RestaurantResponse(
@@ -1218,8 +1501,16 @@ def update_assigned_restaurant(
         raise HTTPException(status_code=404, detail="Restaurant not found")
 
     apply_restaurant_payload(db, restaurant, payload)
+    if current_user.role == "manager":
+        restaurant.manager_modified = True
+        restaurant.manager_modified_by_user_id = current_user.user_id
+        restaurant.manager_modified_at = utc_now()
     db.commit()
     db.refresh(restaurant)
+    try:
+        sync_admin_added_restaurant_exports(db)
+    except Exception as exc:
+        print(f"Restaurant change export failed for restaurant {restaurant.restaurant_id}: {exc}")
 
     return RestaurantResponse(
         restaurant_id=restaurant.restaurant_id,
@@ -1244,6 +1535,38 @@ def save_menu_photo(photo: UploadFile | None) -> str | None:
     return f"/uploads/menu_items/{filename}"
 
 
+@app.get("/manager/restaurants/{restaurant_id}/menu-items", response_model=list[MenuItemResponse])
+def list_menu_items(
+    restaurant_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_admin_or_assigned_manager),
+) -> list[MenuItemResponse]:
+    restaurant = db.get(Restaurant, restaurant_id)
+    if restaurant is None:
+        raise HTTPException(status_code=404, detail="Restaurant not found")
+
+    items = (
+        db.query(MenuItem)
+        .filter(MenuItem.restaurant_id == restaurant_id)
+        .order_by(MenuItem.created_at.asc(), MenuItem.menu_item_id.asc())
+        .all()
+    )
+    return [
+        MenuItemResponse(
+            menu_item_id=item.menu_item_id,
+            restaurant_id=item.restaurant_id,
+            item_name=item.item_name,
+            description=item.description,
+            category=item.category,
+            price_inr=item.price_inr,
+            is_available=item.is_available,
+            photo_url=item.photo_url,
+            message="",
+        )
+        for item in items
+    ]
+
+
 @app.post("/manager/restaurants/{restaurant_id}/menu-items", response_model=MenuItemResponse)
 def create_menu_item(
     restaurant_id: int,
@@ -1260,6 +1583,11 @@ def create_menu_item(
     if restaurant is None:
         raise HTTPException(status_code=404, detail="Restaurant not found")
 
+    if current_user.role == "manager":
+        restaurant.manager_modified = True
+        restaurant.manager_modified_by_user_id = current_user.user_id
+        restaurant.manager_modified_at = utc_now()
+
     menu_item = MenuItem(
         restaurant_id=restaurant_id,
         item_name=item_name.strip(),
@@ -1273,6 +1601,10 @@ def create_menu_item(
     db.add(menu_item)
     db.commit()
     db.refresh(menu_item)
+    try:
+        sync_admin_added_restaurant_exports(db)
+    except Exception as exc:
+        print(f"Menu change export failed for restaurant {restaurant_id}: {exc}")
 
     return MenuItemResponse(
         menu_item_id=menu_item.menu_item_id,
@@ -1298,7 +1630,10 @@ def create_recommendations(
 
 def cli() -> None:
     parser = argparse.ArgumentParser(description="Restaurant recommendation backend utilities.")
-    parser.add_argument("command", choices=["create-tables", "import-csv", "clear-users"])
+    parser.add_argument(
+        "command",
+        choices=["create-tables", "import-csv", "clear-users", "sync-admin-exports", "sync-restaurant-export"],
+    )
     parser.add_argument("--csv", default=None, help="Path to cleaned_dataset.csv")
     args = parser.parse_args()
 
@@ -1310,6 +1645,10 @@ def cli() -> None:
     elif args.command == "clear-users":
         deleted_count = delete_all_users()
         print(f"Deleted {deleted_count} users.")
+    elif args.command in {"sync-admin-exports", "sync-restaurant-export"}:
+        with SessionLocal() as db:
+            exported_count = sync_admin_added_restaurant_exports(db)
+        print(f"Synced {exported_count} restaurant change rows to CSV and XLSX.")
     else:
         print("Database tables created.")
 
