@@ -333,6 +333,122 @@ def add_heatmap_title(folium_map, total_restaurants: int) -> None:
     folium_map.get_root().html.add_child(Element(title_html))
 
 
+def add_heatmap_toggle_note(folium_map, city_count: int) -> None:
+    from branca.element import Element
+
+    note_html = f"""
+    <div style="
+        position: fixed;
+        top: 86px;
+        left: 18px;
+        z-index: 9999;
+        background: rgba(255,255,255,0.95);
+        padding: 10px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        font-family: Arial, sans-serif;
+        color: #111827;
+        font-size: 11px;
+        max-width: 245px;
+        line-height: 1.4;
+    ">
+        <div style="font-weight:700;font-size:12px;margin-bottom:5px;">Heatmap Toggles</div>
+        <div>Use the layer button in the top-right corner to compare:</div>
+        <ul style="margin:6px 0 0 16px;padding:0;">
+            <li>All restaurant density</li>
+            <li>High-rated restaurant density</li>
+            <li>Low-rated restaurant density</li>
+            <li>Top {city_count} city-only heatmaps</li>
+        </ul>
+    </div>
+    """
+    folium_map.get_root().html.add_child(Element(note_html))
+
+
+def add_heatmap_control_styles(folium_map) -> None:
+    from branca.element import Element
+
+    style_html = """
+    <style>
+        .leaflet-control-layers {
+            border: 0 !important;
+            border-radius: 14px !important;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(17, 24, 39, 0.22) !important;
+            background: rgba(255, 255, 255, 0.94) !important;
+            backdrop-filter: blur(10px);
+            font-family: Arial, sans-serif;
+        }
+        .leaflet-control-layers-expanded {
+            padding: 12px 14px !important;
+            min-width: 310px;
+            max-height: 74vh;
+            overflow-y: auto;
+        }
+        .leaflet-control-layers::before {
+            content: "Select Heatmap Layer";
+            display: block;
+            font-weight: 800;
+            font-size: 13px;
+            color: #111827;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .leaflet-control-layers-overlays label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0;
+            padding: 7px 8px;
+            border-radius: 10px;
+            color: #374151;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 140ms ease, color 140ms ease;
+        }
+        .leaflet-control-layers-overlays label:hover {
+            background: #fff7ed;
+            color: #c4621d;
+        }
+        .leaflet-control-layers-selector {
+            width: 16px;
+            height: 16px;
+            accent-color: #c4621d;
+            flex-shrink: 0;
+        }
+        .leaflet-control-layers-separator {
+            display: none;
+        }
+    </style>
+    """
+    folium_map.get_root().html.add_child(Element(style_html))
+
+
+def heat_points_from_frame(frame: pd.DataFrame) -> list[list[float]]:
+    return frame[["Latitude", "Longitude"]].dropna().values.tolist()
+
+
+def add_heat_layer(
+    folium_module,
+    heatmap_class,
+    folium_map,
+    frame: pd.DataFrame,
+    name: str,
+    show: bool,
+    radius: int = 10,
+    blur: int = 15,
+) -> int:
+    heat_points = heat_points_from_frame(frame)
+    if not heat_points:
+        return 0
+    layer = folium_module.FeatureGroup(name=f"{name} ({len(heat_points):,})", show=show)
+    heatmap_class(heat_points, radius=radius, blur=blur, min_opacity=0.25).add_to(layer)
+    layer.add_to(folium_map)
+    return len(heat_points)
+
+
 def create_folium_maps(df: pd.DataFrame, output_dir: Path, max_map_points: int) -> None:
     try:
         import folium
@@ -377,10 +493,33 @@ def create_folium_maps(df: pd.DataFrame, output_dir: Path, max_map_points: int) 
 
     restaurant_map.save(output_dir / "restaurant_location_marker_map.html")
 
-    heat_map = folium.Map(location=[center_lat, center_lon], zoom_start=3, tiles="CartoDB positron")
-    heat_points = map_df[["Latitude", "Longitude"]].dropna().values.tolist()
-    HeatMap(heat_points, radius=10, blur=15, min_opacity=0.25).add_to(heat_map)
-    add_heatmap_title(heat_map, total_restaurants=len(heat_points))
+    heat_map = folium.Map(location=[center_lat, center_lon], zoom_start=3, tiles=None)
+    folium.TileLayer("CartoDB positron", name="Base Map", control=False).add_to(heat_map)
+    all_count = add_heat_layer(folium, HeatMap, heat_map, map_df, "All Restaurants Density", show=True)
+
+    high_rated_df = map_df[map_df["Aggregate rating"] >= 4.0]
+    add_heat_layer(folium, HeatMap, heat_map, high_rated_df, "High-Rated Restaurants Density (rating >= 4.0)", show=False)
+
+    low_rated_df = map_df[(map_df["Aggregate rating"] > 0) & (map_df["Aggregate rating"] < 3.0)]
+    add_heat_layer(folium, HeatMap, heat_map, low_rated_df, "Low-Rated Restaurants Density (0 < rating < 3.0)", show=False)
+
+    top_city_names = (
+        map_df["City"]
+        .dropna()
+        .astype(str)
+        .value_counts()
+        .head(10)
+        .index
+        .tolist()
+    )
+    for city in top_city_names:
+        city_df = map_df[map_df["City"].astype(str) == city]
+        add_heat_layer(folium, HeatMap, heat_map, city_df, f"City Filter: {city}", show=False, radius=12, blur=17)
+
+    folium.LayerControl(collapsed=False, position="topright").add_to(heat_map)
+    add_heatmap_title(heat_map, total_restaurants=all_count)
+    add_heatmap_toggle_note(heat_map, city_count=len(top_city_names))
+    add_heatmap_control_styles(heat_map)
     add_heatmap_legend(heat_map)
     heat_map.save(output_dir / "restaurant_density_heatmap.html")
 
