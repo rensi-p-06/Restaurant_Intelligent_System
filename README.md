@@ -162,3 +162,17 @@ Generated reports and maps are saved in:
 ```text
 analysis/location_results/
 ```
+
+$env:DATABASE_URL="postgresql+psycopg2://postgres:YOUR_PASSWORD@localhost:5432/restaurant_recommendation"
+
+python -m backend.recommendation_backend create-tables
+
+python -m uvicorn backend.recommendation_backend:app --reload
+
+cd D:\Git\Restaurant_Intelligent_System\Frontend
+
+npm run build
+
+cd D:\Git\Restaurant_Intelligent_System
+
+python -m uvicorn backend.recommendation_backend:app --reload
