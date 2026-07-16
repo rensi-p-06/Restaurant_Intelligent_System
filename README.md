@@ -171,7 +171,8 @@ python -m uvicorn backend.recommendation_backend:app --reload
 
 cd D:\Git\Restaurant_Intelligent_System\Frontend
 
-npm run build
+npm install
+npm run dev
 
 cd D:\Git\Restaurant_Intelligent_System
 
